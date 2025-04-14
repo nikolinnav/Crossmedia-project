@@ -1,10 +1,42 @@
-//Array of objects for all locations with ifo about their name, latitude and longitute.
+const container = document.querySelector("#container");
+const mapContainer = document.createElement("div");
+mapContainer.id = "map";
+container.appendChild(mapContainer);
+mapContainer.style.height = "100vh";
+mapContainer.style.width = "100wv";
+
+//Array of objects for all locations with info about their name, latitude and longitute.
 const locations = [
     {
         name: "Grannen",
         lat: 55.60763,
         lon: 12.98699
     },
+    {
+        name: "Malmö Live",
+        lat: 55.60756,
+        lon: 12.99201
+    },
+    {
+        name: "BookABoat Malmö",
+        lat: 55.60665,
+        lon: 12.99556
+    },
+    {
+        name: "Rådhuset",
+        lat: 55.60662,
+        lon: 13.00135
+    },
+    {
+        name: "Gustav Adolfs Torg",
+        lat: 55.60248,
+        lon: 13.00082
+    },
+    {
+        name: "MJ's Hotell",
+        lat: 55.60603,
+        lon: 12.99789
+    }
 ]
 
 let currentIndex = 0;
@@ -12,8 +44,8 @@ let notified = false;
 let targetMarker;
 let userMarker;
 
-const map = L.map('map').setView([0, 0], 17);
-L.tileLyer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+const map = L.map('map').setView([55.60763, 12.98699], 16);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 //Calculates the user's distance from the target place.
 function getDistance(lat1, lon1, lat2, lon2) {
@@ -38,7 +70,7 @@ function saveVisited(name) {
     const visited = loadVisited();
     if (!visited.includes(name)) {
         visited.push(name);
-        localStorage.SetItem("visitedPlaces", JSON.stringify(visited));
+        localStorage.setItem("visitedPlaces", JSON.stringify(visited));
     }
 }
 
@@ -54,7 +86,7 @@ function setTarget(location) {
         return;
     }
 
-    targetMarker = L.marker([location.lat], [location.lon])
+    targetMarker = L.marker([location.lat, location.lon])
         .addTo(map)
         .bindPopup(location.name)
         .openPopup();
@@ -63,7 +95,7 @@ function setTarget(location) {
 const initialTarget = getNextLocation();
 setTarget(initialTarget);
 
-userMarker = L.marker([0, 0].addTo(map));
+userMarker = L.marker([0, 0]).addTo(map);
 
 if ("geolocation" in navigator) {
     navigator.geolocation.watchPosition((pos) => {
@@ -85,7 +117,7 @@ if ("geolocation" in navigator) {
 
         if (dist < 2 && !notified) {
             notified = true;
-            alert('Du har ankommit till ${currentTarget.name}');
+            alert(`Du har ankommit till ${currentTarget.name}`);
             saveVisited(currentTarget.name);
 
             //Trigger the next task here. (interview, view a video, answer a question etc...)
@@ -101,6 +133,6 @@ if ("geolocation" in navigator) {
     }, {
         enableHighAccuracy: true,
         maximumAge: 1000,
-        timeout: 500
+        timeout: 10000
     });
 }
