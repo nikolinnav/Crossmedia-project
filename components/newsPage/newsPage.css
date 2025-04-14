@@ -21,9 +21,12 @@ hr {
 }
 
 #image {
-    height: 150px;
+    height: 170px;
     margin-bottom: 10px;
-    background-color: aquamarine;
+    background-image: url("../../media/newsPage/bigImage.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 
 p {
@@ -55,7 +58,9 @@ h2 {
 #granneImage {
     width: 170px;
     height: 220px;
-    background-color: aquamarine;
+    background-image: url(../../media/newsPage/granne.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #text>p:nth-child(3) {

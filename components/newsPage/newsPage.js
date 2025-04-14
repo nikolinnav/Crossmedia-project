@@ -3,10 +3,13 @@ function renderNewsPageGranne() {
     const newsPageContainer = document.createElement("div");
     newsPageContainer.id = "newsPageContainer";
     container.appendChild(newsPageContainer);
+
+    let date = new Date().toLocaleDateString();;
+
     newsPageContainer.innerHTML = `
     <hr>
     <div id="header">
-        <p>Date</p>
+        <p>${date}</p>
     </div>
     <hr>
     <h1>BORGMÄSTAREN ÄR<br>SPÅRLÖST FÖRSVUNNEN!</h1>
