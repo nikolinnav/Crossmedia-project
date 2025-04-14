@@ -1,0 +1,79 @@
+#newsPageContainer {
+    padding: 30px 17px 0px 17px;
+    background-color: #FAF6F2;
+}
+
+hr {
+    margin: 0;
+}
+
+#header {
+    background-color: #B92A33;
+    height: 50px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#header>p {
+    margin: 0 7px;
+}
+
+#image {
+    height: 150px;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+}
+
+h1,
+h2 {
+    margin: 10px 0;
+}
+
+#flexContainer {
+    display: flex;
+
+}
+
+#quoteAndImage {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+#quoteAndImage>p {
+    font-size: 22px;
+    text-align: center;
+}
+
+#granneImage {
+    width: 170px;
+    height: 220px;
+    background-color: aquamarine;
+}
+
+#text>p:nth-child(3) {
+    color: #B92A33;
+}
+
+footer {
+    background-color: #FAF6F2;
+    height: 40px;
+}
+
+#rect {
+    height: 30px;
+    background-color: #B92A33;
+    display: flex;
+    align-items: center;
+}
+
+#rect>p {
+    margin-left: 7px;
+}
