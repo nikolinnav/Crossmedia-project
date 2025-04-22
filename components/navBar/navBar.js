@@ -5,16 +5,16 @@ function renderNavBar(firstDivText) {
 
     navBar.innerHTML = `
         <div>
-            <p>${firstDivText}</p>
+            <p class="navText">${firstDivText}</p>
         </div>
         <div>
-            <p>Karta</p>
+            <p class="navText">Karta</p>
         </div>
         <div>
-            <p>Artiklar</p>
+            <p class="navText">Artiklar</p>
         </div>
         <div>
-            <p>Koder</p>
+            <p class="navText">Koder</p>
         </div>
     `
 }
