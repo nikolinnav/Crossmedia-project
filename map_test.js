@@ -1,4 +1,4 @@
-const container = document.querySelector("#container");
+/*const container = document.querySelector("#container");
 const mapContainer = document.createElement("div");
 mapContainer.id = "map";
 container.appendChild(mapContainer);
@@ -135,4 +135,4 @@ if ("geolocation" in navigator) {
         maximumAge: 1000,
         timeout: 10000
     });
-}
+}*/
