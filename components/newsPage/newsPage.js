@@ -9,6 +9,7 @@ function renderNewsPageGranne() {
     newsPageContainer.innerHTML = `
     <hr>
     <div id="header">
+        <h1>MALMÖ DIREKT</h1>
         <p>${date}</p>
     </div>
     <hr>
@@ -16,7 +17,7 @@ function renderNewsPageGranne() {
     <div id="image"></div>
     <hr>
     <h2>Saknad under oklara omständigheter dagar före stundande komunval.</h2>
-    <hr>
+    <hr id="lastHR">
  
     <div id="flexContainer">
         <article id="quoteAndImage">
@@ -44,8 +45,6 @@ function renderNewsPageGranne() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 }
-
-
 
 
 function renderBackgroundArticle() {

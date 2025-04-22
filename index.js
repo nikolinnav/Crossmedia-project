@@ -1,2 +1,2 @@
-//renderNewsPageGranne();
-renderBackgroundArticle();
+renderNewsPageGranne();
+// renderBackgroundArticle();

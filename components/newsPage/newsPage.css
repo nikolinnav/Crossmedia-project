@@ -10,17 +10,29 @@ hr {
     margin: 0;
 }
 
+#lastHR {
+    margin-bottom: 10px;
+}
+
 #header {
     background-color: #B92A33;
-    height: 50px;
+    position: relative;
+    height: 43px;
     margin: 10px 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    display: grid;
+    font-family: "Anton";
+}
+
+#header>h1 {
+    margin: 0;
+    justify-self: center;
+    align-self: center;
 }
 
 #header>p {
-    margin: 0 7px;
+    position: absolute;
+    bottom: 0;
+    right: 7px;
 }
 
 #image {
@@ -102,7 +114,7 @@ footer {
     position: relative;
 }
 
-h2 {
+#articleContainer>h2 {
     writing-mode: sideways-lr;
     white-space: nowrap;
     grid-row: 1/5;
