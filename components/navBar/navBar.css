@@ -1,0 +1,18 @@
+nav {
+    background-color: #B92A33;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    height: 50px;
+}  
+
+div {
+    color: white;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+}
