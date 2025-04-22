@@ -5,3 +5,13 @@ body {
     margin: 25px;
     border: solid black 1px;
 }
+
+@font-face {
+    font-family: "Anton";
+    src: url(fonts/Anton/Anton-Regular.ttf);
+}
+
+@font-face {
+    font-family: "TT Fors";
+    src: url(fonts/tt_fors/TT\ Fors\ Trial\ Black\ Italic.ttf);
+}

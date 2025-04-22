@@ -1,6 +1,9 @@
+/*Styles till Grannens Nyhetssida */
+
 #newsPageContainer {
     padding: 30px 17px 0px 17px;
     background-color: #FAF6F2;
+
 }
 
 hr {
@@ -81,4 +84,108 @@ footer {
 
 #rect>p {
     margin-left: 7px;
+}
+
+
+
+
+
+
+
+/* Styles till backgrunden */
+
+#articleContainer {
+    display: grid;
+    grid-template-rows: 400px auto auto auto;
+    grid-template-columns: 35px 1fr 1fr;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+
+h2 {
+    writing-mode: sideways-lr;
+    white-space: nowrap;
+    grid-row: 1/5;
+    font-family: "Anton";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+#img {
+    height: 400px;
+    width: 100%;
+    grid-row: 1/2;
+    grid-column: 2/4;
+    background-image: url("../../media/newsPage/borgmästaren.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#background {
+    margin-top: 15px;
+    grid-row: 2/3;
+    grid-column: 2/4;
+    padding-right: 15px;
+    padding-left: 8px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#separator {
+    grid-row: 3/4;
+    grid-column: 2/4;
+    height: 5px;
+    width: 70vw;
+    justify-self: center;
+    background-color: grey;
+    margin: 10px 0 10px 0;
+}
+
+#uppgift {
+    grid-row: 4/5;
+    grid-column: 2/4;
+    margin-left: 5px;
+    padding-right: 15px;
+    padding-left: 8px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 0;
+    margin-bottom: 50px;
+}
+
+p {
+    margin: 0;
+}
+
+#uppgift>p:last-child {
+    color: #EB0404;
+    margin-top: 15px;
+}
+
+#background>p:first-child,
+#uppgift>p:first-child {
+    font-family: "TT Fors";
+    font-size: 4.5vw;
+}
+
+
+#background>p:last-child {
+    text-indent: 7px;
+}
+
+#logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    height: 70px;
+    width: 70px;
+    background-image: url(../../media/newsPage/logo.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+
 }

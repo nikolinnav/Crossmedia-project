@@ -44,3 +44,31 @@ function renderNewsPageGranne() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 }
+
+
+
+
+function renderBackgroundArticle() {
+    const container = document.querySelector("#container");
+    const articleContainer = document.createElement("div");
+    container.appendChild(articleContainer);
+    articleContainer.id = "articleContainer";
+
+    articleContainer.innerHTML = ` 
+        <h2>SANNING ELLER SKVALLER SANNING ELLER SKVALLER SANNING ELLER SKVALLER SANNING ELLER SKVALLER SANNING ELLER SKVALLER SANNING ELLER SKVALLER SANNING ELLER SKVALLER</h2>
+            <div id="img"></div>
+                <div id="background">
+                    <p><b>BAKGRUND</b></p>
+                    <p>I takt med den digitala förändringen har informationsflödet blivit snabbare än någonsin. Samtidigt har det blivit allt svårare att avgöra vilka källor som är trovärdiga. Rykten, spekulationer och felaktig information kan spridas på nolltid och kan få allvarliga konsekvenser.</p>
+                    <p> Plötsligt skakas samhället om när nyheten som Borgmästarens försvinnande slår ner. Sociala medier exploderar med spekulationer och rykten där vissa menar att hon har flytt landet, medan andra hävdar att hon har blivit kidnappad av sin politiska motståndare. Vad är sant? </p>
+                </div>
+                <div id="separator"></div>
+                <div id="uppgift">
+                    <p><b>DIN UPPGIFT</b></p>
+                    <p>Du axlar rollen som journalist och kastas ut i Borgmästarens mystiska försvinnande. I din roll som journalist behöver du kritiskt granska de digitala ledtrådarna och ta dig till rätt platser för att lösa gåtan och hitta borgmästaren.</p>
+                    <p>Källkritik är ditt viktigaste verktyg. Varje ledtråd kräver eftertanke. Sanningen hittar du först när du vågar ifrågasätta det du ser. </p>   
+                </div>
+                <div id="logo"></div>
+    `
+
+}
