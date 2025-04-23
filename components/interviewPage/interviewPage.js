@@ -1,3 +1,12 @@
+let audioQuestions = [
+new Audio("./media/audio/Granne_fraga_1.mp3"), 
+new Audio("./media/audio/Granne_fraga_2.mp3"),
+new Audio("./media/audio/Granne_fraga_3.mp3"),
+new Audio("./media/audio/Granne_fraga_4.mp3"), 
+new Audio("./media/audio/Granne_fraga_5.mp3"),
+];
+let playing = false;
+
 function renderInterviewPage(questions) {
     const container = document.getElementById("container");
     const div = document.createElement("div");
@@ -58,34 +67,60 @@ function renderInterviewPage(questions) {
 }
 
 async function playQuestion(event) {
-    // console.log("now playing");
-    // console.log(event.originalTarget);
-    let target = event.originalTarget.classList;
+
+    let target = event.target.classList;
+    let url = "./media/audio/Granne_fraga_1.mp3";
 
     switch (target[0]) {
         case "question1":
             console.log("now playing question 1");
-            let url = "../../media/audio/Granne_fråga_1.mp3";
-            playAudio(url);
+            playAudio(audioQuestions[0]);
             break;
         case "question2":
             console.log("now playing question 2");
+            url = "./media/audio/Granne_fraga_2.mp3";
+            playAudio(audioQuestions[1]);
             break;
         case "question3":
             console.log("now playing question 3");
+            url = "./media/audio/Granne_fraga_3.mp3";
+            playAudio(audioQuestions[2]);
             break;
         case "question4":
             console.log("now playing question 4");
+            url = "./media/audio/Granne_fraga_4.mp3";
+            playAudio(audioQuestions[3]);
             break;
         case "question5":
             console.log("now playing question 5");
+            url = "./media/audio/Granne_fraga_5.mp3";
+            playAudio(audioQuestions[4]);
             break;
         default:
             break;
     }
 }
 
-function playAudio(url) {
-    let question = new Audio(url);
-    console.log(question);
+function playAudio(question) {
+    if (!playing) {
+        question.play();
+        playing = true;
+        console.log("playing");
+    } else if (playing) {
+        // question.pause();
+        playing = false;
+        console.log("paused");
+        checkIfPlaying();
+    }
+    question.onended = function() {
+        playing = false;
+    }
+}
+
+function checkIfPlaying() {
+    for(let q of audioQuestions) {
+        if (!q.paused) {
+            q.pause();
+        }
+    }
 }
