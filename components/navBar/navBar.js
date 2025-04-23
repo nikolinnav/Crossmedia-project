@@ -4,16 +4,16 @@ function renderNavBar(firstDivText) {
     container.appendChild(navBar);
 
     navBar.innerHTML = `
-        <div>
+        <div class="navDiv">
             <p class="navText">${firstDivText}</p>
         </div>
-        <div>
+        <div class="navDiv">
             <p class="navText">Karta</p>
         </div>
-        <div>
+        <div class="navDiv">
             <p class="navText">Artiklar</p>
         </div>
-        <div>
+        <div class="navDiv">
             <p class="navText">Koder</p>
         </div>
     `
