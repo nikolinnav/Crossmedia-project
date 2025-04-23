@@ -12,3 +12,13 @@ body {
     height: 100vh;
     background-color: #F2EFEA;
 }
+
+@font-face {
+    font-family: "Anton";
+    src: url(fonts/Anton/Anton-Regular.ttf);
+}
+
+@font-face {
+    font-family: "TT Fors";
+    src: url(fonts/tt_fors/TT\ Fors\ Trial\ Black\ Italic.ttf);
+}
