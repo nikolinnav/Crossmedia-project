@@ -1,5 +1,5 @@
 :root {
-    --bar-color-interview: #96ADD6;
+    --bar-color-interview: #B92A33;
     --p-text: Helvetica;
 }
 
@@ -10,7 +10,7 @@ body {
     margin: 25px;
     border: solid black 1px;
     height: 100vh;
-    background-color: #F2EFEA;
+    background-color: #faf6f2;
 }
 
 @font-face {
