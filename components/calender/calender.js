@@ -1,6 +1,14 @@
 function renderCalender(month, year) {
     const container = document.querySelector("#container");
     container.innerHTML = "";
+
+    const title = document.createElement("h2");
+    title.id = "calTitle";
+    title.textContent = "Malmö Direkt";
+    container.appendChild(title);
+
+    renderNavBar("Start");
+
     const calenderContainer = document.createElement("div");
     calenderContainer.id = "calenderContainer";
     container.appendChild(calenderContainer);
