@@ -1,4 +1,5 @@
-let audioQuestions = [new Audio("./media/audio/Granne_fraga_1.mp3"), 
+let audioQuestions = [
+new Audio("./media/audio/Granne_fraga_1.mp3"), 
 new Audio("./media/audio/Granne_fraga_2.mp3"),
 new Audio("./media/audio/Granne_fraga_3.mp3"),
 new Audio("./media/audio/Granne_fraga_4.mp3"), 
