@@ -23,7 +23,7 @@ function renderCalender(month, year) {
     calenderContainer.appendChild(calBody);
 
 
-    const days = ["S", "M", "T", "O", "T", "F", "S"];
+    const days = ["S", "M", "T", "O", "T", "F", "L"];
 
     for (const day of days) {
         const dayDiv = document.createElement("div");
