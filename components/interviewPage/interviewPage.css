@@ -1,13 +1,12 @@
 .interviewImg {
-    /* height: 500px;
-    background-color: lightblue; */
+    height: 500px;
+    background-image: url(../../media/images/Grannen-AI-mindre.png);
+    margin-top: 12px;
 }
 
 .interviewBoxesContainer {
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
 }
 
 .interviewBoxes {
