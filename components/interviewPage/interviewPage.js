@@ -87,5 +87,14 @@ async function playQuestion(event) {
 
 function playAudio(url) {
     let question = new Audio(url);
-    console.log(question);
+    console.log(question.readyState);
+    question.addEventListener("canplaythrough", (event) => {
+        console.log("hej")
+        question.play();
+    });
 }
+
+// function canPlay(event) {
+//     console.log("hej");
+//     console.log(event);
+// }
