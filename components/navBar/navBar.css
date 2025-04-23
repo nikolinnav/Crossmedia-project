@@ -1,0 +1,20 @@
+nav {
+    background-color: #B92A33;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    height: 50px;
+}  
+
+div {
+    color: white;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.navText {
+    text-align: center;
+    font-size: 16px;
+    font-family: Helvetica;
+    margin: 0;
+}
