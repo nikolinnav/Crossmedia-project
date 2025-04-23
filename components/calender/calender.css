@@ -4,7 +4,6 @@
 }
 
 #calenderContainer {
-    height: auto;
     width: 75vw;
     display: flex;
     flex-direction: column;
@@ -41,12 +40,21 @@
 
 .day,
 .date {
-    width: 100%;
+    width: 28px;
+    height: 28px;
     padding: 5px;
     font-family: Arial, Helvetica, sans-serif;
+    justify-self: center;
+    align-content: center;
 }
 
 #calTitle {
     font-family: "Anton";
     margin-left: 20px;
+}
+
+.today {
+    border-radius: 50%;
+    background-color: #F2D7D3;
+    font-weight: bolder;
 }
