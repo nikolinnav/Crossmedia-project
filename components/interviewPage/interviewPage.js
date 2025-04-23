@@ -114,6 +114,7 @@ function playAudio(question) {
     }
     question.onended = function() {
         playing = false;
+        //add variable that checks how many the user has listened to
     }
 }
 
