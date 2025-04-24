@@ -60,28 +60,29 @@ function renderCalender(month, year) {
         if (isToday && i === today.getDate()) {
             dateDiv.classList.add("today");
             dateDiv.addEventListener("click", () => {
-                
+                renderEventHeader(dateDiv.textContent, 2, eventContainer);
+                renderEvent("072-645 38 99", "10:00", 1, eventContainer);
             });
         }
     }
 
-  
-    
+
+
 }
 
 function renderEventHeader(date, num, parent) {
     const eventDate = document.createElement("p");
-    eventDate.id = "EventDate";
+    eventDate.id = "eventDate";
     parent.appendChild(eventDate);
     eventDate.textContent = `${date} Maj`;
 
     const numOfEvents = document.createElement("p");
     numOfEvents.id = "numOfEvents";
     parent.appendChild(numOfEvents);
-    numOfEvents.textContent = numOfEvents(num);
+    numOfEvents.textContent = eventsNum(num);
 }
 
-function numOfEvents(num) {
+function eventsNum(num) {
     switch (num) {
         case 1:
             return "En aktivitet";
@@ -103,12 +104,12 @@ function renderEvent(title, time, numOfBoxes, parent) {
 
         const boxTitle = document.createElement("p");
         boxTitle.id = "boxTitle";
-        boxTitle.textContent(title);
+        boxTitle.textContent = title;
         box.appendChild(boxTitle);
 
         const boxTime = document.createElement("p");
         boxTime.id = "boxTime";
-        boxTime.textContent(time);
+        boxTime.textContent = time;
         box.appendChild(boxTime);
     }
 }
