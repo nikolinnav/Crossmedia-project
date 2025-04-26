@@ -3,13 +3,15 @@ function renderCharacterProfiles(characterInfo) {
     const characterProfileContainer = document.createElement("div");
     container.appendChild(characterProfileContainer);
     characterProfileContainer.innerHTML = `
-    <div class="line">
+    <div id="lineTop">
         <h1 id="charTitle">${characterInfo.character}</h1>
     </div>
-    <img id="charImg" src="${characterInfo.image}"></img>
-    <div id="characterInfo">
+    <div id="characterContainer">
+        <img id="charImg" alt="A picture of ${characterInfo.character}"src="${characterInfo.image}"></img>
+        <div id="characterInfo">
+        </div>
     </div>
-    <div class="line">
+    <div id="lineBottom">
         <div id="colorBar"></div>
     </div>
     `;
