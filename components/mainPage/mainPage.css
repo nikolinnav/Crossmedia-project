@@ -1,0 +1,30 @@
+#senasteNytt {
+    font-size: 32px;
+    margin: 16px 0px 12px 20px;
+}
+
+.bottomCard {
+    width: 100%;
+    background-color: white;
+    /* padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 4px;
+    padding-bottom: 12px; */
+}
+.bottomCard h2{
+    margin: 0;
+    padding: 12px 20px 4px 20px;
+}
+
+.bottomCard p {
+    padding: 0 20px 12px 20px;
+}
+
+.card {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+}
