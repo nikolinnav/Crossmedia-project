@@ -1,0 +1,13 @@
+.line {
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+    margin-top: 10px;
+}
+
+.line h1 {
+    text-align: center;
+    background-color: #6bb3dd;
+    margin: 5px 0 5px 0;
+    padding-top: 4px;
+
+}
