@@ -35,4 +35,5 @@ function renderMainPage() {
         </div>
     </div>
     `;
-}
+}//todo
+//finish css and add functionality to start button
