@@ -31,6 +31,7 @@ function renderDropDown () {
 
 function chosenCharacter(event) {
     //göra att dropdown menyn försvinner vid klick
+    document.getElementById("dropDownList").remove();
     let targetId = event.target.id;
     for (let character of characterInfo) {
         if (targetId == character.id) {

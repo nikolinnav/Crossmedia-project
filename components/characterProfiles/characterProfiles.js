@@ -1,5 +1,7 @@
 function renderCharacterProfiles(characterInfo) {
-    document.querySelector("main").remove();
+    if (document.querySelector("main")) {
+        document.querySelector("main").remove();
+    };
 
     if (document.querySelector("#characterContainer")) {
         document.querySelector("#characterContainer").remove();
