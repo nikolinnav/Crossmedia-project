@@ -49,3 +49,8 @@ function createCard (cardInfo) {
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
 }
+
+function createReadArticleCard (cardInfo) {
+    //html to create a read article card
+    //adds cards to the #lästaArtiklar id after a user has interacted with a card
+}
