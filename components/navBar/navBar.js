@@ -13,8 +13,18 @@ function renderNavBar(firstDivText) {
         <div class="navDiv">
             <p class="navText">Artiklar</p>
         </div>
-        <div class="navDiv">
-            <p class="navText">Koder</p>
+        <div class="navDiv" id="charactersNav">
+            <p class="navText">Karaktärer</p>
         </div>
     `
+
+    document.getElementById("charactersNav").addEventListener("click", displayDropDown);
+}
+
+function displayDropDown(event) {
+    if (document.getElementById("dropDownList")) {
+        document.getElementById("dropDownList").remove();
+        return;
+    }
+    renderDropDown();
 }

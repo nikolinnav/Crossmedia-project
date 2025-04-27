@@ -1,6 +1,13 @@
 function renderCharacterProfiles(characterInfo) {
+    document.querySelector("main").remove();
+
+    if (document.querySelector("#characterContainer")) {
+        document.querySelector("#characterContainer").remove();
+    }
     const container = document.getElementById("container");
     const characterProfileContainer = document.createElement("div");
+
+    characterProfileContainer.setAttribute("id", "characterContainer");
     container.appendChild(characterProfileContainer);
     characterProfileContainer.innerHTML = `
     <div id="lineTop">
@@ -36,6 +43,7 @@ function renderCharacterProfiles(characterInfo) {
 }
 
 function firstCharToUpper(string) {
+
     let firstCharUpper = string.charAt(0).toUpperCase();
     let slicedString = string.slice(1, string.length);
 
