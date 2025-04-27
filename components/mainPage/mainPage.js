@@ -44,3 +44,8 @@ function renderMainPage() {
     `;
 }//todo
 //finish css and add functionality to start button
+
+function createCard (cardInfo) {
+    //html to add a new card to #senasteNyttCards
+    //cardInfo contains the necessary text info and picture src for the card
+}
