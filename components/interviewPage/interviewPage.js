@@ -8,9 +8,11 @@ new Audio("./media/audio/Granne_fraga_5.mp3"),
 let playing = false;
 
 function renderInterviewPage(questions) {
+    console.log(questions[0].questionOne);
     const container = document.getElementById("container");
     const div = document.createElement("div");
     div.setAttribute("id", "interviewContainer");
+    div.classList.add("dynamicContent");
 
     div.innerHTML = `
     <div class="interviewImg"></div>
@@ -18,7 +20,7 @@ function renderInterviewPage(questions) {
 
     <div class="interviewBoxesContainer">
         <div class="question1 interviewBoxes">
-            <p class="question1">${questions[0]}</p>
+            <p class="question1">${questions[0].questionOne}</p>
             <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                 <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
             </svg>             
@@ -26,7 +28,7 @@ function renderInterviewPage(questions) {
         <div class="bar"></div>
 
         <div class="question2 interviewBoxes">
-            <p class="question2">${questions[1]}</p>
+            <p class="question2">${questions[0].questionTwo}</p>
             <svg class="question2" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                 <path class="question2" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
             </svg>                     
@@ -34,7 +36,7 @@ function renderInterviewPage(questions) {
         <div class="bar"></div>
 
         <div class="question3 interviewBoxes">
-            <p class="question3">${questions[2]}</p>
+            <p class="question3">${questions[0].questionThree}</p>
             <svg class="question3" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                 <path class="question3" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
             </svg>             
@@ -42,7 +44,7 @@ function renderInterviewPage(questions) {
         <div class="bar"></div>
 
         <div class="question4 interviewBoxes">
-            <p class="question4">${questions[3]}</p>
+            <p class="question4">${questions[0].questionFour}</p>
             <svg class="question4" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                 <path class="question4" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
             </svg>              
@@ -50,7 +52,7 @@ function renderInterviewPage(questions) {
         <div class="bar"></div>
 
         <div class="question5 interviewBoxes">
-            <p class="question5">${questions[4]}</p>
+            <p class="question5">${questions[0].questionFive}</p>
             <svg class="question5" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                 <path class="question5" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
             </svg>          

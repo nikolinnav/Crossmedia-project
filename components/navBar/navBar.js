@@ -40,6 +40,7 @@ function displayDropDown(event) {
 function start(event) {
     if (event.target.textContent == "Start") {
         let dynamicContent = document.querySelectorAll(".dynamicContent");
+        console.log(dynamicContent);
         dynamicContent.forEach(element => element.remove());
         renderMainPage();
         event.target.textContent = "Senaste";

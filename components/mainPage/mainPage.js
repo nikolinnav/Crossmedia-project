@@ -53,6 +53,25 @@ function renderMainPage() {
 //finish css and add functionality to start button
 
 function createCard (cardInfo) {
+
+    //jsonStructure
+    //[{
+    // "id": 1,
+    // "divId": "grannen",
+    // "titleText": "Title",
+    // "bottomText": "Text"
+    // }]
+    let cardContainer = document.getElementById("senasteNyttCards");
+    cardContainer.innerHTML = `
+    <div id="${cardInfo.divId}" class="card">
+        <div id="senasteNyttImg"></div>
+        <div class="bottomCard">
+            <h2>${cardInfo.titleText}</h2>
+            <p>${cardInfo.bottomText}</h2>
+        </div>
+    </div>
+    `
+
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
 }
@@ -65,13 +84,18 @@ function createReadArticleCard (cardInfo) {
 function cardClick(event, card) {
     //check what id the card has then renders the appropriate content
     console.log(card.id);
+    checkId(card.id);
     console.log(event);
 }
 
 function checkId(id) {
     switch (id) {
         case "grannen":
-            
+            console.log("hej");
+            console.log(interviewQuestions);
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+            renderInterviewPage(interviewQuestions);
         return;
     }
 }
