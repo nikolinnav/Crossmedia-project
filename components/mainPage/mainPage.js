@@ -22,17 +22,20 @@ function renderMainPage() {
             </div>
         </div>
     </div>
+    <h1 id="lästaArtiklar">Lästa artiklar</h1>
+    <div id="lästaArtiklarCards"></div>
+
     `;
-    if (!document.getElementById("alreadyRead")) {
-        console.log("hej");
-        let alreadyReadDiv = document.createElement("div");
-        alreadyReadDiv.setAttribute("id", "alreadyRead");
-        alreadyReadDiv.innerHTML = `
-        <h1 id="lästaArtiklar">Lästa artiklar</h1>
-        <div id="lästaArtiklarCards"></div>
-        `
-        container.appendChild(alreadyReadDiv);
-    }
+    // if (!document.getElementById("alreadyRead")) {
+    //     console.log("hej");
+    //     let alreadyReadDiv = document.createElement("div");
+    //     alreadyReadDiv.setAttribute("id", "alreadyRead");
+    //     alreadyReadDiv.innerHTML = `
+    //     <h1 id="lästaArtiklar">Lästa artiklar</h1>
+    //     <div id="lästaArtiklarCards"></div>
+    //     `
+    //     container.appendChild(alreadyReadDiv);
+    // }
     let cards = document.querySelectorAll(".card");
     cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
 }
@@ -104,14 +107,14 @@ function checkId(id) {
             renderNavBar("Start");
             
             renderInterviewPage(interviewQuestions);
-            document.getElementById("alreadyRead").remove();
+            // document.getElementById("alreadyRead").remove();
         return;
         case "newsPage":
             document.querySelector("main").remove();
             renderNavBar("Start");
 
             renderNewsPageGranne();
-            document.getElementById("alreadyRead").remove();
+            // document.getElementById("alreadyRead").remove();
         return;
     } 
 }

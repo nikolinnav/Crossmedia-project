@@ -1,11 +1,15 @@
 function renderCharacterProfiles(characterInfo) {
-    if (document.querySelector("main")) {
-        document.querySelector("main").remove();
-    };
+    // if (document.querySelector("main")) {
+    //     document.querySelector("main").remove();
+    // };
 
-    if (document.querySelector("#characterContainer")) {
-        document.querySelector("#characterContainer").remove();
-    }
+    // if (document.querySelector("#characterContainer")) {
+    //     document.querySelector("#characterContainer").remove();
+    // }
+
+    // if (document.querySelector(""))
+    let dynamicContent = document.querySelectorAll(".dynamicContent");
+    dynamicContent.forEach(e => e.remove());
     const container = document.getElementById("container");
     const characterProfileContainer = document.createElement("div");
 
@@ -45,6 +49,7 @@ function renderCharacterProfiles(characterInfo) {
     }
 }
 
+//maybe add a logic folder and paste function in file there
 function firstCharToUpper(string) {
 
     let firstCharUpper = string.charAt(0).toUpperCase();
