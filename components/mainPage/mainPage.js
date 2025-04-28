@@ -22,30 +22,23 @@ function renderMainPage() {
             </div>
         </div>
     </div>
-    <h1 id="lästaArtiklar">Lästa artiklar</h1>
-    <div id="lästaArtiklarCards">
-        <div>
-            <div>
-                <h2>Test titel</h2>
-                <p>Testtext som ska vara undertitel</p>
-            </div>
-        </div>
-        <div>
-            <div>
-                <h2>Test titel</h2>
-                <p>Testtext som ska vara undertitel</p>
-            </div>
-        </div>
-        
-    </div>
     `;
+    if (!document.getElementById("alreadyRead")) {
+        console.log("hej");
+        let alreadyReadDiv = document.createElement("div");
+        alreadyReadDiv.setAttribute("id", "alreadyRead");
+        alreadyReadDiv.innerHTML = `
+        <h1 id="lästaArtiklar">Lästa artiklar</h1>
+        <div id="lästaArtiklarCards"></div>
+        `
+        container.appendChild(alreadyReadDiv);
+    }
     let cards = document.querySelectorAll(".card");
     cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
-}//todo
-//finish css and add functionality to start button
+}
 
-function createCard (cardInfo, id) {
-
+//Creates a card that is added under Senaste Nytt
+function createCard (id) {
     for (let card of gameCards) {
         if (card.id === id) {
             let cardContainer = document.getElementById("senasteNyttCards");
@@ -62,46 +55,63 @@ function createCard (cardInfo, id) {
     }
     //jsonStructure
     //[{
+    // "event": "grannen"?
     // "id": 1,
     // "divId": "grannen",
     // "titleText": "Title",
     // "bottomText": "Text"
     // }]
-    // let cardContainer = document.getElementById("senasteNyttCards");
-    // cardContainer.innerHTML = `
-    // <div id="${cardInfo.divId}" class="card">
-    //     <div id="senasteNyttImg"></div>
-    //     <div class="bottomCard">
-    //         <h2>${cardInfo.titleText}</h2>
-    //         <p>${cardInfo.bottomText}</h2>
-    //     </div>
-    // </div>
-    // `
 
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
 }
 
-function createReadArticleCard (cardInfo) {
-    //html to create a read article card
-    //adds cards to the #lästaArtiklar id after a user has interacted with a card
+//Creates a card that is then added under lästa Artiklar
+function createReadArticleCard (id) {
+    console.log(id);
+    let readCardContainer = document.getElementById("lästaArtiklarCards");
+    for (let card of gameCards) {
+        if (id === card.id) {
+            // let readCardContainer = document.getElementById("lästaArtiklarCards");
+            let cardDiv = document.createElement("div");
+            cardDiv.setAttribute("id", card.divId);
+            cardDiv.innerHTML = `
+                 <div>
+                     <h2>${card.titleText}</h2>
+                     <p>${card.bottomText}</p>
+                 </div>
+            `
+            readCardContainer.appendChild(cardDiv);
+            let cardElement = document.getElementById(`${card.divId}`)
+            cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+        }
+    }
 }
 
+//check what id the card has then renders the appropriate content
 function cardClick(event, card) {
-    //check what id the card has then renders the appropriate content
-    console.log(card.id);
     checkId(card.id);
-    console.log(event);
 }
 
+//Renders appropriate content depending on the id given
 function checkId(id) {
     switch (id) {
-        case "grannen":
-            console.log("hej");
-            console.log(interviewQuestions);
+        case "grannen":     
+            interaction.grannen.interacted = true;        
             document.querySelector("main").remove();
             renderNavBar("Start");
+            
             renderInterviewPage(interviewQuestions);
+            document.getElementById("alreadyRead").remove();
         return;
-    }
+        case "newsPage":
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+
+            renderNewsPageGranne();
+            document.getElementById("alreadyRead").remove();
+        return;
+    } 
 }

@@ -2,6 +2,9 @@
     height: 500px;
     background-image: url(../../media/images/Grannen-AI-mindre.png);
     margin-top: 12px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
 }
 
 .interviewBoxesContainer {

@@ -1,6 +1,16 @@
-[{
-    "id": 1,
-    "divId": "grannen",
-    "titleText": "Intervjua Grannen",
-    "bottomText": "Besök och intervjua Grannen"
-}]
+[
+    {
+        "event": "newsPage",
+        "id": 0,
+        "divId": "newsPage",
+        "titleText": "Borgmästaren spårlöst försvunnen",
+        "bottomText": "Saknad under oklara omständigheter dagar före stundande kommunval."
+    },    
+    {
+        "event": "grannen",
+        "id": 1,
+        "divId": "grannen",
+        "titleText": "Intervjua Grannen",
+        "bottomText": "Besök och intervjua Grannen"
+    }
+]

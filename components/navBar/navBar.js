@@ -39,11 +39,30 @@ function displayDropDown(event) {
 
 function start(event) {
     if (event.target.textContent == "Start") {
+
         let dynamicContent = document.querySelectorAll(".dynamicContent");
         console.log(dynamicContent);
         dynamicContent.forEach(element => element.remove());
+
         renderMainPage();
+        
+        //checks weather card has been interacted with
+        //if it hasnt renders those cards
+        for (let inter in interaction) {
+            if (!interaction[inter].interacted) {
+                createCard(interaction[inter].id);
+            } 
+        }
+
         event.target.textContent = "Senaste";
+
+        //checks what cards and articles has been interacted with
+        //adds those cards under Lästa Artiklar
+        for (let inter in interaction) {
+            if (interaction[inter].interacted) {
+                createReadArticleCard(interaction[inter].id);
+            }
+        }
     }
     console.log(event.target.textContent);
 }

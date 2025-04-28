@@ -1,5 +1,9 @@
+
+//Questions needed for the interviewPage
 let interviewQuestions = [];
+//Data needed for the karaktärer page
 let characterInfo = [];
+//Data needed for the different cards that are added to mainPage
 let gameCards = [];
 
 async function get() {
@@ -29,12 +33,13 @@ async function checkOk(response) {
 }
 get();
 
-renderTitle();
-renderNavBar("Senaste");
+// renderTitle();
+// renderNavBar("Senaste");
+renderNewsPageGranne();
 
 let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
 // renderInterviewPage(questions);
-renderMainPage();
+// renderMainPage();
 
 // renderNewsPageGranne();
 
