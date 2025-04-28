@@ -1,18 +1,23 @@
 let interviewQuestions = [];
 let characterInfo = [];
+let gameCards = [];
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");
     let requestInterviewQuestions = new Request("./database/interviewQuestions.json");
+    let requestGameCards = new Request("./database/gameCards.json");
 
     let responseCharacterInfo = await fetch(requestCharacterInfo);
     let responseInterviewQuestions = await fetch(requestInterviewQuestions);
+    let responseGameCards = await fetch(requestGameCards);
 
     characterInfo = await checkOk(responseCharacterInfo);
     interviewQuestions = await checkOk(responseInterviewQuestions);
+    gameCards = await checkOk(responseGameCards);
 
     console.log(interviewQuestions);
     console.log(characterInfo);
+    console.log(gameCards);
 }
 
 async function checkOk(response) {
@@ -30,6 +35,7 @@ renderNavBar("Senaste");
 let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
 // renderInterviewPage(questions);
 renderMainPage();
+
 // renderNewsPageGranne();
 
 // renderNavBar("Senaste");

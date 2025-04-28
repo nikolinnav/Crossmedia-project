@@ -11,13 +11,6 @@ function renderMainPage() {
     main.innerHTML = `
     <h1 id="senasteNytt">Senaste Nytt</h1>
     <div id="senasteNyttCards">
-        <div id="grannen" class="card">
-            <div id="senasteNyttImg"></div>
-            <div class="bottomCard">
-                <h2>Intervjua Grannen</h2>
-                <p>Lorem Ipsum Dolor</p>
-            </div>
-        </div>
     </div>
     <h1 id="kartaTitel">Karta</h1>
     <div id="kartaCards">
@@ -48,12 +41,25 @@ function renderMainPage() {
     `;
     let cards = document.querySelectorAll(".card");
     cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
-
 }//todo
 //finish css and add functionality to start button
 
-function createCard (cardInfo) {
+function createCard (cardInfo, id) {
 
+    for (let card of gameCards) {
+        if (card.id === id) {
+            let cardContainer = document.getElementById("senasteNyttCards");
+            cardContainer.innerHTML = `
+            <div id="${card.divId}" class="card">
+                <div id="senasteNyttImg"></div>
+                <div class="bottomCard">
+                    <h2>${card.titleText}</h2>
+                    <p>${card.bottomText}</h2>
+                </div>
+            </div>
+            `
+        }
+    }
     //jsonStructure
     //[{
     // "id": 1,
@@ -61,16 +67,16 @@ function createCard (cardInfo) {
     // "titleText": "Title",
     // "bottomText": "Text"
     // }]
-    let cardContainer = document.getElementById("senasteNyttCards");
-    cardContainer.innerHTML = `
-    <div id="${cardInfo.divId}" class="card">
-        <div id="senasteNyttImg"></div>
-        <div class="bottomCard">
-            <h2>${cardInfo.titleText}</h2>
-            <p>${cardInfo.bottomText}</h2>
-        </div>
-    </div>
-    `
+    // let cardContainer = document.getElementById("senasteNyttCards");
+    // cardContainer.innerHTML = `
+    // <div id="${cardInfo.divId}" class="card">
+    //     <div id="senasteNyttImg"></div>
+    //     <div class="bottomCard">
+    //         <h2>${cardInfo.titleText}</h2>
+    //         <p>${cardInfo.bottomText}</h2>
+    //     </div>
+    // </div>
+    // `
 
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
