@@ -1,7 +1,11 @@
 function renderMainPage() {
+    if (document.querySelector("main")) {
+        document.querySelector("main").remove();
+    }
     const container = document.getElementById("container");
     let main = document.createElement("main");
     main.setAttribute("id", "mainPageContainer");
+    main.classList.add("dynamicContent");
     container.appendChild(main);
 
     main.innerHTML = `

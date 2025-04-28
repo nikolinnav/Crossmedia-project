@@ -35,6 +35,7 @@ function chosenCharacter(event) {
     let targetId = event.target.id;
     for (let character of characterInfo) {
         if (targetId == character.id) {
+            renderNavBar("Start");
             renderCharacterProfiles(character);
         }
     }
