@@ -10,6 +10,7 @@ function renderCharacterProfiles(characterInfo) {
     const characterProfileContainer = document.createElement("div");
 
     characterProfileContainer.setAttribute("id", "characterContainer");
+    characterProfileContainer.classList.add("dynamicContent");
     container.appendChild(characterProfileContainer);
     characterProfileContainer.innerHTML = `
     <div id="lineTop">
