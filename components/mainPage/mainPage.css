@@ -38,11 +38,12 @@
 }
 
 #senasteNyttImg {
-    background-image: url(../../media/profiles/borgmastaren.jpg);
+    background-image: url(../../media/profiles/grannen.jpg);
     height: 200px;
-    background-position: center;
+    background-position: top center;
     width: 100%;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #kartaTitel {
