@@ -107,14 +107,16 @@ function checkId(id) {
             renderNavBar("Start");
             
             renderInterviewPage(interviewQuestions);
-            // document.getElementById("alreadyRead").remove();
         return;
         case "newsPage":
+            interaction.newsPage.interacted = true;
             document.querySelector("main").remove();
             renderNavBar("Start");
 
             renderNewsPageGranne();
-            // document.getElementById("alreadyRead").remove();
+        return;
+        case "phusVideo1":
+
         return;
     } 
 }

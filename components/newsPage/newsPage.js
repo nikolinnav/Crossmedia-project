@@ -77,14 +77,17 @@ function renderBackgroundArticle() {
 }
 
 function render(event) {
-    document.getElementById("newsPageContainer").remove();
-    document.querySelector("footer").remove();
-    renderTitle();
-    renderNavBar("Senaste");
-    renderMainPage();
-    createCard(1);
-    createReadArticleCard(0);
-    interaction.newsPage.interacted = true;
+    if (!document.querySelector("nav")) {
+        
+        document.getElementById("newsPageContainer").remove();
+        document.querySelector("footer").remove();
+        renderTitle();
+        renderNavBar("Senaste");
+        renderMainPage();
+        createCard(1);
+        createReadArticleCard(0);
+        interaction.newsPage.interacted = true;
+    }
     // interacted.newsPage = true;
     // console.log(interacted);
 } 

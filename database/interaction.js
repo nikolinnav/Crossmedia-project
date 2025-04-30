@@ -11,5 +11,29 @@ let interaction = {
     grannen: {
         id: 1,
         interacted: false
+    },
+    phus_video1: {
+        id: 2,
+        interacted: false
+    },
+    vilseledd: {
+        id: 3,
+        interacted: false
+    },
+    intervju_motstandare: {
+        id: 4,
+        interacted: false
+    },
+    artikel_assistent: {
+        id: 5,
+        interacted: false
+    }, 
+    kalender: {
+        id: 6,
+        interacted: false
+    },
+    borgmastaren_hittad: {
+        id: 7,
+        interacted: false
     }
 }

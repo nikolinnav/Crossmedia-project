@@ -1,4 +1,4 @@
-
+//Eventuellt ett kort för dotterns instagram
 //Questions needed for the interviewPage
 let interviewQuestions = [];
 //Data needed for the karaktärer page

@@ -12,5 +12,48 @@
         "divId": "grannen",
         "titleText": "Intervjua Grannen",
         "bottomText": "Besök och intervjua Grannen"
+    },
+    {
+        "event": "phus_video1",
+        "id": 2,
+        "divId": "phusVideo1",
+        "titleText": "Se den virala videon som sprids om Malmös Borgmästare",
+        "bottomText": "Videon är tagen direkt från överavakningskameran"
+    },
+    {
+        "event": "vilseledd",
+        "id": 3,
+        "divId": "vilseledd",
+        "titleText": "",
+        "bottomText": ""
+    },
+    {
+        "event": "intervju_motstandare",
+        "id": 4,
+        "divId": "motstandareLjudfil",
+        "titleText": "",
+        "bottomText": ""
+    }, 
+    {
+        "event": "artikel_assistent",
+        "id": 5,
+        "divId": "artikelAssistent",
+        "titleText": "",
+        "bottomText": ""
+    },
+    {
+        "event": "kalender",
+        "id": 6,
+        "divId": "goToKalender",
+        "titleText": "Assistentes kalender",
+        "bottomText": "Leta genom assistents kalender"
+    }, 
+    {
+        "event": "borgmastaren_hittad",
+        "id": 7,
+        "divId": "borgmastarenHittad",
+        "titleText": "Borgmästaren på bild? Nya Ledtrådar i försvinnandet",
+        "bottomText": "Malmöbor spekulerar efter nya smygbilder -kan det vara Von Stjärnholm?"
     }
 ]
+
