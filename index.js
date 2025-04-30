@@ -1,3 +1,4 @@
+let fromReadArticle = false;
 //Eventuellt ett kort för dotterns instagram
 //Questions needed for the interviewPage
 let interviewQuestions = [];

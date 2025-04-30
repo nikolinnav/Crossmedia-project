@@ -101,22 +101,44 @@ function cardClick(event, card) {
 //Renders appropriate content depending on the id given
 function checkId(id) {
     switch (id) {
-        case "grannen":     
-            interaction.grannen.interacted = true;        
-            document.querySelector("main").remove();
-            renderNavBar("Start");
-            
-            renderInterviewPage(interviewQuestions);
-        return;
         case "newsPage":
             interaction.newsPage.interacted = true;
+            if (document.getElementById("newsPage").parentElement.id == "lästaArtiklarCards") {
+                console.log("in from Read Articles")
+                fromReadArticle = true;
+                console.log("now fromReadArticle is", fromReadArticle);
+            } else {
+                fromReadArticle = false;
+                console.log("now fromReadArticle is", fromReadArticle);
+            }
             document.querySelector("main").remove();
             renderNavBar("Start");
 
             renderNewsPageGranne();
         return;
+        case "grannen":     
+            interaction.grannen.interacted = true;        
+            if (document.getElementById("grannen").parentElement.id == "lästaArtiklarCards") {
+                fromReadArticle = true;
+            } else {
+                fromReadArticle = false;
+            }
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+            
+            renderInterviewPage(interviewQuestions);
+        return;
         case "phusVideo1":
-
+            console.log("send user to the video");
+            interaction.phus_video1.interacted = true;
+            if (document.getElementById("phusVideo1").parentElement.id != "lästaArtiklarCards") {
+                console.log("hej");
+                document.getElementById("phusVideo1").remove();
+                createReadArticleCard(2);
+                fromReadArticle = false;
+            } else {
+                fromReadArticle = true;
+            }
         return;
     } 
 }
