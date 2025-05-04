@@ -1,11 +1,11 @@
-let fromReadArticle = false;
+// let fromReadArticle = false;
 //Eventuellt ett kort för dotterns instagram
 //Questions needed for the interviewPage
-let interviewQuestions = [];
+// let interviewQuestions = [];
 //Data needed for the karaktärer page
-let characterInfo = [];
+// let characterInfo = [];
 //Data needed for the different cards that are added to mainPage
-let gameCards = [];
+// let gameCards = [];
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");
@@ -36,7 +36,7 @@ get();
 
 // renderTitle();
 // renderNavBar("Senaste");
-renderNewsPageGranne();
+//renderNewsPageGranne();
 
 let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
 // renderInterviewPage(questions);
@@ -49,4 +49,7 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderInterviewPage(questions);
 // renderNewsPageGranne();
 // renderBackgroundArticle();
+//renderSmygbilderArticle()
+// renderAssistantArticle();
+renderInstructions();
 
