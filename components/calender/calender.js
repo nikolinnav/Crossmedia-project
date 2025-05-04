@@ -4,7 +4,7 @@ function renderCalender(month, year) {
 
     const title = document.createElement("h2");
     title.id = "calTitle";
-    title.textContent = "Malmö Direkt";
+    title.textContent = "Sanning eller Skvaller";
     container.appendChild(title);
 
     renderNavBar("Start");
@@ -49,7 +49,7 @@ function renderCalender(month, year) {
 
     //Get the today's date
     const today = new Date();
-    const isToday = today.getFullYear() === 2025 && today.getMonth() === 3;
+    const isToday = today.getFullYear() === 2025 && today.getMonth() === 4;
 
     for (i = 1; i <= daysInMonth; i++) {
         const dateDiv = document.createElement("div");
@@ -59,10 +59,10 @@ function renderCalender(month, year) {
 
         if (isToday && i === today.getDate()) {
             dateDiv.classList.add("today");
-            dateDiv.addEventListener("click", () => {
-                renderEventHeader(dateDiv.textContent, 2, eventContainer);
-                renderEvent("072-645 38 99", "10:00", 1, eventContainer);
-            });
+            renderEventHeader(dateDiv.textContent, 2, eventContainer);
+            let boxTitle = renderEvent("072-645 38 99", "10:00", "phoneNum", eventContainer);
+            boxTitle.addEventListener("click", renderKeyPad);
+
         }
     }
 
@@ -96,21 +96,83 @@ function eventsNum(num) {
     }
 }
 
-function renderEvent(title, time, numOfBoxes, parent) {
-    for (let i = 1; i <= numOfBoxes; i++) {
-        const box = document.createElement("div");
-        box.id = "eventBox";
-        parent.appendChild(box);
+function renderEvent(title, time, styleClass, parent) {
 
-        const boxTitle = document.createElement("p");
-        boxTitle.id = "boxTitle";
-        boxTitle.textContent = title;
-        box.appendChild(boxTitle);
+    const box = document.createElement("div");
+    box.id = "eventBox";
+    parent.appendChild(box);
 
-        const boxTime = document.createElement("p");
-        boxTime.id = "boxTime";
-        boxTime.textContent = time;
-        box.appendChild(boxTime);
-    }
+    const boxTitle = document.createElement("p");
+    boxTitle.id = "boxTitle";
+    boxTitle.classList.add(styleClass);
+    boxTitle.textContent = title;
+    box.appendChild(boxTitle);
+
+    const boxTime = document.createElement("p");
+    boxTime.id = "boxTime";
+    boxTime.textContent = time;
+    box.appendChild(boxTime);
+
+    return boxTitle;
+
+}
+
+function renderKeyPad() {
+    const container = document.querySelector("#container");
+    container.innerHTML = "";
+
+    const body = document.querySelector("body");
+    body.style = "margin: 0";
+
+    const dialContainer = document.createElement("div");
+    dialContainer.id = "dialContainer";
+    container.appendChild(dialContainer);
+    dialContainer.innerHTML = `
+    <div class="number-display" id="numberDisplay">072-645 38 99</div>
+
+  <div class="dial-container" id="keypad">
+    <button class="dial-button" data-key="1">1</button>
+    <button class="dial-button" data-key="2">2<span>ABC</span></button>
+    <button class="dial-button" data-key="3">3<span>DEF</span></button>
+    <button class="dial-button" data-key="4">4<span>GHI</span></button>
+    <button class="dial-button" data-key="5">5<span>JKL</span></button>
+    <button class="dial-button" data-key="6">6<span>MNO</span></button>
+    <button class="dial-button" data-key="7">7<span>PQRS</span></button>
+    <button class="dial-button" data-key="8">8<span>TUV</span></button>
+    <button class="dial-button" data-key="9">9<span>WXYZ</span></button>
+    <button class="dial-button" data-key="*">*</button>
+    <button class="dial-button" data-key="0">0<span>+</span></button>
+    <button class="dial-button" data-key="#">#</button>
+  </div>
+
+  <button class="call-button">&#128222;</button>
+
+  <div class="bottom-nav">
+    <div>
+      <div>&#9733;</div>
+      <div>Favorites</div>
+    </div>
+    <div>
+      <div>&#128336;</div>
+      <div>Recents</div>
+    </div>
+    <div>
+      <div>&#128100;</div>
+      <div>Contacts</div>
+    </div>
+    <div class="highlight">
+      <div class="dot-grid">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div>Keypad</div>
+    </div>
+    <div>
+      <div>&#128222;</div>
+      <div>Voicemail</div>
+    </div>
+  </div>
+    `;
 }
 

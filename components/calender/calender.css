@@ -60,6 +60,10 @@
     font-weight: bolder;
 }
 
+.today :hover {
+    cursor: pointer;
+}
+
 #eventContainer {
     width: 75vw;
     margin: auto;
@@ -91,12 +95,134 @@
 }
 
 #boxTitle {
-    font-size: 18px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 3px;
 
 }
 
 #boxTime {
-    font-size: 16px;
+    font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.phoneNum {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.phoneNum:hover {
+    cursor: pointer;
+}
+
+
+
+
+/* Dial pad */
+
+#dialContainer {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.number-display {
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 60px;
+    min-height: 40px;
+    letter-spacing: 3px;
+}
+
+.dial-container {
+    display: grid;
+    grid-template-columns: repeat(3, 33.333%);
+    gap: 17px;
+    justify-content: center;
+    margin-top: -58px;
+}
+
+.dial-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #2c2c2e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: none;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.dial-button span {
+    font-size: 10px;
+    color: #aaa;
+    margin-top: -4px;
+}
+
+.dial-button:active {
+    background-color: #3a3a3c;
+}
+
+.call-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #28cd41;
+    color: white;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    color: white;
+    font-size: 12px;
+    padding-bottom: 10px;
+    border-top: 1px solid #222;
+}
+
+.bottom-nav div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.dot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    grid-gap: 2px;
+    margin-top: 4px;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.highlight {
+    color: #007aff;
 }
