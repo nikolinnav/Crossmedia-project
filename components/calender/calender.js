@@ -145,19 +145,19 @@ function renderKeyPad() {
     <button class="dial-button" data-key="#">#</button>
   </div>
 
-  <button class="call-button">&#128222;</button>
+  <button class="call-button"><i class="fa-solid fa-phone fa-xs"></i></button>
 
   <div class="bottom-nav">
     <div>
-      <div>&#9733;</div>
+      <div><i class="fa-solid fa-star fa-2xs"></i></div>
       <div>Favorites</div>
     </div>
     <div>
-      <div>&#128336;</div>
+      <div><i class="fa-solid fa-clock fa-2xs"></i></div>
       <div>Recents</div>
     </div>
     <div>
-      <div>&#128100;</div>
+      <div><i class="fa-solid fa-user fa-2xs"></i></div>
       <div>Contacts</div>
     </div>
     <div class="highlight">
@@ -169,10 +169,109 @@ function renderKeyPad() {
       <div>Keypad</div>
     </div>
     <div>
-      <div>&#128222;</div>
+      <div><i class="fa-solid fa-voicemail fa-xs"></i></div>
       <div>Voicemail</div>
     </div>
   </div>
     `;
+
+    const callButton = document.querySelector(".call-button");
+    if (callButton) {
+        callButton.addEventListener("click", renderCall);
+    } else {
+        console.warn("Call button not found");
+    }
+
+}
+
+async function renderCall() {
+    const container = document.querySelector("#container");
+    container.innerHTML = "";
+
+    const body = document.querySelector("body");
+    body.style = "margin: 0";
+
+    const callContainer = document.createElement("div");
+    callContainer.id = "callContainer";
+    container.appendChild(callContainer);
+    callContainer.innerHTML = `
+    <div id="outgoingCallView" class="call-view hidden">
+  <div class="call-header">
+    <div class="phone-number">072-645 38 99</div>
+    <div class="call-status">calling...</div>
+  </div>
+
+  <div class="call-buttons">
+    <div class="call-btn">
+      <i class="fa-solid fa-microphone"></i>
+      <div>mute</div>
+    </div>
+    <div class="call-btn">
+      <i class="fa-solid fa-keyboard"></i>
+      <div>keypad</div>
+    </div>
+    <div class="call-btn">
+      <i class="fa-solid fa-volume-high"></i>
+      <div>speaker</div>
+    </div>
+    <div class="call-btn disabled">
+      <i class="fa-solid fa-plus"></i>
+      <div>add call</div>
+    </div>
+    <div class="call-btn disabled">
+      <i class="fa-solid fa-video"></i>
+      <div>FaceTime</div>
+    </div>
+    <div class="call-btn">
+      <i class="fa-solid fa-user"></i>
+      <div>contacts</div>
+    </div>
+  </div>
+
+  <button class="end-call-btn" onclick="endCall()"><i class="fa-solid fa-phone fa-xs"></i></button>
+</div>
+
+    `;
+
+    await handleOutgoingCall("media/audio/voiceRecording.mp3", 19);
+    body.style = "margin: 25px";
+
+}
+
+function handleOutgoingCall(audioSrc, durationInSeconds) {
+    return new Promise((resolve) => {
+        const callView = document.getElementById("outgoingCallView");
+        let audio = null;
+        let timeoutId = null;
+
+        callView.classList.remove("hidden");
+        audio = new Audio(audioSrc);
+        audio.play().catch(() => {
+            console.error("Failed to play audio");
+        });
+
+        // End the call automatically after duration
+        timeoutId = setTimeout(() => {
+            endCall();
+        }, durationInSeconds * 1000);
+
+        function endCall() {
+            if (audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            }
+
+            clearTimeout(timeoutId);
+            callView.classList.add("hidden");
+
+            document.body.style.margin = "25px"; // Reset margin
+            renderCalender(4, 2025);
+
+            resolve();
+        }
+
+        // User ends call manually
+        callView.querySelector(".end-call-btn").onclick = endCall;
+    });
 }
 
