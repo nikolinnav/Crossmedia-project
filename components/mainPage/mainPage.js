@@ -116,6 +116,14 @@ function checkId(id) {
             break;
         case "newsPage":
             interaction.newsPage.interacted = true;
+            // if (document.getElementById("newsPage").parentElement.id == "lästaArtiklarCards") {
+            //     console.log("in from Read Articles")
+            //     fromReadArticle = true;
+            //     console.log("now fromReadArticle is", fromReadArticle);
+            // } else {
+            //     fromReadArticle = false;
+            //     console.log("now fromReadArticle is", fromReadArticle);
+            // }
             document.querySelector("main").remove();
             renderNavBar("Start");
 
