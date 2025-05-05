@@ -45,36 +45,26 @@ function start(event) {
         dynamicContent.forEach(element => element.remove());
 
         renderMainPage();
-        event.target.textContent = "Senaste";
-        //New content renders even if user is rereading old content
-        //Check weather the user is coming from Lästa Artiklar or not
-
-        //checks what cards and articles has been interacted with
-        //adds those cards under Lästa Artiklar
-        if (!fromReadArticle) {
-            fromReadArticle = true;
-            for (let inter in interaction) {
-                if (interaction[inter].interacted) {
-                    createReadArticleCard(interaction[inter].id);
-                }
-            }
-    
-            //checks weather card has been interacted with
-            //if it hasnt renders those cards
-            for (let inter in interaction) {
-                if (!interaction[inter].interacted) {
-                    createCard(interaction[inter].id);
-                    return;
-                } 
-            }
-        } else {
-            for (let inter in interaction) {
-                if (interaction[inter].interacted) {
-                    createReadArticleCard(interaction[inter].id);
-                }
+        
+        //checks if card has been interacted with
+        //if it hasnt renders those cards
+        for (let inter in interaction) {
+            if (interaction[inter].interacted) {
+                createReadArticleCard(interaction[inter].id);
             }
         }
 
+        event.target.textContent = "Senaste";
+        for (let inter in interaction) {
+            if (!interaction[inter].interacted) {
+                createCard(interaction[inter].id);
+                return;
+            } 
+        }
+
+
+        //checks what cards and articles has been interacted with
+        //adds those cards under Lästa Artiklar
     }
     console.log(event.target.textContent);
 }

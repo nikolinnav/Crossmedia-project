@@ -80,6 +80,7 @@ function createReadArticleCard (id) {
             // let readCardContainer = document.getElementById("lästaArtiklarCards");
             let cardDiv = document.createElement("div");
             cardDiv.setAttribute("id", card.divId);
+            cardDiv.setAttribute("class", "card");
             cardDiv.innerHTML = `
                  <div>
                      <h2>${card.titleText}</h2>
@@ -87,20 +88,32 @@ function createReadArticleCard (id) {
                  </div>
             `
             readCardContainer.appendChild(cardDiv);
-            let cardElement = document.getElementById(`${card.divId}`)
+            let cardElement = document.getElementById(`${card.divId}`);
+            console.log(cardElement);
             cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+            // if (link) {
+            //     window.open(link, `_blank`);
+            // }
         }
     }
 }
 
 //check what id the card has then renders the appropriate content
 function cardClick(event, card) {
+    console.log(card.id);
     checkId(card.id);
 }
 
 //Renders appropriate content depending on the id given
 function checkId(id) {
     switch (id) {
+        case "grannen":     
+            interaction.grannen.interacted = true;        
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+            
+            renderInterviewPage(interviewQuestions[0], "Intervjua Grannen");
+            break;
         case "newsPage":
             interaction.newsPage.interacted = true;
             if (document.getElementById("newsPage").parentElement.id == "lästaArtiklarCards") {
@@ -115,30 +128,50 @@ function checkId(id) {
             renderNavBar("Start");
 
             renderNewsPageGranne();
-        return;
-        case "grannen":     
-            interaction.grannen.interacted = true;        
-            if (document.getElementById("grannen").parentElement.id == "lästaArtiklarCards") {
-                fromReadArticle = true;
-            } else {
-                fromReadArticle = false;
-            }
+            break;
+        case "phusVideo1":
+            interaction.phus_video1.interacted = true;
+
+            createReadArticleCard(interaction.phus_video1.id);
+            window.open("https://vm.tiktok.com/ZNd6JKpGB/", `_blank`);
+
+            // renderMainPage();
+           let phusElement = document.getElementById(id);
+            phusElement.remove(); 
+
+            createCard(3);
+
+            break;
+        case "vilseledd":
+            interaction.vilseledd.interacted = true;
+            createReadArticleCard(interaction.vilseledd.id);
+
+            let vilseleddElement = document.getElementById(id);
+            vilseleddElement.remove();
+            createCard(4);
+            //ska öppna instagram igen
+
+            break;
+        case "intervju_motstandare":
+            interaction.intervju_motstandare.interacted = true;
             document.querySelector("main").remove();
             renderNavBar("Start");
-            
-            renderInterviewPage(interviewQuestions);
-        return;
-        case "phusVideo1":
-            console.log("send user to the video");
-            interaction.phus_video1.interacted = true;
-            if (document.getElementById("phusVideo1").parentElement.id != "lästaArtiklarCards") {
-                console.log("hej");
-                document.getElementById("phusVideo1").remove();
-                createReadArticleCard(2);
-                fromReadArticle = false;
-            } else {
-                fromReadArticle = true;
-            }
-        return;
+
+            renderInterviewPage(interviewQuestions[1], "Intervjua Assistenten");
+            break;
+
+        case "artikel_assistent":
+            interaction.artikel_assistent.interacted = true;
+
+            break;
+        case "kalender":
+            interaction.kalender.interacted = true;
+
+            break;
+        
+        case "borgmastare_hittad":
+            interaction.borgmastaren_hittad.interacted = true;
+            break;
+        
     } 
 }
