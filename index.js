@@ -54,3 +54,4 @@ renderNewsPageGranne();
 // renderAssistantArticle();
 // renderInstructions();
 
+renderCalender(4, 2025);
