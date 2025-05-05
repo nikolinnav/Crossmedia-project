@@ -103,6 +103,10 @@ function renderSmygbilderArticle() {
 function renderAssistantArticle() {
     const container = document.querySelector("#container");
     container.innerHTML = "";
+
+    renderTitle();
+    renderNavBar("Start");
+
     const newsPageContainer = document.createElement("div");
     newsPageContainer.id = "newsPageContainer";
     container.appendChild(newsPageContainer);
@@ -147,7 +151,7 @@ function renderAssistantArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    newsPageContainer.addEventListener("click", render)
+    // newsPageContainer.addEventListener("click", render)
 }
 
 function renderBackgroundArticle() {

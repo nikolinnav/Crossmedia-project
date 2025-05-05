@@ -116,14 +116,6 @@ function checkId(id) {
             break;
         case "newsPage":
             interaction.newsPage.interacted = true;
-            // if (document.getElementById("newsPage").parentElement.id == "lästaArtiklarCards") {
-            //     console.log("in from Read Articles")
-            //     fromReadArticle = true;
-            //     console.log("now fromReadArticle is", fromReadArticle);
-            // } else {
-            //     fromReadArticle = false;
-            //     console.log("now fromReadArticle is", fromReadArticle);
-            // }
             document.querySelector("main").remove();
             renderNavBar("Start");
 
@@ -154,7 +146,7 @@ function checkId(id) {
             //ska öppna instagram igen
 
             break;
-        case "intervju_motstandare":
+        case "intervjuMotstandare":
             interaction.intervju_motstandare.interacted = true;
             document.querySelector("main").remove();
             renderNavBar("Start");
@@ -162,8 +154,9 @@ function checkId(id) {
             renderInterviewPage(interviewQuestions[1], "Intervjua Assistenten");
             break;
 
-        case "artikel_assistent":
+        case "artikelAssistent":
             interaction.artikel_assistent.interacted = true;
+            renderAssistantArticle();
 
             break;
         case "kalender":
@@ -171,7 +164,7 @@ function checkId(id) {
 
             break;
         
-        case "borgmastare_hittad":
+        case "borgmastareHittad":
             interaction.borgmastaren_hittad.interacted = true;
             break;
         
