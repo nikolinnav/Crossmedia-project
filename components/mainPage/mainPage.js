@@ -80,6 +80,7 @@ function createReadArticleCard (id) {
             // let readCardContainer = document.getElementById("lästaArtiklarCards");
             let cardDiv = document.createElement("div");
             cardDiv.setAttribute("id", card.divId);
+            cardDiv.setAttribute("class", "card");
             cardDiv.innerHTML = `
                  <div>
                      <h2>${card.titleText}</h2>
@@ -87,14 +88,19 @@ function createReadArticleCard (id) {
                  </div>
             `
             readCardContainer.appendChild(cardDiv);
-            let cardElement = document.getElementById(`${card.divId}`)
+            let cardElement = document.getElementById(`${card.divId}`);
+            console.log(cardElement);
             cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+            // if (link) {
+            //     window.open(link, `_blank`);
+            // }
         }
     }
 }
 
 //check what id the card has then renders the appropriate content
 function cardClick(event, card) {
+    console.log(card.id);
     checkId(card.id);
 }
 
@@ -106,48 +112,64 @@ function checkId(id) {
             document.querySelector("main").remove();
             renderNavBar("Start");
             
-            renderInterviewPage(interviewQuestions);
-            return;
+            renderInterviewPage(interviewQuestions[0], "Intervjua Grannen");
+            break;
         case "newsPage":
             interaction.newsPage.interacted = true;
-            if (document.getElementById("newsPage").parentElement.id == "lästaArtiklarCards") {
-                console.log("in from Read Articles")
-                fromReadArticle = true;
-                console.log("now fromReadArticle is", fromReadArticle);
-            } else {
-                fromReadArticle = false;
-                console.log("now fromReadArticle is", fromReadArticle);
-            }
             document.querySelector("main").remove();
             renderNavBar("Start");
 
             renderNewsPageGranne();
-            return;
+            break;
         case "phusVideo1":
             interaction.phus_video1.interacted = true;
 
-            return;
-        case "vilselsedd":
+            createReadArticleCard(interaction.phus_video1.id);
+            window.open("https://vm.tiktok.com/ZNd6JKpGB/", `_blank`);
+
+            // renderMainPage();
+           let phusElement = document.getElementById(id);
+            phusElement.remove(); 
+
+            createCard(3);
+
+            break;
+        case "vilseledd":
             interaction.vilseledd.interacted = true;
 
-            return;
-        case "intervju_moststandare":
+            createReadArticleCard(interaction.vilseledd.id);
+            window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`);
+
+            let vilseleddElement = document.getElementById(id);
+            vilseleddElement.remove();
+            createCard(4);
+            //ska öppna instagram igen
+
+            break;
+        case "intervjuMotstandare":
             interaction.intervju_motstandare.interacted = true;
+            document.querySelector("main").remove();
+            renderNavBar("Start");
 
-            return;
+            renderInterviewPage(interviewQuestions[1], "Intervjua Assistenten");
+            break;
 
-        case "artikel_assistent":
+        case "artikelAssistent":
             interaction.artikel_assistent.interacted = true;
+            renderAssistantArticle();
 
-            return;
+            break;
         case "kalender":
             interaction.kalender.interacted = true;
+            document.querySelector("main").remove();
+            renderNavBar("Start");
 
-            return;
+            renderCalender(5, 2025);
+            break;
         
-        case "borgmastare_hittad":
+        case "borgmastareHittad":
             interaction.borgmastaren_hittad.interacted = true;
-            return;
+            break;
         
     } 
 }

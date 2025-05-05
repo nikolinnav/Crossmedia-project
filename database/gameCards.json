@@ -28,28 +28,28 @@
         "bottomText": "Lita inte på allt man ser online"
     },
     {
-        "event": "intervju_motstandare",
+        "event": "intervjuMotstandare",
         "id": 4,
-        "divId": "motstandareLjudfil",
-        "titleText": "",
-        "bottomText": ""
+        "divId": "intervjuMotstandare",
+        "titleText": "Intervjua Mostståndaren",
+        "bottomText": "Prata med borgmästarens politiska motståndare"
     }, 
     {
-        "event": "artikel_assistent",
+        "event": "artikelAssistent",
         "id": 5,
         "divId": "artikelAssistent",
-        "titleText": "",
-        "bottomText": ""
+        "titleText": "Assistenten vägrar kommentera försvinnandet",
+        "bottomText": "Den virala videon skapar starka känslor -Vad försöker assistenten dölja"
     },
     {
         "event": "kalender",
         "id": 6,
-        "divId": "goToKalender",
-        "titleText": "Assistentes kalender",
+        "divId": "kalender",
+        "titleText": "Assistentens kalender",
         "bottomText": "Leta genom assistents kalender"
     }, 
     {
-        "event": "borgmastaren_hittad",
+        "event": "borgmastarenHittad",
         "id": 7,
         "divId": "borgmastarenHittad",
         "titleText": "Borgmästaren på bild? Nya Ledtrådar i försvinnandet",
