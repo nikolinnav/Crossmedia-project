@@ -107,16 +107,39 @@ function checkId(id) {
             renderNavBar("Start");
             
             renderInterviewPage(interviewQuestions);
-        return;
+            return;
         case "newsPage":
             interaction.newsPage.interacted = true;
             document.querySelector("main").remove();
             renderNavBar("Start");
 
             renderNewsPageGranne();
-        return;
+            return;
         case "phusVideo1":
+            interaction.phus_video1.interacted = true;
 
-        return;
+            return;
+        case "vilselsedd":
+            interaction.vilseledd.interacted = true;
+
+            return;
+        case "intervju_moststandare":
+            interaction.intervju_motstandare.interacted = true;
+
+            return;
+
+        case "artikel_assistent":
+            interaction.artikel_assistent.interacted = true;
+
+            return;
+        case "kalender":
+            interaction.kalender.interacted = true;
+
+            return;
+        
+        case "borgmastare_hittad":
+            interaction.borgmastaren_hittad.interacted = true;
+            return;
+        
     } 
 }

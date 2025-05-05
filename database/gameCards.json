@@ -24,8 +24,8 @@
         "event": "vilseledd",
         "id": 3,
         "divId": "vilseledd",
-        "titleText": "",
-        "bottomText": ""
+        "titleText": "Har du verkligen kommit rätt?",
+        "bottomText": "Lita inte på allt man ser online"
     },
     {
         "event": "intervju_motstandare",
