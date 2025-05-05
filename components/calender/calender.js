@@ -11,6 +11,7 @@ function renderCalender(month, year) {
 
     const calenderContainer = document.createElement("div");
     calenderContainer.id = "calenderContainer";
+    calenderContainer.setAttribute("class", "dynamicContent");
     container.appendChild(calenderContainer);
 
     const calHeader = document.createElement("div");
@@ -45,6 +46,7 @@ function renderCalender(month, year) {
 
     const eventContainer = document.createElement("div");
     eventContainer.id = "eventContainer";
+    eventContainer.setAttribute("class", "dynamicContent");
     container.appendChild(eventContainer);
 
     //Get the today's date

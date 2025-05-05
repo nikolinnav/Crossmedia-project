@@ -161,7 +161,10 @@ function checkId(id) {
             break;
         case "kalender":
             interaction.kalender.interacted = true;
+            document.querySelector("main").remove();
+            renderNavBar("Start");
 
+            renderCalender(5, 2025);
             break;
         
         case "borgmastareHittad":
