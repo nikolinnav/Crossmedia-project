@@ -6,5 +6,9 @@
         "questionThree": "Vilken tid lämnade hon huset?",
         "questionFour": "Hur menar du stressad?",
         "questionFive": "Var tror du hon var påväg?"
+    },
+    {
+        "id": 2,
+        "questionSix": "Vad det nu ska stå här"
     }
 ]

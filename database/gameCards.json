@@ -30,9 +30,9 @@
     {
         "event": "intervju_motstandare",
         "id": 4,
-        "divId": "motstandareLjudfil",
-        "titleText": "",
-        "bottomText": ""
+        "divId": "intervju_motstandare",
+        "titleText": "Intervjua Mostståndaren",
+        "bottomText": "Prata med borgmästarens politiska motståndare"
     }, 
     {
         "event": "artikel_assistent",

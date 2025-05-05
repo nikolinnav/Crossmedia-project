@@ -46,23 +46,25 @@ function start(event) {
 
         renderMainPage();
         
-        //checks weather card has been interacted with
+        //checks if card has been interacted with
         //if it hasnt renders those cards
-        for (let inter in interaction) {
-            if (!interaction[inter].interacted) {
-                createCard(interaction[inter].id);
-            } 
-        }
-
-        event.target.textContent = "Senaste";
-
-        //checks what cards and articles has been interacted with
-        //adds those cards under Lästa Artiklar
         for (let inter in interaction) {
             if (interaction[inter].interacted) {
                 createReadArticleCard(interaction[inter].id);
             }
         }
+
+        event.target.textContent = "Senaste";
+        for (let inter in interaction) {
+            if (!interaction[inter].interacted) {
+                createCard(interaction[inter].id);
+                return;
+            } 
+        }
+
+
+        //checks what cards and articles has been interacted with
+        //adds those cards under Lästa Artiklar
     }
     console.log(event.target.textContent);
 }
