@@ -44,7 +44,7 @@
     {
         "event": "kalender",
         "id": 6,
-        "divId": "goToKalender",
+        "divId": "Kalender",
         "titleText": "Assistentes kalender",
         "bottomText": "Leta genom assistents kalender"
     }, 
