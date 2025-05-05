@@ -136,7 +136,9 @@ function checkId(id) {
             break;
         case "vilseledd":
             interaction.vilseledd.interacted = true;
+
             createReadArticleCard(interaction.vilseledd.id);
+            window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`);
 
             let vilseleddElement = document.getElementById(id);
             vilseleddElement.remove();
