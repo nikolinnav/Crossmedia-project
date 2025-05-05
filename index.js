@@ -51,6 +51,6 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderBackgroundArticle();
 //renderSmygbilderArticle()
 // renderAssistantArticle();
-renderNewsPageAssistant();
+renderAssistantArticle();
 // renderInstructions();
 
