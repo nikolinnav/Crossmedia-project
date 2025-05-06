@@ -54,6 +54,13 @@
         "divId": "borgmastarenHittad",
         "titleText": "Borgmästaren på bild? Nya Ledtrådar i försvinnandet",
         "bottomText": "Malmöbor spekulerar efter nya smygbilder -kan det vara Von Stjärnholm?"
+    },
+    {
+        "event": "sistaArtikel",
+        "id": 8,
+        "divId": "sistaArtikel",
+        "titleText": "",
+        "bottomText": ""
     }
 ]
 

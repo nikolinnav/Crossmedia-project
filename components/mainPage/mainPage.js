@@ -170,6 +170,9 @@ function checkId(id) {
         case "borgmastareHittad":
             interaction.borgmastaren_hittad.interacted = true;
             break;
+        case "sistaArtikel":
+            interaction.sistaArtikel.interacted = true;
+            break;
         
     } 
 }
