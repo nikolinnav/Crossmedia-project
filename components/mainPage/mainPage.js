@@ -2,6 +2,7 @@ function renderMainPage() {
     if (document.querySelector("main")) {
         document.querySelector("main").remove();
     }
+
     const container = document.getElementById("container");
     let main = document.createElement("main");
     main.setAttribute("id", "mainPageContainer");
@@ -170,6 +171,14 @@ function checkId(id) {
         case "borgmastareHittad":
             interaction.borgmastaren_hittad.interacted = true;
             break;
-        
+        case "karta":
+            console.log("nu ska kartan öppnas");
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+            createMap();
+            setTarget(locations[0]);
+            break;
+        default:
+            break;
     } 
 }

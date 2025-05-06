@@ -1,11 +1,18 @@
-/*const container = document.querySelector("#container");
-const mapContainer = document.createElement("div");
-mapContainer.id = "map";
-container.appendChild(mapContainer);
-mapContainer.style.height = "100vh";
-mapContainer.style.width = "100wv";
+function createMap() {
+    const container = document.querySelector("#container");
+    const mapContainer = document.createElement("div");
+    mapContainer.id = "map";
+    container.appendChild(mapContainer);
+    mapContainer.style.height = "100vh";
+    mapContainer.style.width = "100wv";
+    mapContainer.classList.add("dynamicContent");
 
-//Array of objects for all locations with info about their name, latitude and longitute.
+    const map = L.map('map').setView([55.60763, 12.98699], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+}
+
+
+// Array of objects for all locations with info about their name, latitude and longitute.
 const locations = [
     {
         name: "Grannen",
@@ -44,8 +51,6 @@ let notified = false;
 let targetMarker;
 let userMarker;
 
-const map = L.map('map').setView([55.60763, 12.98699], 16);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
 //Calculates the user's distance from the target place.
 function getDistance(lat1, lon1, lat2, lon2) {
@@ -80,6 +85,7 @@ function getNextLocation() {
 }
 
 function setTarget(location) {
+    console.log(location);
     if (targetMarker) map.removeLayer(targetMarker);
     if (!location) {
         //UI display when all locations are visited. 
@@ -135,4 +141,4 @@ if ("geolocation" in navigator) {
         maximumAge: 1000,
         timeout: 10000
     });
-}*/
+}
