@@ -156,7 +156,7 @@ function renderAssistantArticle() {
 
 function renderBackgroundArticle() {
     const container = document.querySelector("#container");
-    container.innerHTML ="";
+    container.innerHTML = "";
     const articleContainer = document.createElement("div");
     container.appendChild(articleContainer);
     articleContainer.id = "articleContainer";
@@ -180,7 +180,7 @@ function renderBackgroundArticle() {
 
 }
 
-function renderInstructions(){
+function renderInstructions() {
     const container = document.querySelector("#container");
     const body = document.querySelector("body");
     body.style = "margin:0";
@@ -188,8 +188,8 @@ function renderInstructions(){
     container.appendChild(instBackground);
     instBackground.id = "instBackground";
 
-    container.innerHTML=`
-    <h1 id=instHeader">INSTRUKTIONER</h1>
+    instBackground.innerHTML = `
+    <h1 id="instHeader">INSTRUKTIONER</h1>
     <div id="instContainer"> 
         <p>UTRUSTNING:</p>
         <p>Smartphone, Instagramkonto, TikTok-konto</p>
