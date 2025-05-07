@@ -56,6 +56,36 @@ function createCard (id) {
             `
         }
     }
+
+    let image = document.getElementById("senasteNyttImg");
+    switch (id) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3: 
+            break;
+        case 4:
+            break;
+        case 5: 
+            setImage(image,"url(../../media/images/NyhetsartiklarThree.jpg)")
+            // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
+            break;
+        case 6:
+            setImage(image, "url(../../media/images/kalender.jpg");
+            // image.style.backgroundImage = "url("
+            break;
+        case 7:
+            setImage(image, "url(../../media/images/borgmastarePaBild.jpg)");
+            break;
+        case 8:
+            setImage(image, "url(../../media/newsPage/lastArticleMayor.jpg)");
+            break;
+        default:
+            break;
+    }
     //jsonStructure
     //[{
     // "event": "grannen"?
@@ -181,4 +211,8 @@ function checkId(id) {
             break;
         
     } 
+}
+
+function setImage (element, image) {
+    element.style.backgroundImage = image;
 }
