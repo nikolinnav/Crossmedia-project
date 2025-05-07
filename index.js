@@ -52,6 +52,5 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 //renderSmygbilderArticle()
 // renderAssistantArticle();
 // renderAssistantArticle();
-renderInstructions();
-
+//renderInstructions();
 // renderCalender(4, 2025);

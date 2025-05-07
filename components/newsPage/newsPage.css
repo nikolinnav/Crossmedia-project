@@ -275,6 +275,10 @@ ol {
     font-size: 14px;
 }
 
+ol {
+    margin-left: 0;
+}
+
 #instContainer>p:first-child,
 #instContainer>p:nth-child(4) {
     font-weight: bold;

@@ -206,8 +206,9 @@ function renderInstructions() {
     </div>
     `;
 
-
 }
+
+
 
 function render(event) {
     if (!document.querySelector("nav")) {
