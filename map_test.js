@@ -1,68 +1,24 @@
-function createMap() {
-    const container = document.querySelector("#container");
-    const mapContainer = document.createElement("div");
-    mapContainer.id = "map";
-    container.appendChild(mapContainer);
-    mapContainer.style.height = "100vh";
-    mapContainer.style.width = "100wv";
-    mapContainer.classList.add("dynamicContent");
+// Global variables
+let map, targetMarker, userMarker;
 
-    const map = L.map('map').setView([55.60763, 12.98699], 16);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-}
-
-
-// Array of objects for all locations with info about their name, latitude and longitute.
+// Locations array
 const locations = [
-    {
-        name: "Grannen",
-        lat: 55.60763,
-        lon: 12.98699
-    },
-    {
-        name: "Malmö Live",
-        lat: 55.60756,
-        lon: 12.99201
-    },
-    {
-        name: "BookABoat Malmö",
-        lat: 55.60665,
-        lon: 12.99556
-    },
-    {
-        name: "Rådhuset",
-        lat: 55.60662,
-        lon: 13.00135
-    },
-    {
-        name: "Gustav Adolfs Torg",
-        lat: 55.60248,
-        lon: 13.00082
-    },
-    {
-        name: "MJ's Hotell",
-        lat: 55.60603,
-        lon: 12.99789
-    }
-]
+    { name: "Grannen", lat: 55.60763, lon: 12.98699 },
+    { name: "Malmö Live", lat: 55.60756, lon: 12.99201 },
+    { name: "BookABoat Malmö", lat: 55.60665, lon: 12.99556 },
+    { name: "Rådhuset", lat: 55.60662, lon: 13.00135 },
+    { name: "Gustav Adolfs Torg", lat: 55.60248, lon: 13.00082 },
+    { name: "MJ's Hotell", lat: 55.60603, lon: 12.99789 }
+];
 
-let currentIndex = 0;
-let notified = false;
-let targetMarker;
-let userMarker;
-
-
-//Calculates the user's distance from the target place.
+// Utility functions
 function getDistance(lat1, lon1, lat2, lon2) {
     const R = 6371e3;
     const φ1 = lat1 * Math.PI / 180;
     const φ2 = lat2 * Math.PI / 180;
     const Δφ = (lat2 - lat1) * Math.PI / 180;
     const Δλ = (lon2 - lon1) * Math.PI / 180;
-
-    const a = Math.sin(Δφ / 2) ** 2 +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) ** 2;
+    const a = Math.sin(Δφ / 2) ** 2 + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
 }
@@ -84,13 +40,15 @@ function getNextLocation() {
     return locations.find(loc => !visited.includes(loc.name));
 }
 
+function addVisitedMarker(location) {
+    L.marker([location.lat, location.lon])
+        .addTo(map)
+        .bindPopup(`${location.name} (visited)`);
+}
+
 function setTarget(location) {
-    console.log(location);
     if (targetMarker) map.removeLayer(targetMarker);
-    if (!location) {
-        //UI display when all locations are visited. 
-        return;
-    }
+    if (!location) return;
 
     targetMarker = L.marker([location.lat, location.lon])
         .addTo(map)
@@ -98,47 +56,258 @@ function setTarget(location) {
         .openPopup();
 }
 
-const initialTarget = getNextLocation();
-setTarget(initialTarget);
-
-userMarker = L.marker([0, 0]).addTo(map);
-
-if ("geolocation" in navigator) {
-    navigator.geolocation.watchPosition((pos) => {
-        const userLat = pos.coords.latitude;
-        const userLon = pos.coords.longitude;
-
-        userMarker.setLatLng([userLat, userLon]);
-        map.setView([userLat, userLon]);
-
-        const currentTarget = getNextLocation();
-        if (!currentTarget) return;
-
-        const dist = getDistance(userLat, userLon, currentTarget.lat, currentTarget.lon);
-        //UI display the distance to the current target in m. 
-        // Ex:
-        // document.getElementById("info").textContent =
-        // `Distance to ${currentTarget.name}: ${dist.toFixed(1)} m`;
-
-
-        if (dist < 2 && !notified) {
-            notified = true;
-            alert(`Du har ankommit till ${currentTarget.name}`);
-            saveVisited(currentTarget.name);
-
-            //Trigger the next task here. (interview, view a video, answer a question etc...)
-
-            //Show the next location
-            const nextTarget = getNextLocation();
-            setTarget(nextTarget);
-            notified = false;
-        }
-
-    }, err => {
-        console.error("Error", err);
-    }, {
-        enableHighAccuracy: true,
-        maximumAge: 1000,
-        timeout: 10000
-    });
+function renderView(location) {
+    const view = document.getElementById("view");
+    view.innerHTML = `<h2>Welcome to ${location.name}</h2><p>Guess the next location before heading there!</p>`;
 }
+
+function updateDistanceDisplay(text) {
+    const display = document.getElementById("distance-display");
+    if (display) display.textContent = text;
+}
+
+function createMap() {
+    const container = document.querySelector("#container");
+    container.innerHTML = ""; // Clear previous view content
+    const mapContainer = document.createElement("div");
+    mapContainer.id = "map";
+    container.appendChild(mapContainer);
+    mapContainer.style.height = "100vh";
+    mapContainer.style.width = "100vw"; // Fixed typo: "wv" → "vw"
+    mapContainer.classList.add("dynamicContent");
+
+    window.map = L.map("map").setView([55.60763, 12.98699], 16);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+    // Show visited locations with pins
+    const visited = loadVisited();
+    visited.forEach(name => {
+        const loc = locations.find(l => l.name === name);
+        if (loc) {
+            L.marker([loc.lat, loc.lon])
+              .addTo(map)
+              .bindPopup(`${loc.name} (Besökt)`);
+        }
+    });
+
+    // Set the next location as target
+    const currentTarget = getNextLocation();
+    if (currentTarget) {
+        setTarget(currentTarget);
+    }
+
+    // Create user marker
+    userMarker = L.marker([0, 0]).addTo(map);
+
+    // Watch position
+    if ("geolocation" in navigator) {
+        navigator.geolocation.watchPosition(
+            (pos) => {
+                const userLat = pos.coords.latitude;
+                const userLon = pos.coords.longitude;
+
+                userMarker.setLatLng([userLat, userLon]);
+                map.setView([userLat, userLon]);
+
+                const target = getNextLocation();
+                if (!target) return;
+
+                const dist = getDistance(userLat, userLon, target.lat, target.lon);
+
+                // Show distance in a bottom div
+                const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
+                infoDiv.id = "distanceInfo";
+                infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
+                infoDiv.style.position = "absolute";
+                infoDiv.style.bottom = "0";
+                infoDiv.style.width = "100%";
+                infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
+                infoDiv.style.padding = "10px";
+                infoDiv.style.textAlign = "center";
+                container.appendChild(infoDiv);
+
+                // Arrived at location
+                if (dist < 2 && !notified) {
+                    notified = true;
+                    alert(`Du har ankommit till ${target.name}`);
+                    saveVisited(target.name);
+
+                    // Show visited pin
+                    L.marker([target.lat, target.lon])
+                        .addTo(map)
+                        .bindPopup(`${target.name} (Besökt)`);
+
+                    // Trigger view for task/interview/question
+                    renderView(`task-${target.name}`);
+
+                    // Show next location on return
+                    setTimeout(() => {
+                        const nextTarget = getNextLocation();
+                        if (nextTarget) {
+                            setTarget(nextTarget);
+                            notified = false;
+                        }
+                    }, 1000);
+                }
+            },
+            err => {
+                console.error("Error", err);
+            },
+            {
+                enableHighAccuracy: true,
+                maximumAge: 1000,
+                timeout: 10000,
+            }
+        );
+    }
+}
+
+
+
+
+
+
+// function createMap() {
+//     const container = document.querySelector("#container");
+//     const mapContainer = document.createElement("div");
+//     mapContainer.id = "map";
+//     container.appendChild(mapContainer);
+//     mapContainer.style.height = "100vh";
+//     mapContainer.style.width = "100wv";
+//     mapContainer.classList.add("dynamicContent");
+
+//     const map = L.map('map').setView([55.60763, 12.98699], 16);
+//     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+// }
+
+
+// // Array of objects for all locations with info about their name, latitude and longitute.
+// const locations = [
+//     {
+//         name: "Grannen",
+//         lat: 55.60763,
+//         lon: 12.98699
+//     },
+//     {
+//         name: "Malmö Live",
+//         lat: 55.60756,
+//         lon: 12.99201
+//     },
+//     {
+//         name: "BookABoat Malmö",
+//         lat: 55.60665,
+//         lon: 12.99556
+//     },
+//     {
+//         name: "Rådhuset",
+//         lat: 55.60662,
+//         lon: 13.00135
+//     },
+//     {
+//         name: "Gustav Adolfs Torg",
+//         lat: 55.60248,
+//         lon: 13.00082
+//     },
+//     {
+//         name: "MJ's Hotell",
+//         lat: 55.60603,
+//         lon: 12.99789
+//     }
+// ]
+
+// let currentIndex = 0;
+// let notified = false;
+// let targetMarker;
+// let userMarker;
+
+
+// //Calculates the user's distance from the target place.
+// function getDistance(lat1, lon1, lat2, lon2) {
+//     const R = 6371e3;
+//     const φ1 = lat1 * Math.PI / 180;
+//     const φ2 = lat2 * Math.PI / 180;
+//     const Δφ = (lat2 - lat1) * Math.PI / 180;
+//     const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+//     const a = Math.sin(Δφ / 2) ** 2 +
+//         Math.cos(φ1) * Math.cos(φ2) *
+//         Math.sin(Δλ / 2) ** 2;
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     return R * c;
+// }
+
+// function loadVisited() {
+//     return JSON.parse(localStorage.getItem("visitedPlaces") || "[]");
+// }
+
+// function saveVisited(name) {
+//     const visited = loadVisited();
+//     if (!visited.includes(name)) {
+//         visited.push(name);
+//         localStorage.setItem("visitedPlaces", JSON.stringify(visited));
+//     }
+// }
+
+// function getNextLocation() {
+//     const visited = loadVisited();
+//     return locations.find(loc => !visited.includes(loc.name));
+// }
+
+// function setTarget(location) {
+//     console.log(location);
+//     if (targetMarker) map.removeLayer(targetMarker);
+//     if (!location) {
+//         //UI display when all locations are visited. 
+//         return;
+//     }
+
+//     targetMarker = L.marker([location.lat, location.lon])
+//         .addTo(map)
+//         .bindPopup(location.name)
+//         .openPopup();
+// }
+
+// const initialTarget = getNextLocation();
+// setTarget(initialTarget);
+
+// userMarker = L.marker([0, 0]).addTo(map);
+
+// if ("geolocation" in navigator) {
+//     navigator.geolocation.watchPosition((pos) => {
+//         const userLat = pos.coords.latitude;
+//         const userLon = pos.coords.longitude;
+
+//         userMarker.setLatLng([userLat, userLon]);
+//         map.setView([userLat, userLon]);
+
+//         const currentTarget = getNextLocation();
+//         if (!currentTarget) return;
+
+//         const dist = getDistance(userLat, userLon, currentTarget.lat, currentTarget.lon);
+//         //UI display the distance to the current target in m. 
+//         // Ex:
+//         // document.getElementById("info").textContent =
+//         // `Distance to ${currentTarget.name}: ${dist.toFixed(1)} m`;
+
+
+//         if (dist < 2 && !notified) {
+//             notified = true;
+//             alert(`Du har ankommit till ${currentTarget.name}`);
+//             saveVisited(currentTarget.name);
+
+//             //Trigger the next task here. (interview, view a video, answer a question etc...)
+
+//             //Show the next location
+//             const nextTarget = getNextLocation();
+//             setTarget(nextTarget);
+//             notified = false;
+//         }
+
+//     }, err => {
+//         console.error("Error", err);
+//     }, {
+//         enableHighAccuracy: true,
+//         maximumAge: 1000,
+//         timeout: 10000
+//     });
+// }
