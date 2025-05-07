@@ -246,7 +246,7 @@ p {
 /*LastArticle*/
 
 #image4 {
-    background-image: url(../../media/newsPage/lastArticleMayor.jpg);
+    background-image: url(./media/newsPage/lastArticleMayor.jpg);
     height: 200px;
     margin-bottom: 12px;
     background-position: center;

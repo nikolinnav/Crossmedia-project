@@ -64,14 +64,14 @@ function createCard (id) {
         case 1:
             break;
         case 2:
-            setImage(image, )
+            // setImage(image, )
             break;
         case 3: 
             break;
         case 4:
             break;
         case 5: 
-            setImage(image,"url./media/images/NyhetsartiklarThree.jpg)")
+            setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)")
             // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
             break;
         case 6:

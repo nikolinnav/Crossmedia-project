@@ -274,14 +274,37 @@ function renderLastArticle() {
 function render(event) {
     if (!document.querySelector("nav")) {
 
-        document.getElementById("newsPageContainer").remove();
-        document.querySelector("footer").remove();
-        renderTitle();
-        renderNavBar("Senaste");
-        renderMainPage();
-        createCard(1);
-        createReadArticleCard(0);
-        interaction.newsPage.interacted = true;
+        if (interaction.newsPage.interacted) {
+            console.log("interacted: " + interaction.newsPage.interacted)
+            document.getElementById("newsPageContainer").remove();
+            document.querySelector("footer").remove();
+            renderTitle();
+            renderNavBar("Senaste");
+            renderMainPage();
+
+            for (let inter in interaction) {
+                if (interaction[inter].interacted) {
+                    createReadArticleCard(interaction[inter].id);
+                }
+            }
+
+            for (let inter in interaction) {
+                if(!interaction[inter].interacted) {
+                    createCard(interaction[inter].id);
+                    return;
+                }
+            }
+        } else {
+            document.getElementById("newsPageContainer").remove();
+            document.querySelector("footer").remove();
+            renderTitle();
+            renderNavBar("Senaste");
+            renderMainPage();
+            createCard(1);
+            createReadArticleCard(0);
+            interaction.newsPage.interacted = true;
+            console.log(interaction.newsPage.interacted);
+        }
     }
     // interacted.newsPage = true;
     // console.log(interacted);
