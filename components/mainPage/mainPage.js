@@ -64,6 +64,7 @@ function createCard (id) {
         case 1:
             break;
         case 2:
+            setImage(image, )
             break;
         case 3: 
             break;
