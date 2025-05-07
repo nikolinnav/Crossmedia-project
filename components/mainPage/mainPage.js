@@ -71,18 +71,18 @@ function createCard (id) {
         case 4:
             break;
         case 5: 
-            setImage(image,"url(../../media/images/NyhetsartiklarThree.jpg)")
+            setImage(image,"url./media/images/NyhetsartiklarThree.jpg)")
             // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
             break;
         case 6:
-            setImage(image, "url(../../media/images/kalender.jpg");
+            setImage(image, "url(./media/images/kalender.jpg");
             // image.style.backgroundImage = "url("
             break;
         case 7:
-            setImage(image, "url(../../media/images/borgmastarePaBild.jpg)");
+            setImage(image, "url(./media/images/borgmastarePaBild.jpg)");
             break;
         case 8:
-            setImage(image, "url(../../media/newsPage/lastArticleMayor.jpg)");
+            setImage(image, "url(./media/newsPage/lastArticleMayor.jpg)");
             break;
         default:
             break;

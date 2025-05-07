@@ -210,6 +210,7 @@ function renderInstructions() {
     </div>
     `;
 
+    body.addEventListener("click", instructionsClick)
 }
 
 function renderLastArticle() {
@@ -289,4 +290,9 @@ function render(event) {
 function granneClick(event) {
     document.getElementById("articleContainer").remove();
     renderNewsPageGranne();
+}
+
+function instructionsClick(event) {
+    document.getElementById("instBackground").remove();
+    renderBackgroundArticle();
 }
