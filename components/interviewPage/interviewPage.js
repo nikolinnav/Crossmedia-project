@@ -29,7 +29,6 @@ function renderInterviewPage(questions, h2Text) {
             continue;
         }
 
-
         let interviewBox = document.createElement("div")
         interviewBox.setAttribute("class", "interviewBoxesContainer");
         interviewBox.innerHTML = `

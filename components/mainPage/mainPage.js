@@ -111,7 +111,7 @@ function checkId(id) {
             interaction.grannen.interacted = true;        
             document.querySelector("main").remove();
             renderNavBar("Start");
-            
+
             renderInterviewPage(interviewQuestions[0], "Intervjua Grannen");
             break;
         case "newsPage":
@@ -119,7 +119,9 @@ function checkId(id) {
             document.querySelector("main").remove();
             renderNavBar("Start");
 
-            renderNewsPageGranne();
+            renderInstructions()
+            renderBackgroundArticle();
+            // renderNewsPageGranne();
             break;
         case "phusVideo1":
             interaction.phus_video1.interacted = true;
@@ -174,6 +176,8 @@ function checkId(id) {
             break;
         case "sistaArtikel":
             interaction.sistaArtikel.interacted = true;
+            document.querySelector("main").remove();
+            renderLastArticle();
             break;
         
     } 

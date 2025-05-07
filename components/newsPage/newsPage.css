@@ -242,3 +242,41 @@ p {
 }
 
 /*Instruktionssida*/
+
+/*LastArticle*/
+
+#image4 {
+    background-image: url(../../media/newsPage/lastArticleMayor.jpg);
+    height: 200px;
+    margin-bottom: 12px;
+    background-position: center;
+}
+
+#lastArticleImage {
+    background-image: url(../../media/newsPage/BildSistaArtikel.jpg);
+    width: 160px;
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 12px;
+}
+
+#lastArticleBold {
+    font-weight: bold;
+}
+
+#lastArticleH2 {
+    text-align: center;
+}
+
+#lastArticleTitle {
+    margin-left: 12px;
+}
+
+#lastArticleHr {
+    margin-top: 12px;
+}
+
+#lastArticleFirstP {
+    margin-bottom: 12px;
+}

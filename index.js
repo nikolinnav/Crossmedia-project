@@ -42,7 +42,9 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderInterviewPage(questions);
 // renderMainPage();
 
-renderNewsPageGranne();
+renderInstructions()
+renderBackgroundArticle();
+// renderNewsPageGranne();
 
 // renderNavBar("Senaste");
 // let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
