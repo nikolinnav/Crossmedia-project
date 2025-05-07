@@ -184,12 +184,31 @@ function renderBackgroundArticle() {
     articleContainer.addEventListener("click", granneClick);
 }
 
-function renderInstructions(){
+function renderInstructions() {
     const container = document.querySelector("#container");
-    container.innerHTML ="";
+    const body = document.querySelector("body");
+    body.style = "margin:0";
     const instBackground = document.createElement("div");
     container.appendChild(instBackground);
     instBackground.id = "instBackground";
+
+    instBackground.innerHTML = `
+    <h1 id="instHeader">INSTRUKTIONER</h1>
+    <div id="instContainer"> 
+        <p>UTRUSTNING:</p>
+        <p>Smartphone, Instagramkonto, TikTok-konto</p>
+        <p>Malmös borgmästare är försvunnen och din uppgift är att följa olika ledtrådar för att ta reda på sanningen kring försvinnandet. Under spelets gång får du olika ledtrådar i form av nyhetsartiklar, ljudinspelningar, bilder och videos. Var noggrann när du granskar ledtrådarna, de innehåller viktig information om vart du ska ta dig för att komma vidare i spelet. Se vilka platser som visas på ledtrådarna för att veta vart du ska gå här näst. Nya ledtrådar kommer ges i form av notiser som du hittar i huvudmenyn.</p>
+        <p>FUNKTIONER</p>
+        <ol>
+            <li>Start: Här hittar du huvudmenyn.</li>
+            <li>Karta: Ta hjälp av funktionen “karta” för att säkerställa att du tagit dig till rätt platser.</li>
+            <li>Artiklar: En samlad sida för tidigare artiklar.</li>
+            <li>Karaktärer: Använd funktionen “karaktärer” för att återgå till personerna du möter i spelet.</li>
+            <li>QR koder: vid två tillfällen i spelet behöver du skanna en QR-kod för att komma vidare. Mer instruktioner angående detta kommer ges under spelets gång.</li>
+        </ol>
+
+    </div>
+    `;
 
 }
 
@@ -249,6 +268,7 @@ function renderLastArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 }
+
 
 function render(event) {
     if (!document.querySelector("nav")) {

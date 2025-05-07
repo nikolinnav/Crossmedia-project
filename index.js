@@ -45,6 +45,7 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 renderInstructions()
 renderBackgroundArticle();
 // renderNewsPageGranne();
+//renderNewsPageGranne();
 
 // renderNavBar("Senaste");
 // let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
@@ -54,6 +55,5 @@ renderBackgroundArticle();
 //renderSmygbilderArticle()
 // renderAssistantArticle();
 // renderAssistantArticle();
-// renderInstructions();
-
+//renderInstructions();
 // renderCalender(4, 2025);
