@@ -161,14 +161,16 @@ function checkId(id) {
             break;
         case "kalender":
             interaction.kalender.interacted = true;
-            document.querySelector("main").remove();
-            renderNavBar("Start");
 
             renderCalender(5, 2025);
             break;
         
-        case "borgmastareHittad":
+        case "borgmastarenHittad":
             interaction.borgmastaren_hittad.interacted = true;
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+
+            renderSmygbilderArticle();           
             break;
         case "sistaArtikel":
             interaction.sistaArtikel.interacted = true;

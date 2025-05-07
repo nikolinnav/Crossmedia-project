@@ -54,12 +54,16 @@ function renderNewsPageGranne() {
 function renderSmygbilderArticle() {
     const container = document.querySelector("#container");
     container.innerHTML = "";
+    renderTitle();
+    renderNavBar("Start");
+    
     const newsPageContainer = document.createElement("div");
     newsPageContainer.id = "newsPageContainer";
     container.appendChild(newsPageContainer);
     newsPageContainer.classList.add("dynamicContent");
 
-    let date = new Date().toLocaleDateString();;
+    let date = new Date().toLocaleDateString();
+
 
     newsPageContainer.innerHTML = `
     <hr>
@@ -97,7 +101,7 @@ function renderSmygbilderArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    newsPageContainer.addEventListener("click", render)
+    // newsPageContainer.addEventListener("click", render)
 }
 
 function renderAssistantArticle() {
