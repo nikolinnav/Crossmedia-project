@@ -210,7 +210,7 @@ function renderInstructions() {
     </div>
     `;
 
-    body.addEventListener("click", instructionsClick)
+    instBackground.addEventListener("click", instructionsClick)
 }
 
 function renderLastArticle() {

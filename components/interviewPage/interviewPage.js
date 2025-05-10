@@ -34,13 +34,16 @@ function renderInterviewPage(questions, h2Text) {
         interviewBox.innerHTML = `
         <div class="${quest} interviewBoxes">
             <p class="${quest}">${questions[quest]}</p>
-            <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-            <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-            </svg>             
+            <svg class="${quest}" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+                <path class="${quest} playButton" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
+                <path class="${quest} pauseButton" d="M1.75 0C0.78351 0 0 0.7835 0 1.75V16.25C0 17.2165 0.78351 18 1.75 18H5.25C6.21651 18 7.00001 17.2165 7.00001 16.25V1.75C7.00001 0.7835 6.21651 0 5.25 0H1.75ZM10.75 0C9.78351 0 9.00001 0.7835 9.00001 1.75V16.25C9.00001 17.2165 9.78351 18 10.75 18H14.25C15.2165 18 16 17.2165 16 16.25V1.75C16 0.7835 15.2165 0 14.25 0H10.75Z" fill="#212121"/>
+            </svg>         
         </div>
         <div class="bar"></div>
         `
         div.appendChild(interviewBox);
+        let pauseButton = interviewBox.querySelector(".pauseButton");
+        pauseButton.style.visibility = "hidden";
         // div.innerHTML = `
         // <div class="interviewImg"></div>
         // <h2 class="interviewTitle">Intervjua Grannen</h2>
@@ -114,56 +117,79 @@ async function playQuestion(event) {
 
     let target = event.target.classList;
     let url = "./media/audio/Granne_fraga_1.mp3";
+    let currentlyPlayingElement = event.target.classList[0];
+    console.log(currentlyPlayingElement);
 
     switch (target[0]) {
         case "questionOne":
             console.log("now playing question 1");
-            playAudio(audioQuestions[0]);
+            playAudio(audioQuestions[0], currentlyPlayingElement);
             break;
         case "questionTwo":
             console.log("now playing question 2");
             url = "./media/audio/Granne_fraga_2.mp3";
-            playAudio(audioQuestions[1]);
+            playAudio(audioQuestions[1], currentlyPlayingElement);
             break;
         case "questionThree":
             console.log("now playing question 3");
             url = "./media/audio/Granne_fraga_3.mp3";
-            playAudio(audioQuestions[2]);
+            playAudio(audioQuestions[2], currentlyPlayingElement);
             break;
         case "questionFour":
             console.log("now playing question 4");
             url = "./media/audio/Granne_fraga_4.mp3";
-            playAudio(audioQuestions[3]);
+            playAudio(audioQuestions[3], currentlyPlayingElement);
             break;
         case "questionFive":
             console.log("now playing question 5");
             url = "./media/audio/Granne_fraga_5.mp3";
-            playAudio(audioQuestions[4]);
+            playAudio(audioQuestions[4], currentlyPlayingElement);
             break;
         case "questionSix":
             console.log("now playing question 6");
             url = "./media/audio/Motstandare_intervju.mp3";
-            playAudio(audioQuestions[5]);
+            playAudio(audioQuestions[5], currentlyPlayingElement);
             break;
         default:
             break;
     }
 }
 
-function playAudio(question) {
+function playAudio(question, currentlyPlaying) {
+    let questionsDiv = document.querySelectorAll(".interviewBoxes");
+
     if (!playing) {
         question.play();
         playing = true;
         console.log("playing");
+        console.log(questionsDiv);
+
+
+        for (let question of questionsDiv) {
+            if (question.classList[0] != currentlyPlaying) {
+                question.style.pointerEvents = "none";
+                question.style.opacity = "50%";
+            } else {
+                let pauseButton = question.querySelector(".pauseButton");
+                let playButton = question.querySelector(".playButton");
+                pauseButton.style.visibility = "visible";
+                playButton.style.visibility = "hidden";
+                // playButton.remove();
+                // question.appendChild("")
+                console.log(playButton);
+            }
+        }
+        
     } else if (playing) {
         // question.pause();
         playing = false;
         console.log("paused");
         checkIfPlaying();
+        enablePlaying(questionsDiv);
     }
     question.onended = function() {
         playing = false;
-        //add variable that checks how many the user has listened to
+        enablePlaying(questionsDiv);
     }
 }
 
@@ -172,5 +198,14 @@ function checkIfPlaying() {
         if (!q.paused) {
             q.pause();
         }
+    }
+}
+
+function enablePlaying(questions) {
+    for (let q of questions) {
+        q.style.pointerEvents = "auto";
+        q.style.opacity = "1";
+        q.querySelector(".playButton").style.visibility = "visible";
+        q.querySelector(".pauseButton").style.visibility = "hidden";
     }
 }
