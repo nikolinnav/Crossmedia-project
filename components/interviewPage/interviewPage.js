@@ -164,6 +164,8 @@ function playAudio(question, currentlyPlaying) {
         console.log("playing");
         console.log(questionsDiv);
 
+        document.getElementById("start").style.pointerEvents = "none";
+        document.getElementById("charactersNav").style.pointerEvents = "none";
 
         for (let question of questionsDiv) {
             if (question.classList[0] != currentlyPlaying) {
@@ -202,6 +204,9 @@ function checkIfPlaying() {
 }
 
 function enablePlaying(questions) {
+    document.getElementById("start").style.pointerEvents = "auto";
+    document.getElementById("charactersNav").style.pointerEvents = "auto";
+
     for (let q of questions) {
         q.style.pointerEvents = "auto";
         q.style.opacity = "1";
@@ -209,3 +214,5 @@ function enablePlaying(questions) {
         q.querySelector(".pauseButton").style.visibility = "hidden";
     }
 }
+
+//need to make audio stop if the user goes back to the mainPage
