@@ -215,4 +215,3 @@ function enablePlaying(questions) {
     }
 }
 
-//need to make audio stop if the user goes back to the mainPage
