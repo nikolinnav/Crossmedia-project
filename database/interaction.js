@@ -35,5 +35,9 @@ let interaction = {
     borgmastaren_hittad: {
         id: 7,
         interacted: false
+    },
+    sistaArtikel: {
+        id: 8,
+        interacted: false
     }
 }

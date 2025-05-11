@@ -57,6 +57,37 @@ function createCard (id) {
             `
         }
     }
+
+    let image = document.getElementById("senasteNyttImg");
+    switch (id) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            // setImage(image, )
+            break;
+        case 3: 
+            break;
+        case 4:
+            break;
+        case 5: 
+            setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)")
+            // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
+            break;
+        case 6:
+            setImage(image, "url(./media/images/kalender.jpg");
+            // image.style.backgroundImage = "url("
+            break;
+        case 7:
+            setImage(image, "url(./media/images/borgmastarePaBild.jpg)");
+            break;
+        case 8:
+            setImage(image, "url(./media/newsPage/lastArticleMayor.jpg)");
+            break;
+        default:
+            break;
+    }
     //jsonStructure
     //[{
     // "event": "grannen"?
@@ -112,7 +143,7 @@ function checkId(id) {
             interaction.grannen.interacted = true;        
             document.querySelector("main").remove();
             renderNavBar("Start");
-            
+
             renderInterviewPage(interviewQuestions[0], "Intervjua Grannen");
             break;
         case "newsPage":
@@ -120,7 +151,9 @@ function checkId(id) {
             document.querySelector("main").remove();
             renderNavBar("Start");
 
-            renderNewsPageGranne();
+            renderInstructions()
+            renderBackgroundArticle();
+            // renderNewsPageGranne();
             break;
         case "phusVideo1":
             interaction.phus_video1.interacted = true;
@@ -162,14 +195,21 @@ function checkId(id) {
             break;
         case "kalender":
             interaction.kalender.interacted = true;
-            document.querySelector("main").remove();
-            renderNavBar("Start");
 
             renderCalender(5, 2025);
             break;
         
-        case "borgmastareHittad":
+        case "borgmastarenHittad":
             interaction.borgmastaren_hittad.interacted = true;
+            document.querySelector("main").remove();
+            renderNavBar("Start");
+
+            renderSmygbilderArticle();           
+            break;
+        case "sistaArtikel":
+            interaction.sistaArtikel.interacted = true;
+            document.querySelector("main").remove();
+            renderLastArticle();
             break;
         case "karta":
             console.log("nu ska kartan öppnas");
@@ -181,4 +221,8 @@ function checkId(id) {
         default:
             break;
     } 
+}
+
+function setImage (element, image) {
+    element.style.backgroundImage = image;
 }

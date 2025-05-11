@@ -25,7 +25,7 @@
         "id": 3,
         "divId": "vilseledd",
         "titleText": "Har du verkligen kommit rätt?",
-        "bottomText": "Lita inte på allt man ser online"
+        "bottomText": "Lita inte på allt du ser online"
     },
     {
         "event": "intervjuMotstandare",
@@ -54,6 +54,13 @@
         "divId": "borgmastarenHittad",
         "titleText": "Borgmästaren på bild? Nya Ledtrådar i försvinnandet",
         "bottomText": "Malmöbor spekulerar efter nya smygbilder -kan det vara Von Stjärnholm?"
+    },
+    {
+        "event": "sistaArtikel",
+        "id": 8,
+        "divId": "sistaArtikel",
+        "titleText": "Borgmästaren är hittad!",
+        "bottomText": "“Jag har bara varit ledig och behövde andas lite”"
     }
 ]
 
