@@ -14,6 +14,9 @@ function renderNavBar(firstDivText) {
         <div class="navDiv">
             <p class="navText">Karta</p>
         </div>
+        <div class="navDiv">
+            <p class="navText">Artiklar</p>
+        </div>
         <div class="navDiv" id="charactersNav">
             <p class="navText">Karaktärer</p>
         </div>
@@ -76,8 +79,8 @@ function start(event) {
         for (let inter in interaction) {
             console.log(inter + " " + interaction[inter].found);
             if (interaction[inter].found) {
-                console.log(inter + " " + interaction[inter].found);
                 interaction[inter].found = false;
+                console.log(inter + " " + interaction[inter].found);
                 createCard(interaction[inter].id);
                 return;
             }
