@@ -292,7 +292,7 @@ function startGeolocationWatcher() {
                             interaction.kalender.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
-                                interaction.kalender.found == false;
+                                interaction.kalender.found = false;
                                 createCard(6);
                             } 
                             break;

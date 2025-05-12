@@ -76,12 +76,14 @@ function start(event) {
             return;
         }
 
+        console.log("kalender clicked: ", interaction.kalender.clicked);
+
         for (let inter in interaction) {
             console.log(inter + " " + interaction[inter].found);
             if (interaction[inter].found) {
                 interaction[inter].found = false;
                 console.log(inter + " " + interaction[inter].found);
-                createCard(interaction[inter].id);
+                createCard[interaction[inter].id];
                 return;
             }
         }
