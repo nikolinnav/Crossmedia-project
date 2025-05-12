@@ -221,9 +221,23 @@ function renderInterviewPopUp() {
     popUp.classList.add("displayPopUp");
 
     popUp.innerHTML = `
-    <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
-    <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
-    <p id="sliderValue">3</p>
-    <button onclick="submitAnswer()">Skicka</button>
+    <div id="popupContent">
+        <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
+        <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+        <p id="sliderValue">3</p>
+        <button onclick="submitAnswer()">Skicka</button>
+    </div>
     `;
 }
+
+function showPopup() {
+    document.getElementById('popUpContainer').style.display = 'flex';
+}
+
+function submitAnswer() {
+    const value = document.getElementById('credibilitySlider').value;
+    console.log("Svar skickat:", value);
+    document.getElementById('questionPopup').style.display = 'none';
+  }
+
+

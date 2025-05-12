@@ -54,12 +54,29 @@
     height: 400px;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#popUpText{
+#popUpText {
     font-size: 18px;
     font-weight: bolder;
+    margin-bottom: 40px;
 }
 
+
+
+#popupContent input[type=range] {
+    width: 100%;
+}
+
+#popupContent button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
