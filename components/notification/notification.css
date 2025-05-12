@@ -1,0 +1,45 @@
+.notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    transition: top 0.5s ease, opacity 0.5s ease;
+}
+
+.notification.show {
+    top: 30px;
+    opacity: 1;
+}
+
+.notification .content {
+    flex: 1;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.notification .title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.notificationIcon {
+    width: 40px;
+    height: 40px;
+    background-image: url("../../media/newsPage/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    flex-shrink: 0;
+}

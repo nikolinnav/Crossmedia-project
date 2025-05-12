@@ -14,9 +14,6 @@ function renderNavBar(firstDivText) {
         <div class="navDiv">
             <p class="navText">Karta</p>
         </div>
-        <div class="navDiv">
-            <p class="navText">Artiklar</p>
-        </div>
         <div class="navDiv" id="charactersNav">
             <p class="navText">Karaktärer</p>
         </div>
