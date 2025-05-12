@@ -127,6 +127,13 @@ footer {
     overflow: hidden;
 }
 
+@supports not (writing-mode: sideways-lr) {
+    #articleContainer>h2 {
+        transform: rotate(90deg);
+        transform-origin: bottom left;
+    }
+}
+
 #img {
     height: 400px;
     width: 100%;

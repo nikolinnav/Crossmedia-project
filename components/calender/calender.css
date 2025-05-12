@@ -64,6 +64,24 @@
     cursor: pointer;
 }
 
+.date {
+    position: relative;
+}
+
+.date.hasEvent::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    /* Or any color */
+    border-radius: 50%;
+}
+
+
 #eventContainer {
     width: 75vw;
     margin: auto;
