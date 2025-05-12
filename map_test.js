@@ -76,8 +76,8 @@ function createMap() {
     mapContainer.style.width = "100vw"; // Fixed typo: "wv" → "vw"
     mapContainer.classList.add("dynamicContent");
 
-    window.map = L.map("map").setView([55.60763, 12.98699], 16);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    map = L.map("map").setView([55.60763, 12.98699], 16);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
     // Show visited locations with pins
     const visited = loadVisited();
