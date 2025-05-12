@@ -61,33 +61,60 @@ function renderCalender(month, year) {
 
     if (isToday && i === today.getDate()) {
       dateDiv.classList.add("today");
-      renderEventHeader(dateDiv.textContent, 2, eventContainer);
-      let boxTitle = renderEvent("072-645 38 99", "10:00", "phoneNum", eventContainer);
-      boxTitle.addEventListener("click", renderKeyPad);
-      let boxTitle2 = renderEvent("Möte med Angelica", "10:30", eventContainer);
-    }else if (dateDiv.textContent === "4") {
+      const dot = document.createElement("span");
+      dateDiv.appendChild(dot);
       dateDiv.classList.add("hasEvent");
+
+      dateDiv.addEventListener("click", function () {
+        renderEventHeader(dateDiv.textContent, 2, eventContainer);
+        let boxTitle = renderEvent("072-645 38 99", "10:00", "phoneNum", eventContainer);
+        boxTitle.addEventListener("click", renderKeyPad);
+        renderEvent("Möte med Angelica", "10:30", "none", eventContainer);
+      });
+
+    } else if (dateDiv.textContent === "4" || dateDiv.textContent === "18") {
       dateDiv.classList.add("hasEvent");
       const dot = document.createElement("span");
       dateDiv.appendChild(dot);
-      renderEventHeader(dateDiv.textContent, 1, eventContainer);
-      let boxTitle3 = renderEvent("Yoga pass", "19:30", eventContainer);
-    }else if (dateDiv.textContent === "7") {
+      dateDiv.addEventListener("click", function () {
+        renderEventHeader(dateDiv.textContent, 1, eventContainer);
+        renderEvent("Yoga pass", "19:30", "none", eventContainer);
+      });
+
+    } else if (dateDiv.textContent === "7") {
       dateDiv.classList.add("hasEvent");
       const dot = document.createElement("span");
       dateDiv.appendChild(dot);
-      renderEventHeader(dateDiv.textContent, 2, eventContainer);
-      let boxTitle4 = renderEvent("Campagn 2026 Revision", "09:30", eventContainer);
+      dateDiv.addEventListener("click", function () {
+        renderEventHeader(dateDiv.textContent, 2, eventContainer);
+        renderEvent("Campaign 2026 Revision", "09:30", "none", eventContainer);
+        renderEvent("Öppen frågestund", "13:00", "none", eventContainer);
+      });
+    } else if (dateDiv.textContent === "13") {
+      dateDiv.classList.add("hasEvent");
+      const dot = document.createElement("span");
+      dateDiv.appendChild(dot);
+      dateDiv.addEventListener("click", function () {
+        renderEventHeader(dateDiv.textContent, 2, eventContainer);
+        renderEvent("Planera stadens budget", "10:00", "none", eventContainer);
+        renderEvent("Lunch med Eva Ehrenros", "12:00", "none", eventContainer);
+      });
+    } else if (dateDiv.textContent === "17") {
+      dateDiv.classList.add("hasEvent");
+      const dot = document.createElement("span");
+      dateDiv.appendChild(dot);
+      dateDiv.addEventListener("click", function () {
+        renderEventHeader(dateDiv.textContent, 1, eventContainer);
+        renderEvent("Hämta Eva från flygplatsen", "17:45", "none", eventContainer);
+      });
     }
   }
-
-
-
 }
 
 function renderEventHeader(date, num, parent) {
   const eventDate = document.createElement("p");
   eventDate.id = "eventDate";
+  parent.innerHTML = "";
   parent.appendChild(eventDate);
   eventDate.textContent = `${date} Maj`;
 

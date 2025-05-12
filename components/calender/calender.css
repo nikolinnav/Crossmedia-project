@@ -64,6 +64,7 @@
     cursor: pointer;
 }
 
+
 .date {
     position: relative;
 }
@@ -76,9 +77,13 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background-color: red;
-    /* Or any color */
+    background-color: #F2D7D3;
     border-radius: 50%;
+}
+
+.today::after {
+    background-color: #cd8175;
+    ;
 }
 
 
