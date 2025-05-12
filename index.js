@@ -32,7 +32,7 @@ async function checkOk(response) {
     let data = await response.json();
     return await data;
 }
-//get();
+get();
 
 // renderTitle();
 // renderNavBar("Senaste");
@@ -43,7 +43,7 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderMainPage();
 
 // renderBackgroundArticle();
-//renderInstructions()
+renderInstructions()
 // renderNewsPageGranne();
 //renderNewsPageGranne();
 
@@ -56,4 +56,4 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderAssistantArticle();
 // renderAssistantArticle();
 //renderInstructions();
-renderCalender(4, 2025);
+//renderCalender(4, 2025);
