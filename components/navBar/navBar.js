@@ -54,6 +54,9 @@ function start(event) {
                 createReadArticleCard(interaction[inter].id);
             }
         }
+
+        let newCards = false;
+
         if (fromGrannen && interaction.grannen.clicked <= 1) {
             fromGrannen = false;
             event.target.textContent = "Senaste";
@@ -66,6 +69,9 @@ function start(event) {
             event.target.textContent = "Senaste";
             createCard(5);
             return;
+        } else if (interaction.intervju_motstandare.clicked > 1) {
+            newCards = false;
+            enableClickOnReadCards();
         }
 
         if (fromKalender && interaction.kalender.clicked <= 1) {
@@ -74,6 +80,9 @@ function start(event) {
             event.target.textContent = "Senaste";
             createCard(7);
             return;
+        } else if (interaction.kalender.clicked > 1) {
+            newCards = false;
+            enableClickOnReadCards();
         }
 
         console.log("kalender clicked: ", interaction.kalender.clicked);
@@ -83,26 +92,17 @@ function start(event) {
             if (interaction[inter].found) {
                 interaction[inter].found = false;
                 console.log(inter + " " + interaction[inter].found);
-                createCard[interaction[inter].id];
+                createCard(interaction[inter].id);
+                newCards = true;
                 return;
             }
         }
 
+        console.log(newCards);
+        if (!newCards) {
+            enableClickOnReadCards();
+        }
         event.target.textContent = "Senaste";
-        // for (let inter in interaction) {
-        //     if (!interaction[inter].interacted) {
-        //         if (inter == "phus_video1" || inter == "artikel_assistent") {
-        //             console.log(inter);
-        //             console.log(interaction[inter].id);
-        //             createCard(interaction[inter].id);
-        //             return;
-        //         } else if (inter == "kalender") {
-        //             // if (interaction[inter].interacted) {
-        //             //     createCard(7);
-        //             //     return;
-        //             }
-        //         }
-        //     } 
     }
 
       

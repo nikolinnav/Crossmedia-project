@@ -45,6 +45,7 @@ function renderMainPage() {
 function createCard (id) {
     for (let card of gameCards) {
         if (card.id === id) {
+            // currentArticle = card.divId;
             let cardContainer = document.getElementById("senasteNyttCards");
             cardContainer.innerHTML = `
             <div id="${card.divId}" class="card">
@@ -99,12 +100,13 @@ function createCard (id) {
 
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
-    let cards = document.querySelectorAll(".card");
-    cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card, fromRead)));
+    let cards = document.querySelectorAll("#senasteNyttCards .card");
+    cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
+    
 }
 
 //Creates a card that is then added under lästa Artiklar
-function createReadArticleCard (id) {
+function createReadArticleCard (id,) {
     console.log(id);
     let readCardContainer = document.getElementById("lästaArtiklarCards");
     for (let card of gameCards) {
@@ -123,7 +125,13 @@ function createReadArticleCard (id) {
             readCardContainer.appendChild(cardDiv);
             let cardElement = document.getElementById(`${card.divId}`);
             console.log(cardElement);
-            cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+
+            // console.log("now addEventListener should work");
+            // if (!disableClick) {
+            //     cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+            // }
+
+
             // if (link) {
             //     window.open(link, `_blank`);
             // }
@@ -132,7 +140,7 @@ function createReadArticleCard (id) {
 }
 
 //check what id the card has then renders the appropriate content
-function cardClick(event, card, read) {
+function cardClick(event, card) {
     event.stopPropagation();
     console.log(card.id);
     checkId(card.id);
@@ -164,6 +172,7 @@ function checkId(id) {
             interaction.phus_video1.interacted = true;
 
             createReadArticleCard(interaction.phus_video1.id);
+            enableClickOnReadCards();
             window.open("https://vm.tiktok.com/ZNd6JKpGB/", `_blank`);
 
             // renderMainPage();
@@ -177,6 +186,7 @@ function checkId(id) {
             interaction.vilseledd.interacted = true;
 
             createReadArticleCard(interaction.vilseledd.id);
+            enableClickOnReadCards();
             window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`);
 
             let vilseleddElement = document.getElementById(id);
@@ -189,7 +199,6 @@ function checkId(id) {
             interaction.intervju_motstandare.interacted = true;
             fromMotstandare = true;
             interaction.intervju_motstandare.clicked++;
-
             document.querySelector("main").remove();
             renderNavBar("Start");
 
@@ -243,3 +252,15 @@ function setImage (element, image) {
 //Går användaren till rådhuset ska intervjuMotstandare dyka upp
 //Efter användaren har ringt samtalet i kalendern ska borgmastarenHittad artikeln dyka upp
 //Efter användaren tagit sig till MJ's ska sista artikel dyka upp
+
+//Kolla om senaste nytt är tomt. 
+//Är det tomt ska man kunna klicka på artkiklarna i lästa Artiklar.
+//Är det inte tomt ska man inte kunna klicka på artiklarna i lästa artiklar
+
+function enableClickOnReadCards() {
+    const readCards = document.querySelectorAll("#lästaArtiklarCards .card");
+    console.log("Read Cards: ", readCards);
+    readCards.forEach(cardElement => {
+        cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+    })
+}

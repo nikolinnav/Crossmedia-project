@@ -1,6 +1,12 @@
 function renderNewsPageGranne() {
     const container = document.querySelector("#container");
     container.innerHTML = "";
+    
+    if (interaction.newsPage.clicked > 0) {
+        console.log("Now nav and title should render");
+        renderTitle();
+        renderNavBar("Start");
+    }
     const newsPageContainer = document.createElement("div");
     newsPageContainer.id = "newsPageContainer";
     container.appendChild(newsPageContainer);
@@ -48,7 +54,12 @@ function renderNewsPageGranne() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    newsPageContainer.addEventListener("click", render)
+    if (interaction.newsPage.clicked > 0) {
+        newsPageContainer.style.pointerEvents = "none";
+    } else {
+
+        newsPageContainer.addEventListener("click", render)
+    }
 }
 
 function renderSmygbilderArticle() {
@@ -288,12 +299,12 @@ function render(event) {
                 }
             }
 
-            // for (let inter in interaction) {
-            //     if(!interaction[inter].interacted) {
-            //         createCard(interaction[inter].id);
-            //         return;
-            //     }
-            // }
+            for (let inter in interaction) {
+                if(!interaction[inter].interacted) {
+                    createCard(interaction[inter].id);
+                    return;
+                }
+            }
         } else {
             document.getElementById("newsPageContainer").remove();
             document.querySelector("footer").remove();
@@ -304,6 +315,7 @@ function render(event) {
             // createCard(1);
             createReadArticleCard(0);
             interaction.newsPage.interacted = true;
+            interaction.newsPage.clicked++;
             console.log(interaction.newsPage.interacted);
         }
     }

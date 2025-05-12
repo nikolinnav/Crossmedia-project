@@ -9,7 +9,7 @@
 let fromGrannen = false;
 let fromMotstandare = false;
 let fromKalender = false;
-let fromRead = false;
+let currentArticle = "";
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");

@@ -7,6 +7,7 @@ let interaction = {
     newsPage: {
         id: 0,
         interacted: false,
+        clicked: 0
     },
     grannen: {
         id: 1,
