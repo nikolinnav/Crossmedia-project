@@ -54,12 +54,16 @@ function renderNewsPageGranne() {
 function renderSmygbilderArticle() {
     const container = document.querySelector("#container");
     container.innerHTML = "";
+    renderTitle();
+    renderNavBar("Start");
+    
     const newsPageContainer = document.createElement("div");
     newsPageContainer.id = "newsPageContainer";
     container.appendChild(newsPageContainer);
     newsPageContainer.classList.add("dynamicContent");
 
-    let date = new Date().toLocaleDateString();;
+    let date = new Date().toLocaleDateString();
+
 
     newsPageContainer.innerHTML = `
     <hr>
@@ -97,7 +101,7 @@ function renderSmygbilderArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    newsPageContainer.addEventListener("click", render)
+    // newsPageContainer.addEventListener("click", render)
 }
 
 function renderAssistantArticle() {
@@ -177,7 +181,7 @@ function renderBackgroundArticle() {
                 </div>
                 <div id="logo"></div>
     `
-
+    articleContainer.addEventListener("click", granneClick);
 }
 
 function renderInstructions() {
@@ -206,22 +210,112 @@ function renderInstructions() {
     </div>
     `;
 
+    instBackground.addEventListener("click", instructionsClick)
 }
 
+function renderLastArticle() {
+    const container = document.getElementById("container");
+    container.innerHTML = "";
+    const lastArticleContainer = document.createElement("div");
+    container.appendChild(lastArticleContainer);
+    lastArticleContainer.id = "lastArticle";
+
+    let date = new Date().toLocaleDateString();;
+
+    lastArticleContainer.innerHTML = `
+    <hr id="lastArticleHr">
+    <div id="header">
+        <h1>MALMÖ DIREKT</h1>
+        <p>${date}</p>
+    </div>
+    <hr>
+    <h1 id="lastArticleTitle">BORGMÄSTAREN ÄR HITTAD!</h1>
+    <div id="image4"></div>
+    <hr>
+    <h2 id="lastArticleH2">"Jag har bara varit ledig och behövde andas lite"</h2>
+    <hr id="lastHR">
+
+    <div id="flexContainer">
+    <article id="quoteAndImage">
+        <p>“Hon såg <b>inte</b> ut<br>som sig själv”</p>
+        <div id="lastArticleImage"></div>
+    </article>
+
+    <article id="text">
+        <p id="lastArticleFirstP"> dagens digitala värld sprids nyheter och rykten snabbare än någonsin speciellt på sociala medier. 
+        Det som delas kan ibland vara sant, ibland en feltolkning och ibland rent skvaller. 
+        Därför är det viktigare än någonsin att vara källkritisk. Fundera över: 
+        Vem ligger bakom informationen? Finns det flera trovärdiga källor som bekräftar det som påstås? 
+        Är innehållet vinklat för att väcka starka känslor snarare än att informera? 
+        Att stanna upp och granska information innan vi delar den vidare är avgörande för att motverka ryktesspridning och desinformation. 
+        På nätet är det inte alltid sanningen som hörs högst.
+        Vi hoppas att detta spel uppmanar er att vara källkritiska och kolla upp informationen innan ni delar den vidare!.
+        </p>
+
+        <p id="lastArticleBold">Vi hoppas att detta spel uppmanar er att vara källkritiska och kolla upp informationen innan ni delar den vidare!</p>
+    </article>
+    </div>
+    `
+
+    const footer = document.createElement("footer");
+    footer.classList.add("dynamicContent");
+    container.appendChild(footer);
+
+    const rect = document.createElement("div");
+    rect.id = "rect";
+    footer.appendChild(rect);
+
+    const text = document.createElement("p");
+    rect.appendChild(text);
+    text.textContent = "www.malmodirekt.se";
+}
 
 
 function render(event) {
     if (!document.querySelector("nav")) {
 
-        document.getElementById("newsPageContainer").remove();
-        document.querySelector("footer").remove();
-        renderTitle();
-        renderNavBar("Senaste");
-        renderMainPage();
-        createCard(1);
-        createReadArticleCard(0);
-        interaction.newsPage.interacted = true;
+        if (interaction.newsPage.interacted) {
+            console.log("interacted: " + interaction.newsPage.interacted)
+            document.getElementById("newsPageContainer").remove();
+            document.querySelector("footer").remove();
+            renderTitle();
+            renderNavBar("Senaste");
+            renderMainPage();
+
+            for (let inter in interaction) {
+                if (interaction[inter].interacted) {
+                    createReadArticleCard(interaction[inter].id);
+                }
+            }
+
+            for (let inter in interaction) {
+                if(!interaction[inter].interacted) {
+                    createCard(interaction[inter].id);
+                    return;
+                }
+            }
+        } else {
+            document.getElementById("newsPageContainer").remove();
+            document.querySelector("footer").remove();
+            renderTitle();
+            renderNavBar("Senaste");
+            renderMainPage();
+            createCard(1);
+            createReadArticleCard(0);
+            interaction.newsPage.interacted = true;
+            console.log(interaction.newsPage.interacted);
+        }
     }
     // interacted.newsPage = true;
     // console.log(interacted);
 } 
+
+function granneClick(event) {
+    document.getElementById("articleContainer").remove();
+    renderNewsPageGranne();
+}
+
+function instructionsClick(event) {
+    document.getElementById("instBackground").remove();
+    renderBackgroundArticle();
+}
