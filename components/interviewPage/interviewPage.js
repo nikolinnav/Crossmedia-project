@@ -1,10 +1,10 @@
 let audioQuestions = [
-new Audio("./media/audio/Granne_fraga_1.mp3"), 
-new Audio("./media/audio/Granne_fraga_2.mp3"),
-new Audio("./media/audio/Granne_fraga_3.mp3"),
-new Audio("./media/audio/Granne_fraga_4.mp3"), 
-new Audio("./media/audio/Granne_fraga_5.mp3"),
-new Audio("./media/audio/Motstandare_intervju.mp3")
+    new Audio("./media/audio/Granne_fraga_1.mp3"),
+    new Audio("./media/audio/Granne_fraga_2.mp3"),
+    new Audio("./media/audio/Granne_fraga_3.mp3"),
+    new Audio("./media/audio/Granne_fraga_4.mp3"),
+    new Audio("./media/audio/Granne_fraga_5.mp3"),
+    new Audio("./media/audio/Motstandare_intervju.mp3")
 ];
 let playing = false;
 
@@ -47,7 +47,7 @@ function renderInterviewPage(questions, h2Text) {
         // div.innerHTML = `
         // <div class="interviewImg"></div>
         // <h2 class="interviewTitle">Intervjua Grannen</h2>
-    
+
         // <div class="interviewBoxesContainer">
         //     <div class="question1 interviewBoxes">
         //         <p class="question1">${questions[quest]}</p>
@@ -181,7 +181,7 @@ function playAudio(question, currentlyPlaying) {
                 console.log(playButton);
             }
         }
-        
+
     } else if (playing) {
         // question.pause();
         playing = false;
@@ -189,14 +189,14 @@ function playAudio(question, currentlyPlaying) {
         checkIfPlaying();
         enablePlaying(questionsDiv);
     }
-    question.onended = function() {
+    question.onended = function () {
         playing = false;
         enablePlaying(questionsDiv);
     }
 }
 
 function checkIfPlaying() {
-    for(let q of audioQuestions) {
+    for (let q of audioQuestions) {
         if (!q.paused) {
             q.pause();
         }
@@ -215,3 +215,15 @@ function enablePlaying(questions) {
     }
 }
 
+function renderInterviewPopUp() {
+    const popUp = document.createElement("div");
+    popUp.id = "popUpContainer";
+    popUp.classList.add("displayPopUp");
+
+    popUp.innerHTML = `
+    <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
+    <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+    <p id="sliderValue">3</p>
+    <button onclick="submitAnswer()">Skicka</button>
+    `;
+}
