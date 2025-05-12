@@ -100,7 +100,7 @@ function createCard (id) {
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
     let cards = document.querySelectorAll(".card");
-    cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
+    cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card, fromRead)));
 }
 
 //Creates a card that is then added under lästa Artiklar
@@ -113,6 +113,7 @@ function createReadArticleCard (id) {
             let cardDiv = document.createElement("div");
             cardDiv.setAttribute("id", card.divId);
             cardDiv.setAttribute("class", "card");
+            // card.classList.add(card.divId + "Read");a
             cardDiv.innerHTML = `
                  <div>
                      <h2>${card.titleText}</h2>
@@ -131,7 +132,8 @@ function createReadArticleCard (id) {
 }
 
 //check what id the card has then renders the appropriate content
-function cardClick(event, card) {
+function cardClick(event, card, read) {
+    event.stopPropagation();
     console.log(card.id);
     checkId(card.id);
 }
@@ -140,7 +142,10 @@ function cardClick(event, card) {
 function checkId(id) {
     switch (id) {
         case "grannen":     
-            interaction.grannen.interacted = true;        
+            interaction.grannen.interacted = true;
+            interaction.grannen.clicked++;
+            fromGrannen = true;
+    
             document.querySelector("main").remove();
             renderNavBar("Start");
 
@@ -165,7 +170,7 @@ function checkId(id) {
            let phusElement = document.getElementById(id);
             phusElement.remove(); 
 
-            createCard(3);
+            // createCard(3);
 
             break;
         case "vilseledd":
@@ -176,12 +181,15 @@ function checkId(id) {
 
             let vilseleddElement = document.getElementById(id);
             vilseleddElement.remove();
-            createCard(4);
+            // createCard(4);
             //ska öppna instagram igen
 
             break;
         case "intervjuMotstandare":
             interaction.intervju_motstandare.interacted = true;
+            fromMotstandare = true;
+            interaction.intervju_motstandare.clicked++;
+
             document.querySelector("main").remove();
             renderNavBar("Start");
 
@@ -195,6 +203,8 @@ function checkId(id) {
             break;
         case "kalender":
             interaction.kalender.interacted = true;
+            fromKalender = true;
+            interaction.kalender.clicked++;
 
             renderCalender(5, 2025);
             break;
@@ -216,7 +226,6 @@ function checkId(id) {
             document.querySelector("main").remove();
             renderNavBar("Start");
             createMap();
-            setTarget(locations[0]);
             break;
         default:
             break;
@@ -226,3 +235,11 @@ function checkId(id) {
 function setImage (element, image) {
     element.style.backgroundImage = image;
 }
+
+//Granne intervjun ska skapas när man tar sig till grannen
+//phus videon ska dyka upp direkt efter man besökt grannen
+//Malmö live ska dyka upp på kartan efter man besökt grannen men inget ska dyka upp på mainpage
+//Går användaren till BookABoat ska "vilseledd dyka upp"
+//Går användaren till rådhuset ska intervjuMotstandare dyka upp
+//Efter användaren har ringt samtalet i kalendern ska borgmastarenHittad artikeln dyka upp
+//Efter användaren tagit sig till MJ's ska sista artikel dyka upp

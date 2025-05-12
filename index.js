@@ -6,6 +6,10 @@
 // let characterInfo = [];
 //Data needed for the different cards that are added to mainPage
 // let gameCards = [];
+let fromGrannen = false;
+let fromMotstandare = false;
+let fromKalender = false;
+let fromRead = false;
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");
@@ -46,6 +50,8 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 renderInstructions()
 // renderNewsPageGranne();
 //renderNewsPageGranne();
+// renderNavBar();
+// renderMainPage();
 
 // renderNavBar("Senaste");
 // let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];

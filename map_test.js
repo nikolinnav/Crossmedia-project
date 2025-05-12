@@ -1,14 +1,17 @@
 // Global variables
 let map, targetMarker, userMarker;
-
+notified = false;
+if (location.hostname === "localhost") {
+    localStorage.removeItem("visitedPlaces");
+}
 // Locations array
 const locations = [
     { name: "Grannen", lat: 55.60763, lon: 12.98699 },
-    { name: "Malmö Live", lat: 55.60756, lon: 12.99201 },
-    { name: "BookABoat Malmö", lat: 55.60665, lon: 12.99556 },
-    { name: "Rådhuset", lat: 55.60662, lon: 13.00135 },
-    { name: "Gustav Adolfs Torg", lat: 55.60248, lon: 13.00082 },
-    { name: "MJ's Hotell", lat: 55.60603, lon: 12.99789 }
+    { name: "MalmoLive", lat: 55.60756, lon: 12.99201 },
+    { name: "BookABoatMalmo", lat: 55.60665, lon: 12.99556 },
+    { name: "Radhuset", lat: 55.60662, lon: 13.00135 },
+    { name: "GustavAdolfsTorg", lat: 55.60248, lon: 13.00082 },
+    { name: "MJsHotell", lat: 55.60603, lon: 12.99789 }
 ];
 
 // Utility functions
@@ -68,7 +71,10 @@ function updateDistanceDisplay(text) {
 
 function createMap() {
     const container = document.querySelector("#container");
-    container.innerHTML = ""; // Clear previous view content
+    container.innerHTML = ""; 
+    renderTitle();
+    renderNavBar("Start");
+    // Clear previous view content
     const mapContainer = document.createElement("div");
     mapContainer.id = "map";
     container.appendChild(mapContainer);
@@ -76,7 +82,8 @@ function createMap() {
     mapContainer.style.width = "100vw"; // Fixed typo: "wv" → "vw"
     mapContainer.classList.add("dynamicContent");
 
-    window.map = L.map("map").setView([55.60763, 12.98699], 16);
+    map = L.map("map").setView([55.60763, 12.98699], 16);
+    // window.map = L.map("map").setView([55.60763, 12.98699], 16);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
     // Show visited locations with pins
@@ -99,15 +106,16 @@ function createMap() {
     // Create user marker
     userMarker = L.marker([0, 0]).addTo(map);
 
-    // Watch position
     if ("geolocation" in navigator) {
         navigator.geolocation.watchPosition(
             (pos) => {
                 const userLat = pos.coords.latitude;
                 const userLon = pos.coords.longitude;
 
-                userMarker.setLatLng([userLat, userLon]);
-                map.setView([userLat, userLon]);
+                if (map && userMarker) {
+                    userMarker.setLatLng([userLat, userLon]);
+                    map.setView([userLat, userLon]);
+                }
 
                 const target = getNextLocation();
                 if (!target) return;
@@ -115,57 +123,288 @@ function createMap() {
                 const dist = getDistance(userLat, userLon, target.lat, target.lon);
 
                 // Show distance in a bottom div
-                const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
-                infoDiv.id = "distanceInfo";
-                infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
-                infoDiv.style.position = "absolute";
-                infoDiv.style.bottom = "0";
-                infoDiv.style.width = "100%";
-                infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
-                infoDiv.style.padding = "10px";
-                infoDiv.style.textAlign = "center";
-                container.appendChild(infoDiv);
+                // const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
+                // infoDiv.id = "distanceInfo";
+                // infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
+                // infoDiv.style.position = "absolute";
+                // infoDiv.style.bottom = "0";
+                // infoDiv.style.width = "100%";
+                // infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
+                // infoDiv.style.padding = "10px";
+                // infoDiv.style.textAlign = "center";
+                // container.appendChild(infoDiv);
 
+                console.log("distance to target: ", dist);
                 // Arrived at location
-                if (dist < 2 && !notified) {
+                if (dist < 20 && !notified) {
                     notified = true;
                     alert(`Du har ankommit till ${target.name}`);
                     saveVisited(target.name);
-
+                    let navStart = document.getElementById("start");
+                    console.log(target.name);
                     // Show visited pin
-                    L.marker([target.lat, target.lon])
-                        .addTo(map)
-                        .bindPopup(`${target.name} (Besökt)`);
-
+                    
+                    // L.marker([target.lat, target.lon])
+                    //     .addTo(map)
+                    //     .bindPopup(`${target.name} (Besökt)`);
                     // Trigger view for task/interview/question
-                    renderView(`task-${target.name}`);
+                    // renderView(`task-${target.name}`);
+                    switch(target.name) {
+                        case "Grannen":
+                            // interaction.grannen.found = true;
+                            // // let navStart = document.getElementById("start");
+                            // console.log(navStart);
+                            // if (navStart.textContent == "Senaste") {
+                            //     createCard(1);
+                            //     interaction.grannen.found = false;
+                            // }
+                            break;
+                        case "MalmoLive":
+                            console.log("hej");
+                            break;
+                        case "BookABoatMalmo":
+                            createCard(3);
+                            break;
+                        case "Radhuset":
+                            createCard(4)
+                            break;
+                        case "GustavAdolfsTorg":
+                            // createCard(6)
+                            break;
+                        case "MJsHotell":
+                            createCard(8);
+                            break;
+                    }
+
+                    console.log("hej");
+                    setTarget(nextTarget);
+                    notified = false;
+
+                    L.marker([target.lat, target.lon])
+                    .addTo(map)
+                    .bindPopup(`${target.name} (Besökt)`);
 
                     // Show next location on return
-                    setTimeout(() => {
-                        const nextTarget = getNextLocation();
-                        if (nextTarget) {
-                            setTarget(nextTarget);
-                            notified = false;
-                        }
-                    }, 1000);
+                    // setTimeout(() => {
+                    //     const nextTarget = getNextLocation();
+                    //     if (nextTarget) {
+                    //         console.log("hej");
+                    //         setTarget(nextTarget);
+                    //         notified = false;
+                    //     }
+                    // }, 1000);
                 }
             },
             err => {
                 console.error("Error", err);
             },
             {
-                enableHighAccuracy: true,
-                maximumAge: 1000,
-                timeout: 10000,
+                enableHighAccuracy: false,
+                maximumAge: Infinity,
+                timeout: 30000,
             }
         );
     }
 }
 
+function startGeolocationWatcher() {
+    // userMarker = L.marker([0, 0]).addTo(map);
+    if ("geolocation" in navigator) {
+        navigator.geolocation.watchPosition(
+            (pos) => {
+                const userLat = pos.coords.latitude;
+                const userLon = pos.coords.longitude;
 
+                if (map && userMarker) {
+                    userMarker.setLatLng([userLat, userLon]);
+                    map.setView([userLat, userLon]);
+                }
 
+                const target = getNextLocation();
+                if (!target) return;
 
+                const dist = getDistance(userLat, userLon, target.lat, target.lon);
+                
+                let lat = pos.coords.latitude;
+                let lon = pos.coords.longitude;
+                
+                let radHusetLat = 55.60662;
+                let radHusetLon = 13.00135;
 
+                let radHusetDist = getDistance(userLat, userLon, radHusetLat, radHusetLon);
+                if (radHusetDist < 20 && !interaction.vilseledd.found) {
+                    console.log("hej");
+                    saveVisited("BookABoatMalmo");
+                }
+                // if ((lat == bookAboatlat && lon == bookAboatlon) && !interaction.vilseledd.found) {
+                //     console.log("hej");
+                //     saveVisited("BookABoatMalmo");
+                // }
+                console.log(pos.coords);
+                console.log("distance to target: ", dist);
+                console.log("notified: ", notified);
+                // Arrived at location
+                if (dist < 20 && !notified) {
+                    notified = true;
+                    alert(`Du har ankommit till ${target.name}`);
+                    saveVisited(target.name);
+                    let navStart = document.getElementById("start");
+                    console.log(target.name);
+                    // Show visited pin
+                    
+                    // L.marker([target.lat, target.lon])
+                    //     .addTo(map)
+                    //     .bindPopup(`${target.name} (Besökt)`);
+                    // Trigger view for task/interview/question
+                    // renderView(`task-${target.name}`);
+                    switch(target.name) {
+                        case "Grannen":
+                            interaction.grannen.found = true;
+                            notified = false;
+                            // let navStart = document.getElementById("start");
+                            console.log(navStart);
+                            if (navStart.textContent == "Senaste") {
+                                interaction.grannen.found = false;
+                                createCard(1);
+                            }
+                            break;
+                        case "MalmoLive":
+                            console.log("hej");
+                            notified = false;
+                            break;
+                        case "BookABoatMalmo":
+                            interaction.vilseledd.found = true;
+                            notified = false;
+                            if (navStart.textContent == "Senaste") {
+                                interaction.vilseledd.found = false;
+                                createCard(3)
+                            } 
+                            break;
+                        case "Radhuset":
+                            interaction.intervju_motstandare.found = true;
+                            notified = false;
+                            if (navStart.textContent == "Senaste") {
+                                interaction.intervju_motstandare.found = false;
+                                createCard(4)
+                            }
+                            break;
+                        case "GustavAdolfsTorg":
+                            interaction.kalender.found = true;
+                            notified = false;
+                            if (navStart.textContent == "Senaste") {
+                                interaction.kalender.found == false;
+                                createCard(6);
+                            } 
+                            break;
+                        case "MJsHotell":
+                            interaction.sistaArtikel.found = true;
+                            notified = false;
+                            if (navStart.textContent == "Senaste") {
+                                createCard(8);
+                            }
+                            break;
+                    }
+
+                    console.log("hej");
+                    setTarget(nextTarget);
+                    notified = false;
+
+                    L.marker([target.lat, target.lon])
+                    .addTo(map)
+                    .bindPopup(`${target.name} (Besökt)`);
+
+                    // Show next location on return
+                    // setTimeout(() => {
+                    //     const nextTarget = getNextLocation();
+                    //     if (nextTarget) {
+                    //         console.log("hej");
+                    //         setTarget(nextTarget);
+                    //         notified = false;
+                    //     }
+                    // }, 1000);
+                }
+            },
+            err => {
+                console.error("Error", err);
+            },
+            {
+                enableHighAccuracy: false,
+                maximumAge: Infinity,
+                timeout: 30000,
+            }
+        );
+    }
+}
+//true
+// 1000;
+
+window.addEventListener("load", () => {
+    startGeolocationWatcher();
+})
+
+    // Watch position
+    // if ("geolocation" in navigator) {
+    //     navigator.geolocation.watchPosition(
+    //         (pos) => {
+    //             const userLat = pos.coords.latitude;
+    //             const userLon = pos.coords.longitude;
+
+    //             userMarker.setLatLng([userLat, userLon]);
+    //             map.setView([userLat, userLon]);
+
+    //             const target = getNextLocation();
+    //             if (!target) return;
+
+    //             const dist = getDistance(userLat, userLon, target.lat, target.lon);
+
+    //             // Show distance in a bottom div
+    //             const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
+    //             infoDiv.id = "distanceInfo";
+    //             infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
+    //             infoDiv.style.position = "absolute";
+    //             infoDiv.style.bottom = "0";
+    //             infoDiv.style.width = "100%";
+    //             infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
+    //             infoDiv.style.padding = "10px";
+    //             infoDiv.style.textAlign = "center";
+    //             container.appendChild(infoDiv);
+
+    //             console.log("distance to target: ", dist);
+    //             // Arrived at location
+    //             if (dist < 20 && !notified) {
+    //                 notified = true;
+    //                 alert(`Du har ankommit till ${target.name}`);
+    //                 saveVisited(target.name);
+
+    //                 console.log(target.name);
+    //                 // Show visited pin
+    //                 L.marker([target.lat, target.lon])
+    //                     .addTo(map)
+    //                     .bindPopup(`${target.name} (Besökt)`);
+
+    //                 // Trigger view for task/interview/question
+    //                 // renderView(`task-${target.name}`);
+    //                 createCard(1);
+    //                 // Show next location on return
+    //                 setTimeout(() => {
+    //                     const nextTarget = getNextLocation();
+    //                     if (nextTarget) {
+    //                         setTarget(nextTarget);
+    //                         notified = false;
+    //                     }
+    //                 }, 1000);
+    //             }
+    //         },
+    //         err => {
+    //             console.error("Error", err);
+    //         },
+    //         {
+    //             enableHighAccuracy: true,
+    //             maximumAge: 1000,
+    //             timeout: 10000,
+    //         }
+    //     );
+    // }
 
 // function createMap() {
 //     const container = document.querySelector("#container");

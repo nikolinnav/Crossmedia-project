@@ -288,19 +288,20 @@ function render(event) {
                 }
             }
 
-            for (let inter in interaction) {
-                if(!interaction[inter].interacted) {
-                    createCard(interaction[inter].id);
-                    return;
-                }
-            }
+            // for (let inter in interaction) {
+            //     if(!interaction[inter].interacted) {
+            //         createCard(interaction[inter].id);
+            //         return;
+            //     }
+            // }
         } else {
             document.getElementById("newsPageContainer").remove();
             document.querySelector("footer").remove();
             renderTitle();
             renderNavBar("Senaste");
             renderMainPage();
-            createCard(1);
+            startGeolocationWatcher();
+            // createCard(1);
             createReadArticleCard(0);
             interaction.newsPage.interacted = true;
             console.log(interaction.newsPage.interacted);

@@ -6,38 +6,49 @@ let interaction = {
 
     newsPage: {
         id: 0,
-        interacted: false
+        interacted: false,
     },
     grannen: {
         id: 1,
-        interacted: false
+        interacted: false,
+        found: false,
+        clicked: 0
     },
     phus_video1: {
         id: 2,
-        interacted: false
+        interacted: false,
+        found: false
     },
     vilseledd: {
         id: 3,
-        interacted: false
+        interacted: false,
+        found: false
     },
     intervju_motstandare: {
         id: 4,
-        interacted: false
+        interacted: false,
+        found: false,
+        clicked: 0
     },
     artikel_assistent: {
         id: 5,
-        interacted: false
+        interacted: false,
+        found: false
     }, 
     kalender: {
         id: 6,
-        interacted: false
+        interacted: false,
+        found: false,
+        clicked: 0
     },
     borgmastaren_hittad: {
         id: 7,
-        interacted: false
+        interacted: false,
+        found: false
     },
     sistaArtikel: {
         id: 8,
-        interacted: false
+        interacted: false,
+        found: false
     }
 }
