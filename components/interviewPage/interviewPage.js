@@ -8,6 +8,11 @@ let audioQuestions = [
 ];
 let playing = false;
 
+//Control if all audios are played 
+let finishedAudios = new Set();
+let popupAlreadyShown = false;
+
+
 function renderInterviewPage(questions, h2Text) {
     console.log(questions);
     const container = document.getElementById("container");
