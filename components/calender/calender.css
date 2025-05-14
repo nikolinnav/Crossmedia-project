@@ -273,7 +273,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -297,7 +296,7 @@
     grid-template-columns: repeat(3, 100px);
     gap: 20px;
     justify-content: center;
-    margin: 40px 0;
+    margin: 120px 0;
 }
 
 .call-btn {
