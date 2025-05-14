@@ -56,6 +56,7 @@ function start(event) {
                 createReadArticleCard(interaction[inter].id);
             } 
         }
+        
         disableClickOnReadCards();
         let newCards = false;
 

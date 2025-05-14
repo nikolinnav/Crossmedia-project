@@ -11,7 +11,7 @@ const locations = [
     { name: "BookABoatMalmo", lat: 55.60665, lon: 12.99556 },
     { name: "Radhuset", lat: 55.60662, lon: 13.00135 },
     { name: "GustavAdolfsTorg", lat: 55.60248, lon: 13.00082 },
-    { name: "MJsHotell", lat: 55.60603, lon: 12.99789 }
+    { name: "MJsHotell", lat: 55.60588, lon: 12.99794 }
 ];
 
 // Utility functions
@@ -80,8 +80,8 @@ function createMap() {
     const mapContainer = document.createElement("div");
     mapContainer.id = "map";
     container.appendChild(mapContainer);
-    mapContainer.style.height = "100vh";
-    mapContainer.style.width = "100vw"; // Fixed typo: "wv" → "vw"
+    // mapContainer.style.height = "100%";
+    // mapContainer.style.width = "100vw"; // Fixed typo: "wv" → "vw"
     mapContainer.classList.add("dynamicContent");
 
     map = L.map("map").setView([55.60763, 12.98699], 16);
@@ -153,13 +153,6 @@ function createMap() {
                     // renderView(`task-${target.name}`);
                     switch (target.name) {
                         case "Grannen":
-                            // interaction.grannen.found = true;
-                            // // let navStart = document.getElementById("start");
-                            // console.log(navStart);
-                            // if (navStart.textContent == "Senaste") {
-                            //     createCard(1);
-                            //     interaction.grannen.found = false;
-                            // }
                             break;
                         case "MalmoLive":
                             console.log("hej");
@@ -245,7 +238,7 @@ function startGeolocationWatcher() {
                 // Arrived at location
                 if (dist < 20 && !notified) {
                     notified = true;
-                    alert(`Du har ankommit till ${target.name}`);
+                    // alert(`Du har ankommit till ${target.name}`);
                     saveVisited(target.name);
                     let navStart = document.getElementById("start");
                     console.log(target.name);
@@ -258,6 +251,7 @@ function startGeolocationWatcher() {
                     // renderView(`task-${target.name}`);
                     switch (target.name) {
                         case "Grannen":
+                            alert("Du har ankommit till Grannen");
                             interaction.grannen.found = true;
                             notified = false;
                             // let navStart = document.getElementById("start");
@@ -269,10 +263,11 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "MalmoLive":
-                            console.log("hej");
+                            alert("Du har ankommit till Malmö Live. Hitta platsen du såg i videon");
                             notified = false;
                             break;
                         case "BookABoatMalmo":
+                            alert("Du har tagit dig till Book A Boat, var det verkligen rätt?");
                             interaction.vilseledd.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
@@ -283,6 +278,7 @@ function startGeolocationWatcher() {
                             } 
                             break;
                         case "Radhuset":
+                            alert("Du har ankommit till Rådhuset");
                             interaction.intervju_motstandare.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
@@ -293,6 +289,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "GustavAdolfsTorg":
+                            alert("Du har ankommit till Gustav Adofls Torg")
                             interaction.kalender.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
@@ -303,6 +300,7 @@ function startGeolocationWatcher() {
                             } 
                             break;
                         case "MJsHotell":
+                            alert("Du har ankommit till MJ's");
                             interaction.sistaArtikel.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {

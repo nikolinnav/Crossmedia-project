@@ -22,3 +22,7 @@ body {
     font-family: "TT Fors";
     src: url(fonts/tt_fors/TT\ Fors\ Trial\ Black\ Italic.ttf);
 }
+
+#map {
+    height: calc(100% - 122px);
+}

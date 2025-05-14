@@ -2,4 +2,5 @@
     font-family: "Anton";
     font-size: 32px;
     margin: 12px 0 12px 20px;
+    z-index: 2000;
 }
