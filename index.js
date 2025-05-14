@@ -11,6 +11,7 @@ let fromMotstandare = false;
 let fromKalender = false;
 let currentArticle = "";
 let called = false 
+// localStorage.removeItem("visitedPlaces");
 // let newCards = false;
 
 async function get() {
@@ -25,7 +26,7 @@ async function get() {
     characterInfo = await checkOk(responseCharacterInfo);
     interviewQuestions = await checkOk(responseInterviewQuestions);
     gameCards = await checkOk(responseGameCards);
-
+    localStorage.removeItem("visitedPlaces");
     console.log(interviewQuestions);
     console.log(characterInfo);
     console.log(gameCards);

@@ -274,6 +274,9 @@ function enableClickOnReadCards() {
     const readCards = document.querySelectorAll("#lästaArtiklarCards .card");
     console.log("Read Cards: ", readCards);
 
+    const charactersNav = document.getElementById("charactersNav");
+    charactersNav.style.pointerEvents = "auto";
+
     for (let card of readCards) {
         card.style.pointerEvents = "auto";
         console.log(card.style.pointerEvents);
@@ -284,6 +287,10 @@ function disableClickOnReadCards() {
     const readCards = document.querySelectorAll("#lästaArtiklarCards .card");
     console.log("now read cards should be disabled");
     console.log(readCards);
+
+    const charactersNav = document.getElementById("charactersNav");
+    charactersNav.style.pointerEvents = "none";
+
     for (let card of readCards) {
         card.style.pointerEvents = "none";
         console.log(card.style.pointerEvents);
@@ -292,6 +299,7 @@ function disableClickOnReadCards() {
 }
 
 function enableClickOnKarta() {
+
     const karta = document.querySelector("#karta");
     karta.style.pointerEvents = "auto";
 

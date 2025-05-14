@@ -1,9 +1,9 @@
 // Global variables
 let map, targetMarker, userMarker;
 notified = false;
-if (location.hostname === "localhost") {
-    localStorage.removeItem("visitedPlaces");
-}
+// if (location.hostname === "localhost") {
+//     localStorage.removeItem("visitedPlaces");
+// }
 // Locations array
 const locations = [
     { name: "Grannen", lat: 55.60763, lon: 12.98699 },
@@ -144,13 +144,7 @@ function createMap() {
                     saveVisited(target.name);
                     let navStart = document.getElementById("start");
                     console.log(target.name);
-                    // Show visited pin
 
-                    // L.marker([target.lat, target.lon])
-                    //     .addTo(map)
-                    //     .bindPopup(`${target.name} (Besökt)`);
-                    // Trigger view for task/interview/question
-                    // renderView(`task-${target.name}`);
                     switch (target.name) {
                         case "Grannen":
                             break;
@@ -194,7 +188,7 @@ function createMap() {
                 console.error("Error", err);
             },
             {
-                enableHighAccuracy: false,
+                enableHighAccuracy: true,
                 maximumAge: Infinity,
                 timeout: 30000,
             }
@@ -231,10 +225,6 @@ function startGeolocationWatcher() {
                     console.log("hej");
                     saveVisited("BookABoatMalmo");
                 }
-                // if ((lat == bookAboatlat && lon == bookAboatlon) && !interaction.vilseledd.found) {
-                //     console.log("hej");
-                //     saveVisited("BookABoatMalmo");
-                // }
                 // Arrived at location
                 if (dist < 20 && !notified) {
                     notified = true;
@@ -251,7 +241,7 @@ function startGeolocationWatcher() {
                     // renderView(`task-${target.name}`);
                     switch (target.name) {
                         case "Grannen":
-                            alert("Du har ankommit till Grannen");
+                            alert("Du har ankommit till Grannen. Kolla senaste nytt");
                             interaction.grannen.found = true;
                             notified = false;
                             // let navStart = document.getElementById("start");
@@ -263,7 +253,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "MalmoLive":
-                            alert("Du har ankommit till Malmö Live. Hitta platsen du såg i videon");
+                            alert("Hitta platsen du såg i videon!");
                             notified = false;
                             break;
                         case "BookABoatMalmo":
@@ -334,7 +324,7 @@ function startGeolocationWatcher() {
                 console.error("Error", err);
             },
             {
-                enableHighAccuracy: false,
+                enableHighAccuracy: true,
                 maximumAge: Infinity,
                 timeout: 30000,
             }
