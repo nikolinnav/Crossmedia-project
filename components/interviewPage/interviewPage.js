@@ -129,31 +129,68 @@ async function playQuestion(event) {
         case "questionOne":
             console.log("now playing question 1");
             playAudio(audioQuestions[0], currentlyPlayingElement);
+
+            //Checks if all audios are played, if so it shows the popUp.
+            finishedAudios.add(audioQuestions[0]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         case "questionTwo":
             console.log("now playing question 2");
             url = "./media/audio/Granne_fraga_2.mp3";
             playAudio(audioQuestions[1], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[1]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         case "questionThree":
             console.log("now playing question 3");
             url = "./media/audio/Granne_fraga_3.mp3";
             playAudio(audioQuestions[2], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[2]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         case "questionFour":
             console.log("now playing question 4");
             url = "./media/audio/Granne_fraga_4.mp3";
             playAudio(audioQuestions[3], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[3]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         case "questionFive":
             console.log("now playing question 5");
             url = "./media/audio/Granne_fraga_5.mp3";
             playAudio(audioQuestions[4], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[4]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         case "questionSix":
             console.log("now playing question 6");
             url = "./media/audio/Motstandare_intervju.mp3";
             playAudio(audioQuestions[5], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[5]);
+            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                ShowPopUp();
+            }
             break;
         default:
             break;
@@ -243,6 +280,6 @@ function submitAnswer() {
     const value = document.getElementById('credibilitySlider').value;
     console.log("Svar skickat:", value);
     document.getElementById('questionPopup').style.display = 'none';
-  }
+}
 
 
