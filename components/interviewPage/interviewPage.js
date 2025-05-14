@@ -11,6 +11,7 @@ let playing = false;
 //Control if all audios are played 
 let finishedAudios = new Set();
 let popupAlreadyShown = false;
+let questionNum = 5;
 
 
 function renderInterviewPage(questions, h2Text) {
@@ -132,9 +133,9 @@ async function playQuestion(event) {
 
             //Checks if all audios are played, if so it shows the popUp.
             finishedAudios.add(audioQuestions[0]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
-                ShowPopUp();
+                showPopup();
             }
             break;
         case "questionTwo":
@@ -143,9 +144,9 @@ async function playQuestion(event) {
             playAudio(audioQuestions[1], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[1]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
-                ShowPopUp();
+                showPopup();
             }
             break;
         case "questionThree":
@@ -154,9 +155,9 @@ async function playQuestion(event) {
             playAudio(audioQuestions[2], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[2]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
-                ShowPopUp();
+                showPopup();
             }
             break;
         case "questionFour":
@@ -165,9 +166,9 @@ async function playQuestion(event) {
             playAudio(audioQuestions[3], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[3]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
-                ShowPopUp();
+                showPopup();
             }
             break;
         case "questionFive":
@@ -176,9 +177,9 @@ async function playQuestion(event) {
             playAudio(audioQuestions[4], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[4]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
-                ShowPopUp();
+                showPopup();
             }
             break;
         case "questionSix":
@@ -186,11 +187,6 @@ async function playQuestion(event) {
             url = "./media/audio/Motstandare_intervju.mp3";
             playAudio(audioQuestions[5], currentlyPlayingElement);
 
-            finishedAudios.add(audioQuestions[5]);
-            if (finishedAudios.size === audioQuestions.length && !popupAlreadyShown) {
-                popupAlreadyShown = true;
-                ShowPopUp();
-            }
             break;
         default:
             break;
@@ -281,5 +277,4 @@ function submitAnswer() {
     console.log("Svar skickat:", value);
     document.getElementById('questionPopup').style.display = 'none';
 }
-
 
