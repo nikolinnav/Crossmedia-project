@@ -253,6 +253,45 @@ function enablePlaying(questions) {
     }
 }
 
+function renderInterviewPopUp() {
+    if (document.querySelector("#popUpbackground")) return; // Prevent duplicates
+
+    const background = document.createElement("div");
+    background.id = "popUpbackground";
+
+    background.innerHTML = `
+        <div id="popUpContainer">
+            <div id="popupContent">
+                <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
+                <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+                <p id="sliderValue">3</p>
+                <button onclick="submitAnswer()">Skicka</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(background);
+
+    // Event listener for slider update
+    background.querySelector("#credibilitySlider").addEventListener("input", function (e) {
+        background.querySelector("#sliderValue").textContent = e.target.value;
+    });
+}
+
+function showPopup() {
+    let bg = document.querySelector("#popUpbackground");
+    if (!bg) {
+        renderInterviewPopUp();
+        bg = document.querySelector("#popUpbackground");
+    }
+    bg.style.display = "flex";
+}
+
+function submitAnswer() {
+    const value = document.querySelector("#credibilitySlider").value;
+    console.log("Svar skickat:", value);
+    document.querySelector("#popUpbackground").style.display = 'none';
+}
 
 
 
