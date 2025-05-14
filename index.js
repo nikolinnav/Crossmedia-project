@@ -10,6 +10,8 @@ let fromGrannen = false;
 let fromMotstandare = false;
 let fromKalender = false;
 let currentArticle = "";
+let called = false 
+// let newCards = false;
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");

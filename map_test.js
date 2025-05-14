@@ -73,7 +73,9 @@ function createMap() {
     const container = document.querySelector("#container");
     container.innerHTML = ""; 
     renderTitle();
-    renderNavBar("Start");
+    if (!document.querySelector("nav")) {
+        renderNavBar("Start");
+    }
     // Clear previous view content
     const mapContainer = document.createElement("div");
     mapContainer.id = "map";
@@ -259,9 +261,10 @@ function startGeolocationWatcher() {
                             interaction.grannen.found = true;
                             notified = false;
                             // let navStart = document.getElementById("start");
-                            console.log(navStart);
                             if (navStart.textContent == "Senaste") {
                                 interaction.grannen.found = false;
+                                disableClickOnKarta();
+                                disableClickOnReadCards();
                                 createCard(1);
                             }
                             break;
@@ -275,6 +278,8 @@ function startGeolocationWatcher() {
                             if (navStart.textContent == "Senaste") {
                                 interaction.vilseledd.found = false;
                                 createCard(3)
+                                disableClickOnKarta();
+                                disableClickOnReadCards();
                             } 
                             break;
                         case "Radhuset":
@@ -283,6 +288,8 @@ function startGeolocationWatcher() {
                             if (navStart.textContent == "Senaste") {
                                 interaction.intervju_motstandare.found = false;
                                 createCard(4)
+                                disableClickOnKarta();
+                                disableClickOnReadCards();
                             }
                             break;
                         case "GustavAdolfsTorg":
@@ -291,6 +298,8 @@ function startGeolocationWatcher() {
                             if (navStart.textContent == "Senaste") {
                                 interaction.kalender.found = false;
                                 createCard(6);
+                                disableClickOnKarta();
+                                disableClickOnReadCards();
                             } 
                             break;
                         case "MJsHotell":
@@ -298,6 +307,8 @@ function startGeolocationWatcher() {
                             notified = false;
                             if (navStart.textContent == "Senaste") {
                                 createCard(8);
+                                disableClickOnKarta();
+                                disableClickOnReadCards();
                             }
                             break;
                     }

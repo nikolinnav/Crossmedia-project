@@ -1,5 +1,7 @@
 function renderNavBar(firstDivText) {
+    console.log("now nav should be rendered");
     if (document.querySelector("nav")) {
+
         document.querySelector("nav").remove();
     }
 
@@ -45,16 +47,16 @@ function start(event) {
         dynamicContent.forEach(element => element.remove());
 
         renderMainPage();
-        
+        disableClickOnKarta();
         //checks if card has been interacted with
         //if it hasnt renders those cards
         for (let inter in interaction) {
             if (interaction[inter].interacted) {
                 console.log(inter + " " + interaction[inter].interacted);
                 createReadArticleCard(interaction[inter].id);
-            }
+            } 
         }
-
+        disableClickOnReadCards();
         let newCards = false;
 
         if (fromGrannen && interaction.grannen.clicked <= 1) {
@@ -101,6 +103,7 @@ function start(event) {
         console.log(newCards);
         if (!newCards) {
             enableClickOnReadCards();
+            enableClickOnKarta();
         }
         event.target.textContent = "Senaste";
     }

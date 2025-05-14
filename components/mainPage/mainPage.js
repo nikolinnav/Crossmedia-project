@@ -37,12 +37,17 @@ function renderMainPage() {
     //     `
     //     container.appendChild(alreadyReadDiv);
     // }
+    // console.log("currently newCards is ", newCards);
+    // if (!newCards) {
+    //     enableClickOnKarta();
+    // }
     let cards = document.querySelectorAll(".card");
     cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
 }
 
 //Creates a card that is added under Senaste Nytt
 function createCard (id) {
+    // newCards = true;
     for (let card of gameCards) {
         if (card.id === id) {
             // currentArticle = card.divId;
@@ -63,17 +68,21 @@ function createCard (id) {
     switch (id) {
         case 0:
             break;
-        case 1:
+        case 1:           
             break;
         case 2:
-            // setImage(image, )
+            setImage(image, "url(./media/images/phusbild.png");
+            image.style.backgroundPosition = "center";
             break;
-        case 3: 
+        case 3:
+            setImage(image, "url(./media/profiles/dottern.jpg");
             break;
         case 4:
+            setImage(image, "url(./media/profiles/motstandaren.jpg)");
+            image.style.backgroundPosition = "center";
             break;
         case 5: 
-            setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)")
+            setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)");
             // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
             break;
         case 6:
@@ -128,7 +137,7 @@ function createReadArticleCard (id,) {
 
             // console.log("now addEventListener should work");
             // if (!disableClick) {
-            //     cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
+            cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
             // }
 
 
@@ -166,6 +175,7 @@ function checkId(id) {
 
             renderInstructions()
             renderBackgroundArticle();
+            enableClickOnKarta();
             // renderNewsPageGranne();
             break;
         case "phusVideo1":
@@ -173,6 +183,7 @@ function checkId(id) {
 
             createReadArticleCard(interaction.phus_video1.id);
             enableClickOnReadCards();
+            enableClickOnKarta();
             window.open("https://vm.tiktok.com/ZNd6JKpGB/", `_blank`);
 
             // renderMainPage();
@@ -187,7 +198,9 @@ function checkId(id) {
 
             createReadArticleCard(interaction.vilseledd.id);
             enableClickOnReadCards();
-            window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`);
+            enableClickOnKarta();
+            window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`); 
+            
 
             let vilseleddElement = document.getElementById(id);
             vilseleddElement.remove();
@@ -260,7 +273,32 @@ function setImage (element, image) {
 function enableClickOnReadCards() {
     const readCards = document.querySelectorAll("#lästaArtiklarCards .card");
     console.log("Read Cards: ", readCards);
-    readCards.forEach(cardElement => {
-        cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
-    })
+
+    for (let card of readCards) {
+        card.style.pointerEvents = "auto";
+        console.log(card.style.pointerEvents);
+    }
+}
+
+function disableClickOnReadCards() {
+    const readCards = document.querySelectorAll("#lästaArtiklarCards .card");
+    console.log("now read cards should be disabled");
+    console.log(readCards);
+    for (let card of readCards) {
+        card.style.pointerEvents = "none";
+        console.log(card.style.pointerEvents);
+    }
+
+}
+
+function enableClickOnKarta() {
+    const karta = document.querySelector("#karta");
+    karta.style.pointerEvents = "auto";
+
+}
+
+function disableClickOnKarta() {
+    console.log("now karta should be disabled");
+    const karta = document.querySelector("#karta");
+    karta.style.pointerEvents = "none";
 }

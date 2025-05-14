@@ -6,8 +6,14 @@ function renderCalender(month, year) {
   title.id = "calTitle";
   title.textContent = "Sanning eller Skvaller";
   container.appendChild(title);
-
+  
   renderNavBar("Start");
+  if (!called) {
+    document.querySelector("nav").style.pointerEvents = "none";
+  } else {
+    document.querySelector("nav").style.pointerEvents = "auto";
+  }
+  // document.getElementById("nav").style.pointerEvents = "none";
 
   const calenderContainer = document.createElement("div");
   calenderContainer.id = "calenderContainer";
@@ -306,7 +312,8 @@ function handleOutgoingCall(audioSrc, durationInSeconds) {
       clearTimeout(timeoutId);
       callView.classList.add("hidden");
 
-      document.body.style.margin = "25px"; // Reset margin
+      // document.body.style.margin = "25px"; // Reset margin
+      called = true;
       renderCalender(4, 2025);
 
       resolve();
