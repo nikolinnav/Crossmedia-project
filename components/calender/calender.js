@@ -170,7 +170,7 @@ function renderKeyPad() {
   container.innerHTML = "";
 
   const body = document.querySelector("body");
-  body.style = "margin: 0";
+  // body.style = "margin: 0";
 
   const dialContainer = document.createElement("div");
   dialContainer.id = "dialContainer";
@@ -237,7 +237,7 @@ async function renderCall() {
   container.innerHTML = "";
 
   const body = document.querySelector("body");
-  body.style = "margin: 0";
+  // body.style = "margin: 0";
 
   const callContainer = document.createElement("div");
   callContainer.id = "callContainer";
@@ -282,7 +282,7 @@ async function renderCall() {
     `;
 
   await handleOutgoingCall("media/audio/voiceRecording.mp3", 19);
-  body.style = "margin: 25px";
+  // body.style = "margin: 25px";
 
 }
 
@@ -312,7 +312,7 @@ function handleOutgoingCall(audioSrc, durationInSeconds) {
       clearTimeout(timeoutId);
       callView.classList.add("hidden");
 
-      // document.body.style.margin = "25px"; // Reset margin
+      document.body.style.margin = "0px"; // Reset margin
       called = true;
       renderCalender(4, 2025);
 
