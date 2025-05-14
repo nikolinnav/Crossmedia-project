@@ -263,9 +263,11 @@ function renderInterviewPopUp() {
         <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
         <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
         <p id="sliderValue">3</p>
-        <button onclick="submitAnswer()">Skicka</button>
+        <button>Skicka</button>
     </div>
     `;
+
+    document.querySelector('#popupContent button').addEventListener('click', submitAnswer);
 }
 
 function showPopup() {
