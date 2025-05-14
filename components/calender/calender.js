@@ -105,7 +105,7 @@ function renderCalender(month, year) {
       dateDiv.appendChild(dot);
       dateDiv.addEventListener("click", function () {
         renderEventHeader(dateDiv.textContent, 1, eventContainer);
-        renderEvent("Hämta Eva från flygplatsen", "17:45", "none", eventContainer);
+        renderEvent("Hämta Lisa från flygplatsen", "17:45", "none", eventContainer);
       });
     }
   }
