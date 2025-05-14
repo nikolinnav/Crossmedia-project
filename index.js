@@ -41,6 +41,11 @@ async function checkOk(response) {
 }
 get();
 
+// function clearLocalStorageOnStart() {
+//     if (localStorage.length > 0) {
+//         localStorage.clear();
+//     }
+// }
 // renderTitle();
 // renderNavBar("Senaste");
 //renderNewsPageGranne();

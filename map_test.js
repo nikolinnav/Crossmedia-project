@@ -27,14 +27,14 @@ function getDistance(lat1, lon1, lat2, lon2) {
 }
 
 function loadVisited() {
-    return JSON.parse(localStorage.getItem("visitedPlaces") || "[]");
+    return JSON.parse(sessionStorage.getItem("visitedPlaces") || "[]");
 }
 
 function saveVisited(name) {
     const visited = loadVisited();
     if (!visited.includes(name)) {
         visited.push(name);
-        localStorage.setItem("visitedPlaces", JSON.stringify(visited));
+        sessionStorage.setItem("visitedPlaces", JSON.stringify(visited));
     }
 }
 
@@ -279,7 +279,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "GustavAdolfsTorg":
-                            alert("Du har ankommit till Gustav Adofls Torg")
+                            alert("Du har ankommit till Gustav Adolfs Torg")
                             interaction.kalender.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {

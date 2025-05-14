@@ -216,6 +216,7 @@ function renderInstructions() {
             <li>Artiklar: En samlad sida för tidigare artiklar.</li>
             <li>Karaktärer: Använd funktionen “karaktärer” för att återgå till personerna du möter i spelet och bilda dig en uppfattning om hur de är.</li>
             <li>QR koder: vid två tillfällen i spelet behöver du skanna en QR-kod för att komma vidare. Mer instruktioner angående detta kommer ges under spelets gång.</li>
+            <li>Stäng inte ner fliken och lås inte mobilen under spelets gång</li>
         </ol>
 
     </div>
