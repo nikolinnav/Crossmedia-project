@@ -49,7 +49,7 @@ let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken
 // renderInterviewPage(questions);
 // renderNewsPageGranne();
 // renderBackgroundArticle();
-//renderSmygbilderArticle()
+renderSmygbilderArticle()
 // renderAssistantArticle();
 // renderAssistantArticle();
 //renderInstructions();
