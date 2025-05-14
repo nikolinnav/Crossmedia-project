@@ -1,12 +1,18 @@
 let audioQuestions = [
-new Audio("./media/audio/Granne_fraga_1.mp3"), 
-new Audio("./media/audio/Granne_fraga_2.mp3"),
-new Audio("./media/audio/Granne_fraga_3.mp3"),
-new Audio("./media/audio/Granne_fraga_4.mp3"), 
-new Audio("./media/audio/Granne_fraga_5.mp3"),
-new Audio("./media/audio/Motstandare_intervju.mp3")
+    new Audio("./media/audio/Granne_fraga_1.mp3"),
+    new Audio("./media/audio/Granne_fraga_2.mp3"),
+    new Audio("./media/audio/Granne_fraga_3.mp3"),
+    new Audio("./media/audio/Granne_fraga_4.mp3"),
+    new Audio("./media/audio/Granne_fraga_5.mp3"),
+    new Audio("./media/audio/Motstandare_intervju.mp3")
 ];
 let playing = false;
+
+//Control if all audios are played 
+let finishedAudios = new Set();
+let popupAlreadyShown = false;
+let questionNum = 5;
+
 
 function renderInterviewPage(questions, h2Text) {
     console.log(questions);
@@ -47,7 +53,7 @@ function renderInterviewPage(questions, h2Text) {
         // div.innerHTML = `
         // <div class="interviewImg"></div>
         // <h2 class="interviewTitle">Intervjua Grannen</h2>
-    
+
         // <div class="interviewBoxesContainer">
         //     <div class="question1 interviewBoxes">
         //         <p class="question1">${questions[quest]}</p>
@@ -124,31 +130,63 @@ async function playQuestion(event) {
         case "questionOne":
             console.log("now playing question 1");
             playAudio(audioQuestions[0], currentlyPlayingElement);
+
+            //Checks if all audios are played, if so it shows the popUp.
+            finishedAudios.add(audioQuestions[0]);
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                showPopup();
+            }
             break;
         case "questionTwo":
             console.log("now playing question 2");
             url = "./media/audio/Granne_fraga_2.mp3";
             playAudio(audioQuestions[1], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[1]);
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                showPopup();
+            }
             break;
         case "questionThree":
             console.log("now playing question 3");
             url = "./media/audio/Granne_fraga_3.mp3";
             playAudio(audioQuestions[2], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[2]);
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                showPopup();
+            }
             break;
         case "questionFour":
             console.log("now playing question 4");
             url = "./media/audio/Granne_fraga_4.mp3";
             playAudio(audioQuestions[3], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[3]);
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                showPopup();
+            }
             break;
         case "questionFive":
             console.log("now playing question 5");
             url = "./media/audio/Granne_fraga_5.mp3";
             playAudio(audioQuestions[4], currentlyPlayingElement);
+
+            finishedAudios.add(audioQuestions[4]);
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+                popupAlreadyShown = true;
+                showPopup();
+            }
             break;
         case "questionSix":
             console.log("now playing question 6");
             url = "./media/audio/Motstandare_intervju.mp3";
             playAudio(audioQuestions[5], currentlyPlayingElement);
+
             break;
         default:
             break;
@@ -181,7 +219,7 @@ function playAudio(question, currentlyPlaying) {
                 console.log(playButton);
             }
         }
-        
+
     } else if (playing) {
         // question.pause();
         playing = false;
@@ -189,14 +227,14 @@ function playAudio(question, currentlyPlaying) {
         checkIfPlaying();
         enablePlaying(questionsDiv);
     }
-    question.onended = function() {
+    question.onended = function () {
         playing = false;
         enablePlaying(questionsDiv);
     }
 }
 
 function checkIfPlaying() {
-    for(let q of audioQuestions) {
+    for (let q of audioQuestions) {
         if (!q.paused) {
             q.pause();
         }
@@ -214,4 +252,74 @@ function enablePlaying(questions) {
         q.querySelector(".pauseButton").style.visibility = "hidden";
     }
 }
+
+function renderInterviewPopUp() {
+    if (document.querySelector("#popUpbackground")) return; // Prevent duplicates
+
+    const background = document.createElement("div");
+    background.id = "popUpbackground";
+
+    background.innerHTML = `
+        <div id="popUpContainer">
+            <div id="popupContent">
+                <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
+                <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+                <p id="sliderValue">3</p>
+                <button onclick="submitAnswer()">Skicka</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(background);
+
+    // Event listener for slider update
+    background.querySelector("#credibilitySlider").addEventListener("input", function (e) {
+        background.querySelector("#sliderValue").textContent = e.target.value;
+    });
+}
+
+function showPopup() {
+    let bg = document.querySelector("#popUpbackground");
+    if (!bg) {
+        renderInterviewPopUp();
+        bg = document.querySelector("#popUpbackground");
+    }
+    bg.style.display = "flex";
+}
+
+function submitAnswer() {
+    const value = document.querySelector("#credibilitySlider").value;
+    console.log("Svar skickat:", value);
+    document.querySelector("#popUpbackground").style.display = 'none';
+}
+
+
+
+
+// function renderInterviewPopUp() {
+//     const popUp = document.createElement("div");
+//     popUp.id = "popUpContainer";
+//     popUp.classList.add("displayPopUp");
+
+//     popUp.innerHTML = `
+//     <div id="popupContent">
+//         <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
+//         <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+//         <p id="sliderValue">3</p>
+//         <button>Skicka</button>
+//     </div>
+//     `;
+
+//     document.querySelector('#popupContent button').addEventListener('click', submitAnswer);
+// }
+
+// function showPopup() {
+//     document.getElementById('popUpContainer').style.display = 'flex';
+// }
+
+// function submitAnswer() {
+//     const value = document.getElementById('credibilitySlider').value;
+//     console.log("Svar skickat:", value);
+//     document.getElementById('questionPopup').style.display = 'none';
+// }
 

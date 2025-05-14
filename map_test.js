@@ -71,7 +71,7 @@ function updateDistanceDisplay(text) {
 
 function createMap() {
     const container = document.querySelector("#container");
-    container.innerHTML = ""; 
+    container.innerHTML = "";
     renderTitle();
     if (!document.querySelector("nav")) {
         renderNavBar("Start");
@@ -94,8 +94,8 @@ function createMap() {
         const loc = locations.find(l => l.name === name);
         if (loc) {
             L.marker([loc.lat, loc.lon])
-              .addTo(map)
-              .bindPopup(`${loc.name} (Besökt)`);
+                .addTo(map)
+                .bindPopup(`${loc.name} (Besökt)`);
         }
     });
 
@@ -145,13 +145,13 @@ function createMap() {
                     let navStart = document.getElementById("start");
                     console.log(target.name);
                     // Show visited pin
-                    
+
                     // L.marker([target.lat, target.lon])
                     //     .addTo(map)
                     //     .bindPopup(`${target.name} (Besökt)`);
                     // Trigger view for task/interview/question
                     // renderView(`task-${target.name}`);
-                    switch(target.name) {
+                    switch (target.name) {
                         case "Grannen":
                             // interaction.grannen.found = true;
                             // // let navStart = document.getElementById("start");
@@ -183,8 +183,8 @@ function createMap() {
                     notified = false;
 
                     L.marker([target.lat, target.lon])
-                    .addTo(map)
-                    .bindPopup(`${target.name} (Besökt)`);
+                        .addTo(map)
+                        .bindPopup(`${target.name} (Besökt)`);
 
                     // Show next location on return
                     // setTimeout(() => {
@@ -226,10 +226,10 @@ function startGeolocationWatcher() {
                 if (!target) return;
 
                 const dist = getDistance(userLat, userLon, target.lat, target.lon);
-                
+
                 let lat = pos.coords.latitude;
                 let lon = pos.coords.longitude;
-                
+
                 let radHusetLat = 55.60662;
                 let radHusetLon = 13.00135;
 
@@ -250,13 +250,13 @@ function startGeolocationWatcher() {
                     let navStart = document.getElementById("start");
                     console.log(target.name);
                     // Show visited pin
-                    
+
                     // L.marker([target.lat, target.lon])
                     //     .addTo(map)
                     //     .bindPopup(`${target.name} (Besökt)`);
                     // Trigger view for task/interview/question
                     // renderView(`task-${target.name}`);
-                    switch(target.name) {
+                    switch (target.name) {
                         case "Grannen":
                             interaction.grannen.found = true;
                             notified = false;
@@ -318,8 +318,8 @@ function startGeolocationWatcher() {
                     notified = false;
 
                     L.marker([target.lat, target.lon])
-                    .addTo(map)
-                    .bindPopup(`${target.name} (Besökt)`);
+                        .addTo(map)
+                        .bindPopup(`${target.name} (Besökt)`);
 
                     // Show next location on return
                     // setTimeout(() => {
@@ -350,69 +350,69 @@ window.addEventListener("load", () => {
     startGeolocationWatcher();
 })
 
-    // Watch position
-    // if ("geolocation" in navigator) {
-    //     navigator.geolocation.watchPosition(
-    //         (pos) => {
-    //             const userLat = pos.coords.latitude;
-    //             const userLon = pos.coords.longitude;
+// Watch position
+// if ("geolocation" in navigator) {
+//     navigator.geolocation.watchPosition(
+//         (pos) => {
+//             const userLat = pos.coords.latitude;
+//             const userLon = pos.coords.longitude;
 
-    //             userMarker.setLatLng([userLat, userLon]);
-    //             map.setView([userLat, userLon]);
+//             userMarker.setLatLng([userLat, userLon]);
+//             map.setView([userLat, userLon]);
 
-    //             const target = getNextLocation();
-    //             if (!target) return;
+//             const target = getNextLocation();
+//             if (!target) return;
 
-    //             const dist = getDistance(userLat, userLon, target.lat, target.lon);
+//             const dist = getDistance(userLat, userLon, target.lat, target.lon);
 
-    //             // Show distance in a bottom div
-    //             const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
-    //             infoDiv.id = "distanceInfo";
-    //             infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
-    //             infoDiv.style.position = "absolute";
-    //             infoDiv.style.bottom = "0";
-    //             infoDiv.style.width = "100%";
-    //             infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
-    //             infoDiv.style.padding = "10px";
-    //             infoDiv.style.textAlign = "center";
-    //             container.appendChild(infoDiv);
+//             // Show distance in a bottom div
+//             const infoDiv = document.getElementById("distanceInfo") || document.createElement("div");
+//             infoDiv.id = "distanceInfo";
+//             infoDiv.textContent = `Avstånd till ${target.name}: ${dist.toFixed(1)} m`;
+//             infoDiv.style.position = "absolute";
+//             infoDiv.style.bottom = "0";
+//             infoDiv.style.width = "100%";
+//             infoDiv.style.backgroundColor = "rgba(255,255,255,0.8)";
+//             infoDiv.style.padding = "10px";
+//             infoDiv.style.textAlign = "center";
+//             container.appendChild(infoDiv);
 
-    //             console.log("distance to target: ", dist);
-    //             // Arrived at location
-    //             if (dist < 20 && !notified) {
-    //                 notified = true;
-    //                 alert(`Du har ankommit till ${target.name}`);
-    //                 saveVisited(target.name);
+//             console.log("distance to target: ", dist);
+//             // Arrived at location
+//             if (dist < 20 && !notified) {
+//                 notified = true;
+//                 alert(`Du har ankommit till ${target.name}`);
+//                 saveVisited(target.name);
 
-    //                 console.log(target.name);
-    //                 // Show visited pin
-    //                 L.marker([target.lat, target.lon])
-    //                     .addTo(map)
-    //                     .bindPopup(`${target.name} (Besökt)`);
+//                 console.log(target.name);
+//                 // Show visited pin
+//                 L.marker([target.lat, target.lon])
+//                     .addTo(map)
+//                     .bindPopup(`${target.name} (Besökt)`);
 
-    //                 // Trigger view for task/interview/question
-    //                 // renderView(`task-${target.name}`);
-    //                 createCard(1);
-    //                 // Show next location on return
-    //                 setTimeout(() => {
-    //                     const nextTarget = getNextLocation();
-    //                     if (nextTarget) {
-    //                         setTarget(nextTarget);
-    //                         notified = false;
-    //                     }
-    //                 }, 1000);
-    //             }
-    //         },
-    //         err => {
-    //             console.error("Error", err);
-    //         },
-    //         {
-    //             enableHighAccuracy: true,
-    //             maximumAge: 1000,
-    //             timeout: 10000,
-    //         }
-    //     );
-    // }
+//                 // Trigger view for task/interview/question
+//                 // renderView(`task-${target.name}`);
+//                 createCard(1);
+//                 // Show next location on return
+//                 setTimeout(() => {
+//                     const nextTarget = getNextLocation();
+//                     if (nextTarget) {
+//                         setTarget(nextTarget);
+//                         notified = false;
+//                     }
+//                 }, 1000);
+//             }
+//         },
+//         err => {
+//             console.error("Error", err);
+//         },
+//         {
+//             enableHighAccuracy: true,
+//             maximumAge: 1000,
+//             timeout: 10000,
+//         }
+//     );
+// }
 
 // function createMap() {
 //     const container = document.querySelector("#container");

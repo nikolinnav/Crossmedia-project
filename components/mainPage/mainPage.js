@@ -228,7 +228,7 @@ function checkId(id) {
             fromKalender = true;
             interaction.kalender.clicked++;
 
-            renderCalender(5, 2025);
+            renderCalender(4, 2025);
             break;
         
         case "borgmastarenHittad":
