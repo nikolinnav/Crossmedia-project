@@ -240,9 +240,6 @@ function startGeolocationWatcher() {
                 //     console.log("hej");
                 //     saveVisited("BookABoatMalmo");
                 // }
-                console.log(pos.coords);
-                console.log("distance to target: ", dist);
-                console.log("notified: ", notified);
                 // Arrived at location
                 if (dist < 20 && !notified) {
                     notified = true;
