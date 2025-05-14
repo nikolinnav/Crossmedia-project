@@ -58,7 +58,7 @@ renderInstructions()
 // renderInterviewPage(questions);
 // renderNewsPageGranne();
 // renderBackgroundArticle();
-//renderSmygbilderArticle()
+renderSmygbilderArticle()
 // renderAssistantArticle();
 // renderAssistantArticle();
 //renderInstructions();
