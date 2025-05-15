@@ -258,12 +258,12 @@ function startGeolocationWatcher() {
 
                 const dist = getDistance(userLat, userLon, target.lat, target.lon);
 
-                // ✅ Arrived at main location
+                // Arrived at main location
                 if (dist < 20 && !notified) {
                     notified = true;
                     saveVisited(target.name);
 
-                    // ✅ Add pin on map
+                    // Add pin on map
                     L.marker([target.lat, target.lon])
                         .addTo(map)
                         .bindPopup(`${target.name} (Besökt)`);
@@ -274,7 +274,7 @@ function startGeolocationWatcher() {
                     // Trigger interaction based on location
                     switch (target.name) {
                         case "Grannen":
-                            alert("Du har ankommit till Grannen. Kolla i senaste nytt!");
+                            alert("Du har ankommit till Grannen. Kolla under 'Senaste nytt'!");
                             interaction.grannen.found = true;
                             if (navStart.textContent == "Senaste") {
                                 interaction.grannen.found = false;
@@ -294,7 +294,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "Radhuset":
-                            alert("Du har ankommit till Rådhuset. Kolla i Senaste nytt!");
+                            alert("Du har ankommit till Rådhuset. Kolla under 'Senaste nytt'!");
                             interaction.intervju_motstandare.found = true;
                             if (navStart.textContent == "Senaste") {
                                 interaction.intervju_motstandare.found = false;
@@ -304,7 +304,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "GustavAdolfsTorg":
-                            alert("Du har ankommit till Gustav Adolfs Torg. Kolla i Senaste nytt!");
+                            alert("Du har ankommit till Gustav Adolfs Torg. Kolla under 'Senaste nytt'!");
                             interaction.kalender.found = true;
                             if (navStart.textContent == "Senaste") {
                                 interaction.kalender.found = false;
@@ -314,7 +314,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "MJsHotell":
-                            alert("Du har ankommit till MJ's. Kolla i Senaste nytt!");
+                            alert("Du har ankommit till MJ's. Kolla under 'Senaste nytt'!");
                             interaction.sistaArtikel.found = true;
                             if (navStart.textContent == "Senaste") {
                                 createCard(8);
