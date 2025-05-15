@@ -50,67 +50,8 @@ function renderInterviewPage(questions, h2Text) {
         div.appendChild(interviewBox);
         let pauseButton = interviewBox.querySelector(".pauseButton");
         pauseButton.style.visibility = "hidden";
-        // div.innerHTML = `
-        // <div class="interviewImg"></div>
-        // <h2 class="interviewTitle">Intervjua Grannen</h2>
 
-        // <div class="interviewBoxesContainer">
-        //     <div class="question1 interviewBoxes">
-        //         <p class="question1">${questions[quest]}</p>
-        //         <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-        //             <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-        //         </svg>             
-        //     </div>
-        //     <div class="bar"></div>
-        // </div>
-        // `
     }
-    // div.innerHTML = `
-    // <div class="interviewImg"></div>
-    // <h2 class="interviewTitle">Intervjua Grannen</h2>
-
-    // <div class="interviewBoxesContainer">
-    //     <div class="question1 interviewBoxes">
-    //         <p class="question1">${questions[0].questionOne}</p>
-    //         <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>             
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question2 interviewBoxes">
-    //         <p class="question2">${questions[0].questionTwo}</p>
-    //         <svg class="question2" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question2" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>                     
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question3 interviewBoxes">
-    //         <p class="question3">${questions[0].questionThree}</p>
-    //         <svg class="question3" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question3" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>             
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question4 interviewBoxes">
-    //         <p class="question4">${questions[0].questionFour}</p>
-    //         <svg class="question4" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question4" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>              
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question5 interviewBoxes">
-    //         <p class="question5">${questions[0].questionFive}</p>
-    //         <svg class="question5" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question5" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>          
-    //     </div>
-    //     <div class="bar"></div>
-    // </div>    
-    // `;
 
     container.appendChild(div);
     let interviewBoxes = document.querySelectorAll(".interviewBoxes");
@@ -121,7 +62,7 @@ function renderInterviewPage(questions, h2Text) {
 
 async function playQuestion(event) {
 
-    let target = event.target.classList;
+    let target = event.currentTarget.classList;
     let url = "./media/audio/Granne_fraga_1.mp3";
     let currentlyPlayingElement = event.target.classList[0];
     console.log(currentlyPlayingElement);
@@ -194,6 +135,7 @@ async function playQuestion(event) {
 }
 
 function playAudio(question, currentlyPlaying) {
+    checkIfPlaying();
     let questionsDiv = document.querySelectorAll(".interviewBoxes");
 
     if (!playing) {
@@ -221,7 +163,7 @@ function playAudio(question, currentlyPlaying) {
         }
 
     } else if (playing) {
-        // question.pause();
+        question.pause();
         playing = false;
         console.log("paused");
         checkIfPlaying();
@@ -290,36 +232,10 @@ function showPopup() {
 function submitAnswer() {
     const value = document.querySelector("#credibilitySlider").value;
     console.log("Svar skickat:", value);
+    window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", "_blank");
     document.querySelector("#popUpbackground").style.display = 'none';
 }
 
 
 
-
-// function renderInterviewPopUp() {
-//     const popUp = document.createElement("div");
-//     popUp.id = "popUpContainer";
-//     popUp.classList.add("displayPopUp");
-
-//     popUp.innerHTML = `
-//     <div id="popupContent">
-//         <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
-//         <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
-//         <p id="sliderValue">3</p>
-//         <button>Skicka</button>
-//     </div>
-//     `;
-
-//     document.querySelector('#popupContent button').addEventListener('click', submitAnswer);
-// }
-
-// function showPopup() {
-//     document.getElementById('popUpContainer').style.display = 'flex';
-// }
-
-// function submitAnswer() {
-//     const value = document.getElementById('credibilitySlider').value;
-//     console.log("Svar skickat:", value);
-//     document.getElementById('questionPopup').style.display = 'none';
-// }
 

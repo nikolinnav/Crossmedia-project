@@ -28,10 +28,14 @@ function renderNavBar(firstDivText) {
     //     document.getElementById("1").classList.add("start");
     // }
     document.getElementById("charactersNav").addEventListener("click", displayDropDown);
-    document.getElementById("start").addEventListener("click", start)
+    document.getElementById("start").addEventListener("click", start);
+    document.getElementById("karta").addEventListener("click", () => {
+        createMap();
+    });
 }
 
 function displayDropDown(event) {
+    event.stopPropagation();
     if (document.getElementById("dropDownList")) {
         document.getElementById("dropDownList").remove();
         return;
@@ -39,25 +43,23 @@ function displayDropDown(event) {
     renderDropDown();
 }
 
+
 function start(event) {
-    if (event.target.textContent == "Start") {
+    const clickedText = event.target.textContent.trim();
 
-        let dynamicContent = document.querySelectorAll(".dynamicContent");
-        console.log(dynamicContent);
-        dynamicContent.forEach(element => element.remove());
-
+    if (clickedText === "Start") {
+        document.querySelectorAll(".dynamicContent").forEach(el => el.remove());
         renderMainPage();
         disableClickOnKarta();
-        //checks if card has been interacted with
-        //if it hasnt renders those cards
-        for (let inter in interaction) {
-            if (interaction[inter].interacted) {
-                console.log(inter + " " + interaction[inter].interacted);
-                createReadArticleCard(interaction[inter].id);
-            } 
+
+        // Create cards for interacted items
+        for (let key in interaction) {
+            if (interaction[key].interacted) {
+                createReadArticleCard(interaction[key].id);
+            }
         }
-        
         disableClickOnReadCards();
+
         let newCards = false;
 
         if (fromGrannen && interaction.grannen.clicked <= 1) {
@@ -78,7 +80,6 @@ function start(event) {
         }
 
         if (fromKalender && interaction.kalender.clicked <= 1) {
-            console.log("now Borgmästaren Hittad should render");
             fromKalender = false;
             event.target.textContent = "Senaste";
             createCard(7);
@@ -88,29 +89,100 @@ function start(event) {
             enableClickOnReadCards();
         }
 
-        console.log("kalender clicked: ", interaction.kalender.clicked);
-
-        for (let inter in interaction) {
-            console.log(inter + " " + interaction[inter].found);
-            if (interaction[inter].found) {
-                interaction[inter].found = false;
-                console.log(inter + " " + interaction[inter].found);
-                createCard(interaction[inter].id);
+        // Check found interactions
+        for (let key in interaction) {
+            if (interaction[key].found) {
+                interaction[key].found = false;
+                createCard(interaction[key].id);
                 newCards = true;
                 return;
             }
         }
 
-        console.log(newCards);
         if (!newCards) {
             enableClickOnReadCards();
             enableClickOnKarta();
         }
+
         event.target.textContent = "Senaste";
     }
 
-      
-        //checks what cards and articles has been interacted with
-        //adds those cards under Lästa Artiklar
     console.log(event.target.textContent);
 }
+
+
+// function start(event) {
+//     if (event.target.textContent == "Start") {
+
+//         let dynamicContent = document.querySelectorAll(".dynamicContent");
+//         console.log(dynamicContent);
+//         dynamicContent.forEach(element => element.remove());
+
+//         renderMainPage();
+//         disableClickOnKarta();
+//         //checks if card has been interacted with
+//         //if it hasnt renders those cards
+//         for (let inter in interaction) {
+//             if (interaction[inter].interacted) {
+//                 console.log(inter + " " + interaction[inter].interacted);
+//                 createReadArticleCard(interaction[inter].id);
+//             } 
+//         }
+        
+//         disableClickOnReadCards();
+//         let newCards = false;
+
+//         if (fromGrannen && interaction.grannen.clicked <= 1) {
+//             fromGrannen = false;
+//             event.target.textContent = "Senaste";
+//             createCard(2);
+//             return;
+//         }
+
+//         if (fromMotstandare && interaction.intervju_motstandare.clicked <= 1) {
+//             fromMotstandare = false;
+//             event.target.textContent = "Senaste";
+//             createCard(5);
+//             return;
+//         } else if (interaction.intervju_motstandare.clicked > 1) {
+//             newCards = false;
+//             enableClickOnReadCards();
+//         }
+
+//         if (fromKalender && interaction.kalender.clicked <= 1) {
+//             console.log("now Borgmästaren Hittad should render");
+//             fromKalender = false;
+//             event.target.textContent = "Senaste";
+//             createCard(7);
+//             return;
+//         } else if (interaction.kalender.clicked > 1) {
+//             newCards = false;
+//             enableClickOnReadCards();
+//         }
+
+//         console.log("kalender clicked: ", interaction.kalender.clicked);
+
+//         for (let inter in interaction) {
+//             console.log(inter + " " + interaction[inter].found);
+//             if (interaction[inter].found) {
+//                 interaction[inter].found = false;
+//                 console.log(inter + " " + interaction[inter].found);
+//                 createCard(interaction[inter].id);
+//                 newCards = true;
+//                 return;
+//             }
+//         }
+
+//         console.log(newCards);
+//         if (!newCards) {
+//             enableClickOnReadCards();
+//             enableClickOnKarta();
+//         }
+//         event.target.textContent = "Senaste";
+//     }
+
+      
+//         //checks what cards and articles has been interacted with
+//         //adds those cards under Lästa Artiklar
+//     console.log(event.target.textContent);
+// }
