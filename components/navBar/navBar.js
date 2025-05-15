@@ -13,7 +13,7 @@ function renderNavBar(firstDivText) {
         <div class="navDiv">
             <p id="start" class="navText">${firstDivText}</p>
         </div>
-        <div class="navDiv">
+        <div class="navDiv" id="kartaNav">
             <p class="navText">Karta</p>
         </div>
         <div class="navDiv">
@@ -29,7 +29,7 @@ function renderNavBar(firstDivText) {
     // }
     document.getElementById("charactersNav").addEventListener("click", displayDropDown);
     document.getElementById("start").addEventListener("click", start);
-    document.getElementById("karta").addEventListener("click", () => {
+    document.getElementById("kartaNav").addEventListener("click", () => {
         createMap();
     });
 }

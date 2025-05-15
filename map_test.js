@@ -1,9 +1,9 @@
 // Global variables
 let map, targetMarker, userMarker;
 notified = false;
-// if (location.hostname === "localhost") {
-//     localStorage.removeItem("visitedPlaces");
-// }
+if (location.hostname === "localhost") {
+    sessionStorage.removeItem("visitedPlaces");
+}
 // Locations array
 const locations = [
     { name: "Grannen", lat: 55.60763, lon: 12.98699 },
@@ -96,6 +96,7 @@ function handlePositionUpdate(pos) {
 
 
 function createMap() {
+    window.scrollTo(0,0);
     const container = document.querySelector("#container");
     container.innerHTML = "";
     renderTitle();
@@ -126,6 +127,7 @@ function createMap() {
     });
 
     // Set the next location as target
+    const currentTarget = getNextLocation();
     if (currentTarget) {
         setTarget(getNextLocation());
     }
@@ -333,7 +335,7 @@ function startGeolocationWatcher() {
                 console.error("Error", err);
             },
             {
-                enableHighAccuracy: true,
+                enableHighAccuracy: false,
                 maximumAge: Infinity,
                 timeout: 30000,
             }
