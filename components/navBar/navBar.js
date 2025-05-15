@@ -29,7 +29,7 @@ function renderNavBar(firstDivText) {
     // }
     document.getElementById("charactersNav").addEventListener("click", displayDropDown);
     document.getElementById("start").addEventListener("click", start);
-    document.getElementById("karta").addEventListener("click", () => {
+    document.getElementById("map").addEventListener("click", () => {
         createMap();
     });
 }
