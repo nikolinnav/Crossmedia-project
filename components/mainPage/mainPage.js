@@ -299,6 +299,8 @@ function disableClickOnReadCards() {
 }
 
 function enableClickOnKarta() {
+    let navKarta = document.getElementById("kartaNav");
+    navKarta.style.pointerEvents = "auto";
 
     const karta = document.querySelector("#karta");
     karta.style.pointerEvents = "auto";
@@ -306,6 +308,9 @@ function enableClickOnKarta() {
 }
 
 function disableClickOnKarta() {
+    let navKarta = document.getElementById("kartaNav");
+    navKarta.style.pointerEvents = "none";
+
     console.log("now karta should be disabled");
     const karta = document.querySelector("#karta");
     karta.style.pointerEvents = "none";

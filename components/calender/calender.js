@@ -2,11 +2,12 @@ function renderCalender(month, year) {
   const container = document.querySelector("#container");
   container.innerHTML = "";
 
-  const title = document.createElement("h2");
-  title.id = "calTitle";
-  title.textContent = "Sanning eller Skvaller";
-  container.appendChild(title);
+  // const title = document.createElement("h2");
+  // title.id = "calTitle";
+  // title.textContent = "Sanning eller Skvaller";
+  // container.appendChild(title);
   
+  renderTitle();
   renderNavBar("Start");
   if (!called) {
     document.querySelector("nav").style.pointerEvents = "none";

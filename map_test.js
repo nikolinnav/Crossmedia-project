@@ -1,9 +1,9 @@
 // Global variables
 let map, targetMarker, userMarker;
 notified = false;
-// if (location.hostname === "localhost") {
-//     localStorage.removeItem("visitedPlaces");
-// }
+if (location.hostname === "localhost") {
+    sessionStorage.removeItem("visitedPlaces");
+}
 // Locations array
 const locations = [
     { name: "Grannen", lat: 55.60763, lon: 12.98699 },
@@ -11,7 +11,7 @@ const locations = [
     { name: "BookABoatMalmo", lat: 55.60665, lon: 12.99556 },
     { name: "Radhuset", lat: 55.60662, lon: 13.00135 },
     { name: "GustavAdolfsTorg", lat: 55.60248, lon: 13.00082 },
-    { name: "MJsHotell", lat: 55.60588, lon: 12.99794 }
+    { name: "MJsHotell", lat: 55.60584, lon: 12.99795 }
 ];
 
 // Utility functions
@@ -70,6 +70,7 @@ function updateDistanceDisplay(text) {
 }
 
 function createMap() {
+    window.scrollTo(0, 0);
     const container = document.querySelector("#container");
     container.innerHTML = "";
     renderTitle();
@@ -268,7 +269,7 @@ function startGeolocationWatcher() {
                             } 
                             break;
                         case "Radhuset":
-                            alert("Du har ankommit till Rådhuset");
+                            alert("Du har ankommit till Rådhuset. Kolla senaste nytt");
                             interaction.intervju_motstandare.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
@@ -279,7 +280,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "GustavAdolfsTorg":
-                            alert("Du har ankommit till Gustav Adolfs Torg")
+                            alert("Du har ankommit till Gustav Adolfs Torg. Kolla senaste nytt")
                             interaction.kalender.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {
@@ -290,7 +291,7 @@ function startGeolocationWatcher() {
                             } 
                             break;
                         case "MJsHotell":
-                            alert("Du har ankommit till MJ's");
+                            alert("Du har ankommit till MJ's. Kolla senaste nytt och hitta QR-koden");
                             interaction.sistaArtikel.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {

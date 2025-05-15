@@ -1,11 +1,11 @@
 // let fromReadArticle = false;
 //Eventuellt ett kort för dotterns instagram
 //Questions needed for the interviewPage
-// let interviewQuestions = [];
+let interviewQuestions = [];
 //Data needed for the karaktärer page
-// let characterInfo = [];
+let characterInfo = [];
 //Data needed for the different cards that are added to mainPage
-// let gameCards = [];
+let gameCards = [];
 let fromGrannen = false;
 let fromMotstandare = false;
 let fromKalender = false;
