@@ -69,6 +69,32 @@ function updateDistanceDisplay(text) {
     if (display) display.textContent = text;
 }
 
+
+//Added function 
+function handlePositionUpdate(pos) {
+    const userLat = pos.coords.latitude;
+    const userLon = pos.coords.longitude;
+
+    if (map && userMarker) {
+        userMarker.setLatLng([userLat, userLon]);
+        map.setView([userLat, userLon]);
+    }
+
+    const target = getNextLocation();
+    if (!target) return;
+
+    const dist = getDistance(userLat, userLon, target.lat, target.lon);
+
+    console.log("distance to target: ", dist);
+
+    if (dist < 20 && !notified) {
+        notified = true;
+        handleArrival(target);
+    }
+}
+
+
+
 function createMap() {
     const container = document.querySelector("#container");
     container.innerHTML = "";
@@ -100,9 +126,8 @@ function createMap() {
     });
 
     // Set the next location as target
-    const currentTarget = getNextLocation();
     if (currentTarget) {
-        setTarget(currentTarget);
+        setTarget(getNextLocation());
     }
 
     // Create user marker
@@ -196,8 +221,8 @@ function createMap() {
     }
 }
 
+
 function startGeolocationWatcher() {
-    // userMarker = L.marker([0, 0]).addTo(map);
     if ("geolocation" in navigator) {
         navigator.geolocation.watchPosition(
             (pos) => {
@@ -209,42 +234,48 @@ function startGeolocationWatcher() {
                     map.setView([userLat, userLon]);
                 }
 
+                // Special optional event at BookABoatMalmo
+                let bookABoatLat = 55.60662;
+                let bookABoatLon = 13.00135;
+                let bookABoatDist = getDistance(userLat, userLon, bookABoatLat, bookABoatLon);
+                if (bookABoatDist < 20 && !interaction.vilseledd.found) {
+                    alert("Dottern har lurat dig till Book a boat! Fortsätt titta på hennes Instagram.");
+                    interaction.vilseledd.found = true;
+                    saveVisited("BookABoatMalmo");
+
+                    let navStart = document.getElementById("start");
+                    if (navStart.textContent == "Senaste") {
+                        interaction.vilseledd.found = false;
+                        createCard(3);
+                        disableClickOnKarta();
+                        disableClickOnReadCards();
+                    }
+                }
+
+                // Main route locations
                 const target = getNextLocation();
                 if (!target) return;
 
                 const dist = getDistance(userLat, userLon, target.lat, target.lon);
 
-                let lat = pos.coords.latitude;
-                let lon = pos.coords.longitude;
-
-                let radHusetLat = 55.60662;
-                let radHusetLon = 13.00135;
-
-                let radHusetDist = getDistance(userLat, userLon, radHusetLat, radHusetLon);
-                if (radHusetDist < 20 && !interaction.vilseledd.found) {
-                    console.log("hej");
-                    saveVisited("BookABoatMalmo");
-                }
-                // Arrived at location
+                // ✅ Arrived at main location
                 if (dist < 20 && !notified) {
                     notified = true;
-                    // alert(`Du har ankommit till ${target.name}`);
                     saveVisited(target.name);
+
+                    // ✅ Add pin on map
+                    L.marker([target.lat, target.lon])
+                        .addTo(map)
+                        .bindPopup(`${target.name} (Besökt)`);
+
                     let navStart = document.getElementById("start");
                     console.log(target.name);
-                    // Show visited pin
 
-                    // L.marker([target.lat, target.lon])
-                    //     .addTo(map)
-                    //     .bindPopup(`${target.name} (Besökt)`);
-                    // Trigger view for task/interview/question
-                    // renderView(`task-${target.name}`);
+                    // Trigger interaction based on location
                     switch (target.name) {
                         case "Grannen":
-                            alert("Du har ankommit till Grannen. Kolla senaste nytt");
+                            alert("Du har ankommit till Grannen. Kolla i senaste nytt!");
                             interaction.grannen.found = true;
-                            notified = false;
-                            // let navStart = document.getElementById("start");
                             if (navStart.textContent == "Senaste") {
                                 interaction.grannen.found = false;
                                 disableClickOnKarta();
@@ -254,45 +285,37 @@ function startGeolocationWatcher() {
                             break;
                         case "MalmoLive":
                             alert("Hitta platsen du såg i videon!");
-                            notified = false;
-                            break;
-                        case "BookABoatMalmo":
-                            alert("Du har tagit dig till Book A Boat, var det verkligen rätt?");
-                            interaction.vilseledd.found = true;
-                            notified = false;
+                            interaction.malmolive.found = true;
                             if (navStart.textContent == "Senaste") {
-                                interaction.vilseledd.found = false;
-                                createCard(3)
+                                interaction.malmolive.found = false;
                                 disableClickOnKarta();
                                 disableClickOnReadCards();
-                            } 
+                                createCard(2);
+                            }
                             break;
                         case "Radhuset":
-                            alert("Du har ankommit till Rådhuset");
+                            alert("Du har ankommit till Rådhuset. Kolla i Senaste nytt!");
                             interaction.intervju_motstandare.found = true;
-                            notified = false;
                             if (navStart.textContent == "Senaste") {
                                 interaction.intervju_motstandare.found = false;
-                                createCard(4)
+                                createCard(4);
                                 disableClickOnKarta();
                                 disableClickOnReadCards();
                             }
                             break;
                         case "GustavAdolfsTorg":
-                            alert("Du har ankommit till Gustav Adolfs Torg")
+                            alert("Du har ankommit till Gustav Adolfs Torg. Kolla i Senaste nytt!");
                             interaction.kalender.found = true;
-                            notified = false;
                             if (navStart.textContent == "Senaste") {
                                 interaction.kalender.found = false;
                                 createCard(6);
                                 disableClickOnKarta();
                                 disableClickOnReadCards();
-                            } 
+                            }
                             break;
                         case "MJsHotell":
-                            alert("Du har ankommit till MJ's");
+                            alert("Du har ankommit till MJ's. Kolla i Senaste nytt!");
                             interaction.sistaArtikel.found = true;
-                            notified = false;
                             if (navStart.textContent == "Senaste") {
                                 createCard(8);
                                 disableClickOnKarta();
@@ -301,23 +324,9 @@ function startGeolocationWatcher() {
                             break;
                     }
 
-                    console.log("hej");
-                    setTarget(nextTarget);
+                    // Set next location
+                    setTarget(getNextLocation());
                     notified = false;
-
-                    L.marker([target.lat, target.lon])
-                        .addTo(map)
-                        .bindPopup(`${target.name} (Besökt)`);
-
-                    // Show next location on return
-                    // setTimeout(() => {
-                    //     const nextTarget = getNextLocation();
-                    //     if (nextTarget) {
-                    //         console.log("hej");
-                    //         setTarget(nextTarget);
-                    //         notified = false;
-                    //     }
-                    // }, 1000);
                 }
             },
             err => {
@@ -331,6 +340,144 @@ function startGeolocationWatcher() {
         );
     }
 }
+
+
+
+// function startGeolocationWatcher() {
+//     // userMarker = L.marker([0, 0]).addTo(map);
+//     if ("geolocation" in navigator) {
+//         navigator.geolocation.watchPosition(
+//             (pos) => {
+//                 const userLat = pos.coords.latitude;
+//                 const userLon = pos.coords.longitude;
+
+//                 if (map && userMarker) {
+//                     userMarker.setLatLng([userLat, userLon]);
+//                     map.setView([userLat, userLon]);
+//                 }
+
+//                 const target = getNextLocation();
+//                 if (!target) return;
+
+//                 const dist = getDistance(userLat, userLon, target.lat, target.lon);
+
+//                 let lat = pos.coords.latitude;
+//                 let lon = pos.coords.longitude;
+
+//                 let radHusetLat = 55.60662;
+//                 let radHusetLon = 13.00135;
+
+//                 let radHusetDist = getDistance(userLat, userLon, radHusetLat, radHusetLon);
+//                 if (radHusetDist < 20 && !interaction.vilseledd.found) {
+//                     console.log("hej");
+//                     saveVisited("BookABoatMalmo");
+//                 }
+//                 // Arrived at location
+//                 if (dist < 20 && !notified) {
+//                     notified = true;
+//                     // alert(`Du har ankommit till ${target.name}`);
+//                     saveVisited(target.name);
+//                     let navStart = document.getElementById("start");
+//                     console.log(target.name);
+//                     // Show visited pin
+
+//                     // L.marker([target.lat, target.lon])
+//                     //     .addTo(map)
+//                     //     .bindPopup(`${target.name} (Besökt)`);
+//                     // Trigger view for task/interview/question
+//                     // renderView(`task-${target.name}`);
+//                     switch (target.name) {
+//                         case "Grannen":
+//                             alert("Du har ankommit till Grannen. Kolla i senaste nytt!");
+//                             interaction.grannen.found = true;
+//                             notified = false;
+//                             // let navStart = document.getElementById("start");
+//                             if (navStart.textContent == "Senaste") {
+//                                 interaction.grannen.found = false;
+//                                 disableClickOnKarta();
+//                                 disableClickOnReadCards();
+//                                 createCard(1);
+//                             }
+//                             break;
+//                         case "MalmoLive":
+//                             alert("Hitta platsen du såg i videon!");
+//                             notified = false;
+//                             break;
+//                         case "BookABoatMalmo":
+//                             alert("Dottern har lurat dig till Book a boat! Fortsätt titta på hennes Instagram.");
+//                             interaction.vilseledd.found = true;
+//                             notified = false;
+//                             if (navStart.textContent == "Senaste") {
+//                                 interaction.vilseledd.found = false;
+//                                 createCard(3)
+//                                 disableClickOnKarta();
+//                                 disableClickOnReadCards();
+//                             }
+//                             break;
+//                         case "Radhuset":
+//                             alert("Du har ankommit till Rådhuset. Kolla i Senaste nytt!");
+//                             interaction.intervju_motstandare.found = true;
+//                             notified = false;
+//                             if (navStart.textContent == "Senaste") {
+//                                 interaction.intervju_motstandare.found = false;
+//                                 createCard(4)
+//                                 disableClickOnKarta();
+//                                 disableClickOnReadCards();
+//                             }
+//                             break;
+//                         case "GustavAdolfsTorg":
+//                             alert("Du har ankommit till Gustav Adolfs Torg. Kolla i Senaste nytt!")
+//                             interaction.kalender.found = true;
+//                             notified = false;
+//                             if (navStart.textContent == "Senaste") {
+//                                 interaction.kalender.found = false;
+//                                 createCard(6);
+//                                 disableClickOnKarta();
+//                                 disableClickOnReadCards();
+//                             }
+//                             break;
+//                         case "MJsHotell":
+//                             alert("Du har ankommit till MJ's. Kolla i Senaste nytt!");
+//                             interaction.sistaArtikel.found = true;
+//                             notified = false;
+//                             if (navStart.textContent == "Senaste") {
+//                                 createCard(8);
+//                                 disableClickOnKarta();
+//                                 disableClickOnReadCards();
+//                             }
+//                             break;
+//                     }
+
+//                     console.log("hej");
+//                     setTarget(nextTarget);
+//                     notified = false;
+
+//                     L.marker([target.lat, target.lon])
+//                         .addTo(map)
+//                         .bindPopup(`${target.name} (Besökt)`);
+
+//                     // Show next location on return
+//                     // setTimeout(() => {
+//                     //     const nextTarget = getNextLocation();
+//                     //     if (nextTarget) {
+//                     //         console.log("hej");
+//                     //         setTarget(nextTarget);
+//                     //         notified = false;
+//                     //     }
+//                     // }, 1000);
+//                 }
+//             },
+//             err => {
+//                 console.error("Error", err);
+//             },
+//             {
+//                 enableHighAccuracy: true,
+//                 maximumAge: Infinity,
+//                 timeout: 30000,
+//             }
+//         );
+//     }
+// }
 //true
 // 1000;
 
