@@ -266,9 +266,9 @@ function startGeolocationWatcher() {
                     saveVisited(target.name);
 
                     // Add pin on map
-                    L.marker([target.lat, target.lon])
-                        .addTo(map)
-                        .bindPopup(`${target.name} (Besökt)`);
+                    // L.marker([target.lat, target.lon])
+                    //     .addTo(map)
+                    //     .bindPopup(`${target.name} (Besökt)`);
 
                     let navStart = document.getElementById("start");
                     console.log(target.name);
@@ -325,6 +325,10 @@ function startGeolocationWatcher() {
                             }
                             break;
                     }
+
+                    L.marker([target.lat, target.lon])
+                    .addTo(map)
+                    .bindPopup(`${target.name} (Besökt)`);
 
                     // Set next location
                     setTarget(getNextLocation());
