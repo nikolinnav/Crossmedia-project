@@ -232,7 +232,7 @@ function showPopup() {
 function submitAnswer() {
     const value = document.querySelector("#credibilitySlider").value;
     console.log("Svar skickat:", value);
-    window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", "_blank");
+    // window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", "_blank");
     document.querySelector("#popUpbackground").style.display = 'none';
 }
 
