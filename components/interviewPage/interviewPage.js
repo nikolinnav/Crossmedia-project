@@ -25,6 +25,10 @@ function renderInterviewPage(questions, h2Text) {
     divImg.setAttribute("class", "interviewImg");
     div.appendChild(divImg);
 
+    if (questions.id == 2) {
+        setImage(divImg, "url(./media/profiles/motstandaren.jpg)");
+    }
+
     let h2 = document.createElement("h2");
     h2.setAttribute("class", "interviewTitle");
     h2.textContent = h2Text;
@@ -50,67 +54,7 @@ function renderInterviewPage(questions, h2Text) {
         div.appendChild(interviewBox);
         let pauseButton = interviewBox.querySelector(".pauseButton");
         pauseButton.style.visibility = "hidden";
-        // div.innerHTML = `
-        // <div class="interviewImg"></div>
-        // <h2 class="interviewTitle">Intervjua Grannen</h2>
-
-        // <div class="interviewBoxesContainer">
-        //     <div class="question1 interviewBoxes">
-        //         <p class="question1">${questions[quest]}</p>
-        //         <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-        //             <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-        //         </svg>             
-        //     </div>
-        //     <div class="bar"></div>
-        // </div>
-        // `
     }
-    // div.innerHTML = `
-    // <div class="interviewImg"></div>
-    // <h2 class="interviewTitle">Intervjua Grannen</h2>
-
-    // <div class="interviewBoxesContainer">
-    //     <div class="question1 interviewBoxes">
-    //         <p class="question1">${questions[0].questionOne}</p>
-    //         <svg class="question1" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question1" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>             
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question2 interviewBoxes">
-    //         <p class="question2">${questions[0].questionTwo}</p>
-    //         <svg class="question2" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question2" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>                     
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question3 interviewBoxes">
-    //         <p class="question3">${questions[0].questionThree}</p>
-    //         <svg class="question3" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question3" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>             
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question4 interviewBoxes">
-    //         <p class="question4">${questions[0].questionFour}</p>
-    //         <svg class="question4" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question4" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>              
-    //     </div>
-    //     <div class="bar"></div>
-
-    //     <div class="question5 interviewBoxes">
-    //         <p class="question5">${questions[0].questionFive}</p>
-    //         <svg class="question5" xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-    //             <path class="question5" d="M0 2.27387C0 0.567007 1.82609 -0.518303 3.32538 0.297487L15.687 7.02369C17.2531 7.87579 17.2531 10.1242 15.687 10.9764L3.32538 17.7026C1.82609 18.5183 0 17.433 0 15.7262V2.27387Z" fill="#212121"/>
-    //         </svg>          
-    //     </div>
-    //     <div class="bar"></div>
-    // </div>    
-    // `;
 
     container.appendChild(div);
     let interviewBoxes = document.querySelectorAll(".interviewBoxes");

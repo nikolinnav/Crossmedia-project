@@ -19,7 +19,7 @@ function renderMainPage() {
             <div id="kartaImg"></div>
             <div class="bottomCard">
                 <h2>Karta</h2>
-                <p>Testtext som ska vara undertitel</p>
+                <p>Klicka här för att komma till kartan</p>
             </div>
         </div>
     </div>
@@ -215,7 +215,7 @@ function checkId(id) {
             document.querySelector("main").remove();
             renderNavBar("Start");
 
-            renderInterviewPage(interviewQuestions[1], "Intervjua Assistenten");
+            renderInterviewPage(interviewQuestions[1], "Intervjua Motståndaren");
             break;
 
         case "artikelAssistent":
