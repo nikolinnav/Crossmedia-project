@@ -129,7 +129,7 @@ footer {
 
 @supports not (writing-mode: sideways-lr) {
     #articleContainer>h2 {
-        transform: rotate(90deg);
+        transform: rotate(-90deg);
         transform-origin: bottom left;
     }
 }
