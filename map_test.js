@@ -258,7 +258,7 @@ function startGeolocationWatcher() {
                             notified = false;
                             break;
                         case "BookABoatMalmo":
-                            alert("Du har tagit dig till Book A Boat, var det verkligen rätt?");
+                            alert("Du har tagit dig till Book A Boat, var det verkligen rätt? Kolla i 'Senaste nytt'!");
                             interaction.vilseledd.found = true;
                             notified = false;
                             if (navStart.textContent == "Senaste") {

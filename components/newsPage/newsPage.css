@@ -253,14 +253,14 @@ p {
 /*LastArticle*/
 
 #image4 {
-    background-image: url(./media/newsPage/lastArticleMayor.jpg);
+    background-image: url("../../media/newsPage/lastArticleMayor.jpg");
     height: 200px;
     margin-bottom: 12px;
     background-position: center;
 }
 
 #lastArticleImage {
-    background-image: url(../../media/newsPage/BildSistaArtikel.jpg);
+    background-image: url("../../media/newsPage/BildSistaArtikel.jpg");
     width: 160px;
     height: 250px;
     background-size: contain;

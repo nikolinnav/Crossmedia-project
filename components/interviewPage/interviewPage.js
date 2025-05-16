@@ -208,8 +208,8 @@ function renderInterviewPopUp() {
             <div id="popupContent">
                 <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
                 <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
-                <p id="sliderValue">3</p>
                 <button onclick="submitAnswer()">Skicka</button>
+                <p id="popUpInfo">Kolla i 'Senaste nytt' när ni har skickat ert svar!</p>
             </div>
         </div>
     `;
@@ -239,31 +239,4 @@ function submitAnswer() {
 
 
 
-
-// function renderInterviewPopUp() {
-//     const popUp = document.createElement("div");
-//     popUp.id = "popUpContainer";
-//     popUp.classList.add("displayPopUp");
-
-//     popUp.innerHTML = `
-//     <div id="popupContent">
-//         <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
-//         <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
-//         <p id="sliderValue">3</p>
-//         <button>Skicka</button>
-//     </div>
-//     `;
-
-//     document.querySelector('#popupContent button').addEventListener('click', submitAnswer);
-// }
-
-// function showPopup() {
-//     document.getElementById('popUpContainer').style.display = 'flex';
-// }
-
-// function submitAnswer() {
-//     const value = document.getElementById('credibilitySlider').value;
-//     console.log("Svar skickat:", value);
-//     document.getElementById('questionPopup').style.display = 'none';
-// }
 
