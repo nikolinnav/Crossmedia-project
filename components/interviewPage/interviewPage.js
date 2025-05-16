@@ -77,7 +77,7 @@ async function playQuestion(event) {
 
             //Checks if all audios are played, if so it shows the popUp.
             finishedAudios.add(audioQuestions[0]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[0].onended) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -88,7 +88,7 @@ async function playQuestion(event) {
             playAudio(audioQuestions[1], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[1]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[1].onended) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -99,7 +99,7 @@ async function playQuestion(event) {
             playAudio(audioQuestions[2], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[2]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[2].onended) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -110,7 +110,7 @@ async function playQuestion(event) {
             playAudio(audioQuestions[3], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[3]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[3].onended) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -121,7 +121,7 @@ async function playQuestion(event) {
             playAudio(audioQuestions[4], currentlyPlayingElement);
 
             finishedAudios.add(audioQuestions[4]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[4].onended) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -143,8 +143,6 @@ function playAudio(question, currentlyPlaying) {
     if (!playing) {
         question.play();
         playing = true;
-        console.log("playing");
-        console.log(questionsDiv);
 
         document.getElementById("start").style.pointerEvents = "none";
         document.getElementById("charactersNav").style.pointerEvents = "none";
@@ -209,7 +207,7 @@ function renderInterviewPopUp() {
                 <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
                 <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
                 <button onclick="submitAnswer()">Skicka</button>
-                <p id="popUpInfo">Kolla i 'Senaste nytt' när ni har skickat ert svar!</p>
+                <p id="popUpInfo">Kolla in 'Senaste nytt' efter ni har skickat ert svar!</p>
             </div>
         </div>
     `;

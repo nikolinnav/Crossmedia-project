@@ -76,13 +76,15 @@ function createCard (id) {
             break;
         case 3:
             setImage(image, "url(./media/profiles/dottern.jpg");
+            image.style.backgroundPosition = "top center";
             break;
         case 4:
-            setImage(image, "url(./media/profiles/motstandaren.jpg)");
-            image.style.backgroundPosition = "center";
+            setImage(image, "url(./media/images/motstandarenCard.jpg)");
+            image.style.backgroundPosition = "top center";
             break;
         case 5: 
             setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)");
+            image.style.backgroundPosition = "top center";
             // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
             break;
         case 6:

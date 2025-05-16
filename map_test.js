@@ -6,12 +6,12 @@ if (location.hostname === "localhost") {
 }
 // Locations array
 const locations = [
-    { name: "Grannen", lat: 55.60763, lon: 12.98699 },
-    { name: "MalmoLive", lat: 55.60756, lon: 12.99201 },
-    { name: "BookABoatMalmo", lat: 55.60665, lon: 12.99556 },
-    { name: "Radhuset", lat: 55.60662, lon: 13.00135 },
-    { name: "GustavAdolfsTorg", lat: 55.60248, lon: 13.00082 },
-    { name: "MJsHotell", lat: 55.60584, lon: 12.99795 }
+    { name: "Grannen", realName: "Grannen", lat: 55.60752, lon: 12.98714 },
+    { name: "MalmoLive", realName: "Malmö Live", lat: 55.60756, lon: 12.99201 },
+    { name: "BookABoatMalmo", realName: "Book A Boat", lat: 55.60665, lon: 12.99556 },
+    { name: "Radhuset", realName: "Rådhuset", lat: 55.60662, lon: 13.00135 },
+    { name: "GustavAdolfsTorg", realName: "Gustav Adolfs Torg", lat: 55.60248, lon: 13.00082 },
+    { name: "MJsHotell", realName: "MJ's Hotell", lat: 55.60584, lon: 12.99795 }
 ];
 
 // Utility functions
@@ -46,7 +46,7 @@ function getNextLocation() {
 function addVisitedMarker(location) {
     L.marker([location.lat, location.lon])
         .addTo(map)
-        .bindPopup(`${location.name} (visited)`);
+        .bindPopup(`${location.realName} (visited)`);
 }
 
 function setTarget(location) {
@@ -55,7 +55,7 @@ function setTarget(location) {
 
     targetMarker = L.marker([location.lat, location.lon])
         .addTo(map)
-        .bindPopup(location.name)
+        .bindPopup(location.realName)
         .openPopup();
 }
 
@@ -139,7 +139,7 @@ function createMap() {
 
                 console.log("distance to target: ", dist);
                 // Arrived at location
-                if (dist < 20 && !notified) {
+                if (dist < 25 && !notified) {
                     notified = true;
                     alert(`Du har ankommit till ${target.name}`);
                     saveVisited(target.name);
@@ -227,7 +227,7 @@ function startGeolocationWatcher() {
                     saveVisited("BookABoatMalmo");
                 }
                 // Arrived at location
-                if (dist < 20 && !notified) {
+                if (dist < 25 && !notified) {
                     notified = true;
                     // alert(`Du har ankommit till ${target.name}`);
                     saveVisited(target.name);
