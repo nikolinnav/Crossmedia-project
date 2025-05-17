@@ -77,7 +77,7 @@ async function playQuestion(event) {
 
             //Checks if all audios are played, if so it shows the popUp.
             finishedAudios.add(audioQuestions[0]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[0].onended) {
+            if (finishedAudios.size === questionNum && !popupAlreadyShown) {
                 popupAlreadyShown = true;
                 showPopup();
             }
@@ -87,44 +87,44 @@ async function playQuestion(event) {
             url = "./media/audio/Granne_fraga_2.mp3";
             playAudio(audioQuestions[1], currentlyPlayingElement);
 
-            finishedAudios.add(audioQuestions[1]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[1].onended) {
-                popupAlreadyShown = true;
-                showPopup();
-            }
+            // finishedAudios.add(audioQuestions[1]);
+            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            //     popupAlreadyShown = true;
+            //     showPopup();
+            // }
             break;
         case "questionThree":
             console.log("now playing question 3");
             url = "./media/audio/Granne_fraga_3.mp3";
             playAudio(audioQuestions[2], currentlyPlayingElement);
 
-            finishedAudios.add(audioQuestions[2]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[2].onended) {
-                popupAlreadyShown = true;
-                showPopup();
-            }
+            // finishedAudios.add(audioQuestions[2]);
+            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            //     popupAlreadyShown = true;
+            //     showPopup();
+            // }
             break;
         case "questionFour":
             console.log("now playing question 4");
             url = "./media/audio/Granne_fraga_4.mp3";
             playAudio(audioQuestions[3], currentlyPlayingElement);
 
-            finishedAudios.add(audioQuestions[3]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[3].onended) {
-                popupAlreadyShown = true;
-                showPopup();
-            }
+            // finishedAudios.add(audioQuestions[3]);
+            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            //     popupAlreadyShown = true;
+            //     showPopup();
+            // }
             break;
         case "questionFive":
             console.log("now playing question 5");
             url = "./media/audio/Granne_fraga_5.mp3";
             playAudio(audioQuestions[4], currentlyPlayingElement);
 
-            finishedAudios.add(audioQuestions[4]);
-            if (finishedAudios.size === questionNum && !popupAlreadyShown && audioQuestions[4].onended) {
-                popupAlreadyShown = true;
-                showPopup();
-            }
+            // finishedAudios.add(audioQuestions[4]);
+            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+            //     popupAlreadyShown = true;
+            //     showPopup();
+            // }
             break;
         case "questionSix":
             console.log("now playing question 6");
@@ -171,6 +171,8 @@ function playAudio(question, currentlyPlaying) {
     }
     question.onended = function () {
         playing = false;
+        finishedAudios.add(question);
+        maybeShowPopup();
         enablePlaying(questionsDiv);
     }
 }
@@ -205,7 +207,16 @@ function renderInterviewPopUp() {
         <div id="popUpContainer">
             <div id="popupContent">
                 <p id="popUpText">På en skala hur övertygande var grannens version av händelserna?</p>
-                <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+                <div id="sliderContainer">
+                    <div id="sliderLabels">
+                        <p>1</p>
+                        <p>2</p>
+                        <p>3</p>
+                        <p>4</p>
+                        <p>5</p>
+                    </div>
+                    <input type="range" id="credibilitySlider" min="1" max="5" step="1" value="3">
+                </div>
                 <button onclick="submitAnswer()">Skicka</button>
                 <p id="popUpInfo">Kolla in 'Senaste nytt' efter ni har skickat ert svar!</p>
             </div>
@@ -235,6 +246,11 @@ function submitAnswer() {
     document.querySelector("#popUpbackground").style.display = 'none';
 }
 
-
+function maybeShowPopup() {
+    if (finishedAudios.size === questionNum && !popupAlreadyShown) {
+        popupAlreadyShown = true;
+        showPopup();
+    }
+}
 
 
