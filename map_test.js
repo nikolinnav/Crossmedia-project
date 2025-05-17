@@ -8,7 +8,7 @@ if (location.hostname === "localhost") {
 const locations = [
     { name: "Grannen", realName: "Grannen", lat: 55.60752, lon: 12.98714 },
     { name: "MalmoLive", realName: "Malmö Live", lat: 55.60756, lon: 12.99201 },
-    { name: "BookABoatMalmo", realName: "Book A Boat", lat: 55.60665, lon: 12.99556 },
+    { name: "BookABoatMalmo", realName: "Book A Boat", lat: 55.60676, lon: 12.99507 },
     { name: "Radhuset", realName: "Rådhuset", lat: 55.60662, lon: 13.00135 },
     { name: "GustavAdolfsTorg", realName: "Gustav Adolfs Torg", lat: 55.60248, lon: 13.00082 },
     { name: "MJsHotell", realName: "MJ's Hotell", lat: 55.60584, lon: 12.99795 }
@@ -254,7 +254,7 @@ function startGeolocationWatcher() {
                             }
                             break;
                         case "MalmoLive":
-                            alert("Hitta platsen du såg i videon!");
+                            alert("Hitta platsen du såg i videon och skanna QR-koden!");
                             notified = false;
                             break;
                         case "BookABoatMalmo":

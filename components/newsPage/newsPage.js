@@ -188,7 +188,7 @@ function renderBackgroundArticle() {
                 <div id="uppgift">
                     <p><b>DIN UPPGIFT</b></p>
                     <p>Du axlar rollen som journalist och kastas ut i Borgmästarens mystiska försvinnande. I din roll som journalist behöver du kritiskt granska de digitala ledtrådarna och ta dig till rätt platser för att lösa gåtan och hitta borgmästaren.</p>
-                    <p>Källkritik är ditt viktigaste verktyg. Varje ledtråd kräver eftertanke. Sanningen hittar du först när du vågar ifrågasätta det du ser. </p>   
+                    <p>Källkritik är ditt viktigaste verktyg. Varje ledtråd kräver eftertanke. Sanningen hittar du först när du vågar ifrågasätta det du ser. </p>    
                 </div>
                 <div id="logo"></div>
     `
@@ -208,7 +208,9 @@ function renderInstructions() {
     <div id="instContainer"> 
         <p>UTRUSTNING:</p>
         <p>Smartphone, Instagramkonto, TikTok-konto</p>
-        <p>Malmös borgmästare är försvunnen och din uppgift är att följa olika ledtrådar för att ta reda på sanningen kring försvinnandet. Under spelets gång får du olika ledtrådar i form av nyhetsartiklar, ljudinspelningar, bilder och videos. Var noggrann när du granskar ledtrådarna, de innehåller viktig information om vart du ska ta dig för att komma vidare i spelet. Se vilka platser som visas på ledtrådarna för att veta vart du ska gå här näst. Nya ledtrådar kommer ges i form av notiser som du hittar i huvudmenyn.</p>
+        <p>Malmös borgmästare är försvunnen och din uppgift är att följa olika ledtrådar för att ta reda på sanningen kring försvinnandet. Under spelets gång får du olika ledtrådar i form av nyhetsartiklar, ljudinspelningar, bilder och videos. Var noggrann när du granskar ledtrådarna, de innehåller viktig information om vart du ska ta dig för att komma vidare i spelet. Se vilka platser som visas på ledtrådarna för att veta vart du ska gå här näst. Nya ledtrådar kommer ges i form av notiser som du hittar i huvudmenyn.
+        Tillåt att webbläsaren använder din plats. Ladda inte om eller stäng ner sidan, lås inte mobilen och stänga av batterisparläget.
+        </p>
         <p>FUNKTIONER</p>
         <ol>
             <li>Start: Här hittar du huvudmenyn.</li>
@@ -216,7 +218,6 @@ function renderInstructions() {
             <li>Artiklar: En samlad sida för tidigare artiklar.</li>
             <li>Karaktärer: Använd funktionen “karaktärer” för att återgå till personerna du möter i spelet och bilda dig en uppfattning om hur de är.</li>
             <li>QR koder: vid två tillfällen i spelet behöver du skanna en QR-kod för att komma vidare. Mer instruktioner angående detta kommer ges under spelets gång.</li>
-            <li>Stäng inte ner fliken och lås inte mobilen under spelets gång</li>
         </ol>
 
     </div>
