@@ -24,7 +24,7 @@ function renderNewsPageGranne() {
     <h1>BORGMÄSTAREN ÄR<br>SPÅRLÖST FÖRSVUNNEN!</h1>
     <div id="image"></div>
     <hr>
-    <h2>Saknad under oklara omständigheter dagar före stundande komunval.</h2>
+    <h2>Saknad under oklara omständigheter dagar före stundande kommunval.</h2>
     <hr id="lastHR">
  
     <div id="flexContainer">
