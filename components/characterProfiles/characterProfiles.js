@@ -1,13 +1,5 @@
 function renderCharacterProfiles(characterInfo) {
-    // if (document.querySelector("main")) {
-    //     document.querySelector("main").remove();
-    // };
 
-    // if (document.querySelector("#characterContainer")) {
-    //     document.querySelector("#characterContainer").remove();
-    // }
-
-    // if (document.querySelector(""))
     let dynamicContent = document.querySelectorAll(".dynamicContent");
     dynamicContent.forEach(e => e.remove());
     const container = document.getElementById("container");

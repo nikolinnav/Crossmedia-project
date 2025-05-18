@@ -112,7 +112,6 @@ function renderSmygbilderArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    // newsPageContainer.addEventListener("click", render)
 }
 
 function renderAssistantArticle() {
@@ -166,7 +165,7 @@ function renderAssistantArticle() {
     rect.appendChild(text);
     text.textContent = "www.malmodirekt.se";
 
-    // newsPageContainer.addEventListener("click", render)
+
 }
 
 function renderBackgroundArticle() {
@@ -314,15 +313,12 @@ function render(event) {
             renderNavBar("Senaste");
             renderMainPage();
             startGeolocationWatcher();
-            // createCard(1);
             createReadArticleCard(0);
             interaction.newsPage.interacted = true;
             interaction.newsPage.clicked++;
             console.log(interaction.newsPage.interacted);
         }
     }
-    // interacted.newsPage = true;
-    // console.log(interacted);
 } 
 
 function granneClick(event) {

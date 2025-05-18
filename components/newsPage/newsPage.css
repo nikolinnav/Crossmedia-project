@@ -45,7 +45,6 @@ hr {
 }
 
 p {
-    /* font-family: 'Times New Roman', Times, serif; */
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
@@ -152,7 +151,7 @@ footer {
     grid-column: 2/4;
     padding-right: 15px;
     padding-left: 8px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #separator {
@@ -171,7 +170,7 @@ footer {
     margin-left: 5px;
     padding-right: 15px;
     padding-left: 8px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin-left: 0;
     margin-bottom: 50px;
 }

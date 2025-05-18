@@ -1,4 +1,4 @@
-// let fromReadArticle = false;
+
 //Eventuellt ett kort för dotterns instagram
 //Questions needed for the interviewPage
 let interviewQuestions = [];
@@ -11,8 +11,6 @@ let fromMotstandare = false;
 let fromKalender = false;
 let currentArticle = "";
 let called = false 
-// localStorage.removeItem("visitedPlaces");
-// let newCards = false;
 
 async function get() {
     let requestCharacterInfo = new Request("./database/characterInfo.json");
@@ -26,7 +24,7 @@ async function get() {
     characterInfo = await checkOk(responseCharacterInfo);
     interviewQuestions = await checkOk(responseInterviewQuestions);
     gameCards = await checkOk(responseGameCards);
-    localStorage.removeItem("visitedPlaces");
+
     console.log(interviewQuestions);
     console.log(characterInfo);
     console.log(gameCards);
@@ -41,33 +39,7 @@ async function checkOk(response) {
 }
 get();
 
-// function clearLocalStorageOnStart() {
-//     if (localStorage.length > 0) {
-//         localStorage.clear();
-//     }
-// }
-// renderTitle();
-// renderNavBar("Senaste");
-//renderNewsPageGranne();
 
 let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
-// renderInterviewPage(questions);
-// renderMainPage();
 
-// renderBackgroundArticle();
-renderInstructions()
-// renderNewsPageGranne();
-//renderNewsPageGranne();
-// renderNavBar();
-// renderMainPage();
-
-// renderNavBar("Senaste");
-// let questions = ["Vad har ni för relation?", "När pratade ni senast?", "Vilken tid lämnade hon huset?", "Hur menar du stressad?", "Var tror du hon var påväg?"];
-// renderInterviewPage(questions);
-// renderNewsPageGranne();
-// renderBackgroundArticle();
-// renderSmygbilderArticle()
-// renderAssistantArticle();
-// renderAssistantArticle();
-//renderInstructions();
-//renderCalender(4, 2025);
+renderInstructions();

@@ -27,27 +27,13 @@ function renderMainPage() {
     <div id="lästaArtiklarCards"></div>
 
     `;
-    // if (!document.getElementById("alreadyRead")) {
-    //     console.log("hej");
-    //     let alreadyReadDiv = document.createElement("div");
-    //     alreadyReadDiv.setAttribute("id", "alreadyRead");
-    //     alreadyReadDiv.innerHTML = `
-    //     <h1 id="lästaArtiklar">Lästa artiklar</h1>
-    //     <div id="lästaArtiklarCards"></div>
-    //     `
-    //     container.appendChild(alreadyReadDiv);
-    // }
-    // console.log("currently newCards is ", newCards);
-    // if (!newCards) {
-    //     enableClickOnKarta();
-    // }
+
     let cards = document.querySelectorAll(".card");
     cards.forEach(card => card.addEventListener("click", (event) => cardClick(event, card)));
 }
 
 //Creates a card that is added under Senaste Nytt
 function createCard (id) {
-    // newCards = true;
     for (let card of gameCards) {
         if (card.id === id) {
             // currentArticle = card.divId;
@@ -85,11 +71,9 @@ function createCard (id) {
         case 5: 
             setImage(image,"url(./media/images/NyhetsartiklarThree.jpg)");
             image.style.backgroundPosition = "top center";
-            // image.style.backgroundImage = "url(../../media/images/NyhetsartiklarThree.jpg)";
             break;
         case 6:
             setImage(image, "url(./media/images/kalender.jpg");
-            // image.style.backgroundImage = "url("
             break;
         case 7:
             setImage(image, "url(./media/images/borgmastarePaBild.jpg)");
@@ -100,14 +84,6 @@ function createCard (id) {
         default:
             break;
     }
-    //jsonStructure
-    //[{
-    // "event": "grannen"?
-    // "id": 1,
-    // "divId": "grannen",
-    // "titleText": "Title",
-    // "bottomText": "Text"
-    // }]
 
     //html to add a new card to #senasteNyttCards
     //cardInfo contains the necessary text info and picture src for the card
@@ -122,11 +98,9 @@ function createReadArticleCard (id,) {
     let readCardContainer = document.getElementById("lästaArtiklarCards");
     for (let card of gameCards) {
         if (id === card.id) {
-            // let readCardContainer = document.getElementById("lästaArtiklarCards");
             let cardDiv = document.createElement("div");
             cardDiv.setAttribute("id", card.divId);
             cardDiv.setAttribute("class", "card");
-            // card.classList.add(card.divId + "Read");a
             cardDiv.innerHTML = `
                  <div>
                      <h2>${card.titleText}</h2>
@@ -137,15 +111,8 @@ function createReadArticleCard (id,) {
             let cardElement = document.getElementById(`${card.divId}`);
             console.log(cardElement);
 
-            // console.log("now addEventListener should work");
-            // if (!disableClick) {
             cardElement.addEventListener("click", (event) => cardClick(event, cardElement));
-            // }
 
-
-            // if (link) {
-            //     window.open(link, `_blank`);
-            // }
         }
     }
 }
@@ -178,7 +145,6 @@ function checkId(id) {
             renderInstructions()
             renderBackgroundArticle();
             enableClickOnKarta();
-            // renderNewsPageGranne();
             break;
         case "phusVideo1":
             interaction.phus_video1.interacted = true;
@@ -188,12 +154,8 @@ function checkId(id) {
             enableClickOnKarta();
             window.open("https://vm.tiktok.com/ZNd6JKpGB/", `_blank`);
 
-            // renderMainPage();
            let phusElement = document.getElementById(id);
             phusElement.remove(); 
-
-            // createCard(3);
-
             break;
         case "vilseledd":
             interaction.vilseledd.interacted = true;
@@ -203,11 +165,8 @@ function checkId(id) {
             enableClickOnKarta();
             window.open("https://www.instagram.com/lisavonstjarnholm?igsh=MWpudzZwejFxNHYzaA==", `_blank`); 
             
-
             let vilseleddElement = document.getElementById(id);
             vilseleddElement.remove();
-            // createCard(4);
-            //ska öppna instagram igen
 
             break;
         case "intervjuMotstandare":
@@ -259,18 +218,6 @@ function checkId(id) {
 function setImage (element, image) {
     element.style.backgroundImage = image;
 }
-
-//Granne intervjun ska skapas när man tar sig till grannen
-//phus videon ska dyka upp direkt efter man besökt grannen
-//Malmö live ska dyka upp på kartan efter man besökt grannen men inget ska dyka upp på mainpage
-//Går användaren till BookABoat ska "vilseledd dyka upp"
-//Går användaren till rådhuset ska intervjuMotstandare dyka upp
-//Efter användaren har ringt samtalet i kalendern ska borgmastarenHittad artikeln dyka upp
-//Efter användaren tagit sig till MJ's ska sista artikel dyka upp
-
-//Kolla om senaste nytt är tomt. 
-//Är det tomt ska man kunna klicka på artkiklarna i lästa Artiklar.
-//Är det inte tomt ska man inte kunna klicka på artiklarna i lästa artiklar
 
 function enableClickOnReadCards() {
     const readCards = document.querySelectorAll("#lästaArtiklarCards .card");

@@ -22,11 +22,7 @@ function renderNavBar(firstDivText) {
         <div class="navDiv" id="charactersNav">
             <p class="navText">Karaktärer</p>
         </div>
-    `
-
-    // if (document.getElementById("1").textContent == "start") {
-    //     document.getElementById("1").classList.add("start");
-    // }
+    `;
     document.getElementById("charactersNav").addEventListener("click", displayDropDown);
     document.getElementById("start").addEventListener("click", start);
     document.getElementById("kartaNav").addEventListener("click", function (){

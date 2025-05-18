@@ -87,44 +87,23 @@ async function playQuestion(event) {
             url = "./media/audio/Granne_fraga_2.mp3";
             playAudio(audioQuestions[1], currentlyPlayingElement);
 
-            // finishedAudios.add(audioQuestions[1]);
-            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
-            //     popupAlreadyShown = true;
-            //     showPopup();
-            // }
             break;
         case "questionThree":
             console.log("now playing question 3");
             url = "./media/audio/Granne_fraga_3.mp3";
             playAudio(audioQuestions[2], currentlyPlayingElement);
 
-            // finishedAudios.add(audioQuestions[2]);
-            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
-            //     popupAlreadyShown = true;
-            //     showPopup();
-            // }
             break;
         case "questionFour":
             console.log("now playing question 4");
             url = "./media/audio/Granne_fraga_4.mp3";
             playAudio(audioQuestions[3], currentlyPlayingElement);
 
-            // finishedAudios.add(audioQuestions[3]);
-            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
-            //     popupAlreadyShown = true;
-            //     showPopup();
-            // }
             break;
         case "questionFive":
             console.log("now playing question 5");
             url = "./media/audio/Granne_fraga_5.mp3";
             playAudio(audioQuestions[4], currentlyPlayingElement);
-
-            // finishedAudios.add(audioQuestions[4]);
-            // if (finishedAudios.size === questionNum && !popupAlreadyShown) {
-            //     popupAlreadyShown = true;
-            //     showPopup();
-            // }
             break;
         case "questionSix":
             console.log("now playing question 6");
@@ -156,14 +135,11 @@ function playAudio(question, currentlyPlaying) {
                 let playButton = question.querySelector(".playButton");
                 pauseButton.style.visibility = "visible";
                 playButton.style.visibility = "hidden";
-                // playButton.remove();
-                // question.appendChild("")
                 console.log(playButton);
             }
         }
 
     } else if (playing) {
-        // question.pause();
         playing = false;
         console.log("paused");
         checkIfPlaying();
